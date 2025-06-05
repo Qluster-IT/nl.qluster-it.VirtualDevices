@@ -9,6 +9,7 @@
     border-radius: 3px;
     /* line-height: 30px; */
     cursor: pointer;
+    word-break: break-word;
   }
 </style>
 
@@ -24,23 +25,32 @@
       instructions: __('pair.select.class')
     }
   });
-
-  new Vue({
-    el: '#devices-list',
-    data: {
-      classes: devices
-    },
-    methods:{
-      addClass(deviceClass) {
-        Homey.emit('setClass', {'class': deviceClass, 'capabilities': devices[deviceClass].defaultCapabilities}, function (err, result) {
-          if(err){console.log(err); return;}
+  //var classes = await 
+  Homey.emit('getAllClasses').then(function(classes) {
+    new Vue({
+      el: '#devices-list',
+      data: {
+        classes: classes
+      },
+      methods:{
+        addClass(deviceClass) {
+          Homey.emit('setClass', {'class': deviceClass, 'capabilities': devices[deviceClass] ? devices[deviceClass].defaultCapabilities : []}, function (err, result) {
+            if(err){
+              Homey.alert(err.message, 'warning');
+              console.log(err); 
+              return;
+            }
             Homey.nextView();
-        });
+          });
+        }
       }
-    }
-  });
+    });
 
-  Homey.emit('getPairingDevice', null, function (err, device) {
+  });
+  //var 
+
+
+  Homey.emit('getPairingDevice', true, function (err, device) {
     if (err) {
       console.log(err);
       return;
@@ -58,7 +68,7 @@
     :gutter="10"
     >
     <div v-for='(value, key) in classes'  v-on:click='addClass(key)' class='deviceclass'>
-      <span tabindex="-1">{{ __('class.' + key) }}</span>
+      <span tabindex="-1">{{ value.title }}</span>
     </div>
   </masonry>
 </ul>

@@ -3,10 +3,15 @@
 const Homey = require('homey');
 const fs = require('fs');
 const DRIVER_LOCATION = "/app/com.arjankranenburg.virtual/drivers/virtual_switch/";
+const { getDeviceClasses, getCapabilities } = require('homey-lib');
 
+//let app;
+let homey;
 class VirtualDriver extends Homey.Driver {
   onInit() {
     this.log('Initialized driver for Virtual Devices');
+    //app = this.homey.app;
+    homey = this.homey;
 
     this.registerFlowCardAction_sensor('set_sensor_value', false);
     this.registerFlowCardAction_sensor('set_sensor_value_oc', true);
@@ -30,12 +35,51 @@ class VirtualDriver extends Homey.Driver {
     });
 
     session.setHandler('setClass', (data) => {
+      // if(data.minCompatibility && !getRequiredVersion(data.minCompatibility)) {
+      //   throw new Error("You need Homey version " + data.minCompatibility+ " to use this class.");
+        
+      // }
       console.log('setClass: ' + data);
       pairingDevice.class = data.class;
       console.log('pairingDevice: ' + JSON.stringify(pairingDevice));
       return pairingDevice;
     });
 
+    session.setHandler('getAllClasses', (data) => {
+      let classes = getDeviceClasses();
+      let language = homey.i18n.getLanguage();
+      let newClasses = {};
+      for (let i = 0; i < Object.keys(classes).length; i++) {
+        const key = Object.keys(classes)[i];
+        const cls = classes[key];
+        if(!cls.minCompatibility || getRequiredVersion(cls.minCompatibility)) {
+          newClasses[key] = {
+            minCompatibility : cls.minCompatibility,
+            title: cls.title[language] ? cls.title[language] : cls.title['en']
+          }
+        }        
+      }      
+      newClasses = sortObject(newClasses, 'title');
+      return newClasses;
+    });
+
+    session.setHandler('getAllCapabilities', (data) => {
+      let capabilities = getCapabilities();
+      let language = homey.i18n.getLanguage();
+      let newCapabilities = {};
+      for (let i = 0; i < Object.keys(capabilities).length; i++) {
+        const key = Object.keys(capabilities)[i];
+        const cls = capabilities[key];
+        if(!cls.minCompatibility || getRequiredVersion(cls.minCompatibility)) {
+          newCapabilities[key] = {
+            minCompatibility : cls.minCompatibility,
+            title: cls.title[language] ? cls.title[language] : cls.title['en']
+          }
+        }        
+      }
+      newCapabilities = sortObject(newCapabilities, 'title');
+      return newCapabilities;
+    });
     session.setHandler('setName', (data) => {
       console.log('setName: ' + data);
       pairingDevice.name = data.name;
@@ -44,6 +88,7 @@ class VirtualDriver extends Homey.Driver {
     });
 
     session.setHandler('getPairingDevice', (data) => {
+      //if(data===true) pairingDevice.capabilities=[];
       return pairingDevice;
     });
 
@@ -278,3 +323,27 @@ function cleanJson(object) {
   }
   return simpleObject; // returns cleaned up Object
 };
+
+function getRequiredVersion(version) {
+  if(homey.version!=version) {
+    let versionArr = homey.version.split(".");
+    let versionUpdatedToArr = version.split(".");
+    return (
+      parseInt(versionArr[0])> parseInt(versionUpdatedToArr[0]) || 
+      (parseInt(versionArr[0])=== parseInt(versionUpdatedToArr[0]) && parseInt(versionArr[1])> parseInt(versionUpdatedToArr[1])) || 
+      (parseInt(versionArr[0])=== parseInt(versionUpdatedToArr[0]) && parseInt(versionArr[1])=== parseInt(versionUpdatedToArr[1]) && parseInt(versionArr[2])> parseInt(versionUpdatedToArr[2]))
+      );
+  }
+  return true;
+}
+
+
+function sortObject(obj, propertyName) {
+  let cap = Object.entries(obj).sort(([aKey,a],[bKey,b]) => a[propertyName]>b[propertyName]? 1 :a[propertyName]<b[propertyName] ? -1 :0  );
+  let caps = {};
+  for (let i = 0; i < cap.length; i++) {
+    const element = cap[i];
+    caps[element[0]] = element[1];
+  }
+  return caps;
+}

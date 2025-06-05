@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "homey-lib": "^2.35.4"
+  }
+}

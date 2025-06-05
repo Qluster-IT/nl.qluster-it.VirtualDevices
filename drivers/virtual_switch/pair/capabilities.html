@@ -9,46 +9,74 @@
     }
   });
 
-  var capabilitiesVue = new Vue({
-    el: '#capabilitiesVue',
-    data: {
-      capabilities: [],
-      selectedCapabilities: []
-    },
-    watch: {
-      'selectedCapabilities': function(val){ updateCapabilities( {'capabilities': val} ) }
-    }
+  Homey.emit('getAllCapabilities').then(function(capabilities) {
+    var capabilitiesVue = new Vue({
+      el: '#capabilitiesVue',
+      data: {
+        capabilities: [],
+        selectedCapabilities: []
+      },
+      watch: {
+        'selectedCapabilities': function(val){ updateCapabilities( {'capabilities': val.concat(capabilitiesVueAll.selectedCapabilities)} ) }
+      }
+    });
+    var capabilitiesVueAll = new Vue({
+      el: '#capabilitiesVueAll',
+      data: {
+        capabilities: capabilities,
+        selectedCapabilities: []
+      },
+      watch: {
+        'selectedCapabilities': function(val){ updateCapabilities( {'capabilities':val.concat(capabilitiesVue.selectedCapabilities)} ) }
+      }
+    });
+    
+    var capabilitiesOptionsVue = new Vue({
+      el: '#capabilitiesOptionsVue',
+      data: {
+        capabilitiesOptions: []
+      },
+      watch: {
+        'capabilitiesOptions.target_temperature.min':   _.debounce( function(val){ updateCapabilitiesOptions( {'target_temperature':  {'min':  val}} )}, 500),
+        'capabilitiesOptions.target_temperature.max':   _.debounce( function(val){ updateCapabilitiesOptions( {'target_temperature':  {'max':  val}} )}, 500),
+        'capabilitiesOptions.target_temperature.step':  _.debounce( function(val){ updateCapabilitiesOptions( {'target_temperature':  {'step': val}} )}, 500),
+        'capabilitiesOptions.measure_temperature.decimals': _.debounce( function(val){ updateCapabilitiesOptions( {'measure_temperature': {'decimals': val}} )}, 500),
+      }
+    });
+
+    Homey.emit('getPairingDevice', null, function (err, result) {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      console.log('result from getPairingDevice:');
+      console.log(result);
+      Homey.emit('log', result, function (err, result2) {});
+
+      Homey.setTitle(__('pair.title.device') + ' ' + result.name);
+
+      capabilitiesVue.capabilities = devices[result.class] ? devices[result.class].capabilities : [];
+      capabilitiesVue.selectedCapabilities =  devices[result.class] ? devices[result.class].defaultCapabilities : [];
+      for (let i = 0; i < capabilitiesVue.capabilities.length; i++) {
+        const element = capabilitiesVue.capabilities[i];
+        delete capabilitiesVueAll.capabilities[element];
+      }
+      var a = capabilitiesVueAll.capabilities;
+      capabilitiesVueAll.capabilities = null;
+      capabilitiesVueAll.capabilities = a;
+      // console.log('result.class', result.class);
+      // console.log('devices[result.class].capabilities', devices[result.class].capabilities);
+      // console.log('capabilitiesVue.capabilities', capabilitiesVue.capabilities);
+      // console.log('capabilitiesVue.selectedCapabilities', capabilitiesVue.selectedCapabilities);
+      // console.log('capabilitiesVueAll.selectedCapabilities', capabilitiesVueAll.selectedCapabilities);
+      
+      //capabilitiesVueAll.selectedCapabilities =  result.capabilities;
+
+      updateCapabilities( {'capabilities': capabilitiesVue.selectedCapabilities } );
+    });
   });
+  
 
-  var capabilitiesOptionsVue = new Vue({
-    el: '#capabilitiesOptionsVue',
-    data: {
-      capabilitiesOptions: []
-    },
-    watch: {
-      'capabilitiesOptions.target_temperature.min':   _.debounce( function(val){ updateCapabilitiesOptions( {'target_temperature':  {'min':  val}} )}, 500),
-      'capabilitiesOptions.target_temperature.max':   _.debounce( function(val){ updateCapabilitiesOptions( {'target_temperature':  {'max':  val}} )}, 500),
-      'capabilitiesOptions.target_temperature.step':  _.debounce( function(val){ updateCapabilitiesOptions( {'target_temperature':  {'step': val}} )}, 500),
-      'capabilitiesOptions.measure_temperature.decimals': _.debounce( function(val){ updateCapabilitiesOptions( {'measure_temperature': {'decimals': val}} )}, 500),
-    }
-  });
-
-  Homey.emit('getPairingDevice', null, function (err, result) {
-    if (err) {
-      console.log(err);
-      return;
-    }
-    console.log('result from getPairingDevice:');
-    console.log(result);
-    Homey.emit('log', result, function (err, result2) {});
-
-    Homey.setTitle(__('pair.title.device') + ' ' + result.name);
-
-    capabilitiesVue.capabilities = devices[result.class].capabilities
-    capabilitiesVue.selectedCapabilities = devices[result.class].defaultCapabilities
-
-    updateCapabilities( {'capabilities': devices[result.class].defaultCapabilities} )
-  });
 
   function updateCapabilities( capabilities ) {
     Homey.emit('updateCapabilities', capabilities, function (err, currrentPairingDevice) {
@@ -98,7 +126,7 @@
 <span id='capab_instructions'>{{instructions}}</span>
 
 <div id="capabilitiesVue">
-  <ul id="devices-list" >
+  <ul id="devices-list" v-if="capabilities && capabilities.length>0" >
     <li class="device" v-for="(key, value) in capabilities">
 		<label :for="key" class="name">
 			<div class="overlay"></div>
@@ -139,3 +167,19 @@
    </div>
   </span>
 </div>
+
+
+<div id="capabilitiesVueAll" style="margin-top:50px;">
+  <ul id="devices-list" >
+    <li class="device" v-for="(value, key) in capabilities">
+      <label :for="key" class="name">
+        <div class="overlay"></div>
+        <span class="name" tabindex="-1">{{ value.title  }} ({{ key }})</span>
+      </label>
+      <label :for="key" class="checkbox">
+        <input :id="key" :value="key" name="device" type="checkbox" tabindex="2" v-model="selectedCapabilities">
+      </label>
+    </li>
+  </ul>
+</div>
+

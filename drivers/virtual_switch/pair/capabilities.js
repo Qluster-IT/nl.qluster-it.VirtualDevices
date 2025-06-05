@@ -283,7 +283,492 @@ var devices = {
     "defaultCapabilities": [
       "button"
     ]
-  }
+  },
+  
+
+
+
+  
+  // "airconditioning": {
+  //   "capabilities": [
+  //     "",
+  //     ""
+  //   ],
+  //   "defaultCapabilities": [
+  //     "onoff"
+  //   ],
+  //   "minCompatibility" : "12.0.0"
+  // },
+  // "airfryer": {
+  //   "capabilities": [
+  //     "",
+  //     ""
+  //   ],
+  //   "defaultCapabilities": [
+  //     "onoff"
+  //   ],
+  //   "minCompatibility" : "12.0.0"
+  // },
+  // "airpurifier": {
+  //   "capabilities": [
+  //     "",
+  //     ""
+  //   ],
+  //   "defaultCapabilities": [
+  //     "onoff"
+  //   ],
+  //   "minCompatibility" : "12.0.0"
+  // },
+  // "airtreatment": {
+  //   "capabilities": [
+  //     "",
+  //     ""
+  //   ],
+  //   "defaultCapabilities": [
+  //     "onoff"
+  //   ],
+  //   "minCompatibility" : "12.0.0"
+  // },
+  // "battery": {
+  //   "capabilities": [
+  //     "",
+  //     ""
+  //   ],
+  //   "defaultCapabilities": [
+  //     "onoff"
+  //   ],
+  //   "minCompatibility" : "12.0.0"
+  // },
+  // "bicycle": {
+  //   "capabilities": [
+  //     "",
+  //     ""
+  //   ],
+  //   "defaultCapabilities": [
+  //     "onoff"
+  //   ],
+  //   "minCompatibility" : "12.0.0"
+  // },
+  // "boiler": {
+  //   "capabilities": [
+  //     "",
+  //     ""
+  //   ],
+  //   "defaultCapabilities": [
+  //     "onoff"
+  //   ],
+  //   "minCompatibility" : "12.0.0"
+  // },
+  // "car": {
+  //   "capabilities": [
+  //     "",
+  //     ""
+  //   ],
+  //   "defaultCapabilities": [
+  //     "onoff"
+  //   ],
+  //   "minCompatibility" : "12.0.0"
+  // },
+  // "cooktop": {
+  //   "capabilities": [
+  //     "",
+  //     ""
+  //   ],
+  //   "defaultCapabilities": [
+  //     "onoff"
+  //   ],
+  //   "minCompatibility" : "12.0.0"
+  // },
+  // "dehumidifier": {
+  //   "capabilities": [
+  //     "",
+  //     ""
+  //   ],
+  //   "defaultCapabilities": [
+  //     "onoff"
+  //   ],
+  //   "minCompatibility" : "12.0.0"
+  // },
+  // "diffuser": {
+  //   "capabilities": [
+  //     "",
+  //     ""
+  //   ],
+  //   "defaultCapabilities": [
+  //     "onoff"
+  //   ],
+  //   "minCompatibility" : "12.0.0"
+  // },
+  // "dishwasher": {
+  //   "capabilities": [
+  //     "",
+  //     ""
+  //   ],
+  //   "defaultCapabilities": [
+  //     "onoff"
+  //   ],
+  //   "minCompatibility" : "12.0.0"
+  // },
+  // "dryer": {
+  //   "capabilities": [
+  //     "",
+  //     ""
+  //   ],
+  //   "defaultCapabilities": [
+  //     "onoff"
+  //   ],
+  //   "minCompatibility" : "12.0.0"
+  // },
+  // "evcharger": {
+  //   "capabilities": [
+  //     "",
+  //     ""
+  //   ],
+  //   "defaultCapabilities": [
+  //     "onoff"
+  //   ],
+  //   "minCompatibility" : "12.0.0"
+  // },
+  // "faucet": {
+  //   "capabilities": [
+  //     "",
+  //     ""
+  //   ],
+  //   "defaultCapabilities": [
+  //     "onoff"
+  //   ],
+  //   "minCompatibility" : "12.0.0"
+  // },
+  // "fireplace": {
+  //   "capabilities": [
+  //     "",
+  //     ""
+  //   ],
+  //   "defaultCapabilities": [
+  //     "onoff"
+  //   ],
+  //   "minCompatibility" : "12.0.0"
+  // },
+  // "freezer": {
+  //   "capabilities": [
+  //     "",
+  //     ""
+  //   ],
+  //   "defaultCapabilities": [
+  //     "onoff"
+  //   ],
+  //   "minCompatibility" : "12.0.0"
+  // },
+  // "fridge_and_freezer": {
+  //   "capabilities": [
+  //     "",
+  //     ""
+  //   ],
+  //   "defaultCapabilities": [
+  //     "onoff"
+  //   ],
+  //   "minCompatibility" : "12.0.0"
+  // },
+  // "fridge": {
+  //   "capabilities": [
+  //     "",
+  //     ""
+  //   ],
+  //   "defaultCapabilities": [
+  //     "onoff"
+  //   ],
+  //   "minCompatibility" : "12.0.0"
+  // },
+  // "fryer": {
+  //   "capabilities": [
+  //     "",
+  //     ""
+  //   ],
+  //   "defaultCapabilities": [
+  //     "onoff"
+  //   ],
+  //   "minCompatibility" : "12.0.0"
+  // },
+  // "gameconsole": {
+  //   "capabilities": [
+  //     "",
+  //     ""
+  //   ],
+  //   "defaultCapabilities": [
+  //     "onoff"
+  //   ],
+  //   "minCompatibility" : "12.0.0"
+  // },
+  // "grill": {
+  //   "capabilities": [
+  //     "",
+  //     ""
+  //   ],
+  //   "defaultCapabilities": [
+  //     "onoff"
+  //   ],
+  //   "minCompatibility" : "12.0.0"
+  // },
+  // "heatpump": {
+  //   "capabilities": [
+  //     "",
+  //     ""
+  //   ],
+  //   "defaultCapabilities": [
+  //     "onoff"
+  //   ],
+  //   "minCompatibility" : "12.0.0"
+  // },
+  // "hood": {
+  //   "capabilities": [
+  //     "",
+  //     ""
+  //   ],
+  //   "defaultCapabilities": [
+  //     "onoff"
+  //   ],
+  //   "minCompatibility" : "12.0.0"
+  // },
+  // "humidifier": {
+  //   "capabilities": [
+  //     "",
+  //     ""
+  //   ],
+  //   "defaultCapabilities": [
+  //     "onoff"
+  //   ],
+  //   "minCompatibility" : "12.0.0"
+  // },
+  // "lawnmower": {
+  //   "capabilities": [
+  //     "",
+  //     ""
+  //   ],
+  //   "defaultCapabilities": [
+  //     "onoff"
+  //   ],
+  //   "minCompatibility" : "12.0.0"
+  // },
+  // "mediaplayer": {
+  //   "capabilities": [
+  //     "",
+  //     ""
+  //   ],
+  //   "defaultCapabilities": [
+  //     "onoff"
+  //   ],
+  //   "minCompatibility" : "12.0.0"
+  // },
+  // "microwave": {
+  //   "capabilities": [
+  //     "",
+  //     ""
+  //   ],
+  //   "defaultCapabilities": [
+  //     "onoff"
+  //   ],
+  //   "minCompatibility" : "12.0.0"
+  // },
+  // "mop": {
+  //   "capabilities": [
+  //     "",
+  //     ""
+  //   ],
+  //   "defaultCapabilities": [
+  //     "onoff"
+  //   ],
+  //   "minCompatibility" : "12.0.0"
+  // },
+  // "multicooker": {
+  //   "capabilities": [
+  //     "",
+  //     ""
+  //   ],
+  //   "defaultCapabilities": [
+  //     "onoff"
+  //   ],
+  //   "minCompatibility" : "12.0.0"
+  // },
+  // "networkrouter": {
+  //   "capabilities": [
+  //     "",
+  //     ""
+  //   ],
+  //   "defaultCapabilities": [
+  //     "onoff"
+  //   ],
+  //   "minCompatibility" : "12.0.0"
+  // },
+  // "oven_and_microwave": {
+  //   "capabilities": [
+  //     "",
+  //     ""
+  //   ],
+  //   "defaultCapabilities": [
+  //     "onoff"
+  //   ],
+  //   "minCompatibility" : "12.0.0"
+  // },
+  // "oven": {
+  //   "capabilities": [
+  //     "",
+  //     ""
+  //   ],
+  //   "defaultCapabilities": [
+  //     "onoff"
+  //   ],
+  //   "minCompatibility" : "12.0.0"
+  // },
+  // "petfeeder": {
+  //   "capabilities": [
+  //     "",
+  //     ""
+  //   ],
+  //   "defaultCapabilities": [
+  //     "onoff"
+  //   ],
+  //   "minCompatibility" : "12.0.0"
+  // },
+  // "radiator": {
+  //   "capabilities": [
+  //     "",
+  //     ""
+  //   ],
+  //   "defaultCapabilities": [
+  //     "onoff"
+  //   ],
+  //   "minCompatibility" : "12.0.0"
+  // },
+  // "scooter": {
+  //   "capabilities": [
+  //     "",
+  //     ""
+  //   ],
+  //   "defaultCapabilities": [
+  //     "onoff"
+  //   ],
+  //   "minCompatibility" : "12.0.0"
+  // },
+  // "service": {
+  //   "capabilities": [
+  //     "",
+  //     ""
+  //   ],
+  //   "defaultCapabilities": [
+  //     "onoff"
+  //   ],
+  //   "minCompatibility" : "12.3.0"
+  // },
+  // "settopbox": {
+  //   "capabilities": [
+  //     "",
+  //     ""
+  //   ],
+  //   "defaultCapabilities": [
+  //     "onoff"
+  //   ],
+  //   "minCompatibility" : "12.0.0"
+  // },
+  // "shutterblinds": {
+  //   "capabilities": [
+  //     "",
+  //     ""
+  //   ],
+  //   "defaultCapabilities": [
+  //     "onoff"
+  //   ],
+  //   "minCompatibility" : "12.0.0"
+  // },
+  // "siren": {
+  //   "capabilities": [
+  //     "",
+  //     ""
+  //   ],
+  //   "defaultCapabilities": [
+  //     "onoff"
+  //   ],
+  //   "minCompatibility" : "12.0.0"
+  // },
+  // "smokealarm": {
+  //   "capabilities": [
+  //     "",
+  //     ""
+  //   ],
+  //   "defaultCapabilities": [
+  //     "onoff"
+  //   ],
+  //   "minCompatibility" : "12.0.0"
+  // },
+  // "sprinkler": {
+  //   "capabilities": [
+  //     "",
+  //     ""
+  //   ],
+  //   "defaultCapabilities": [
+  //     "onoff"
+  //   ],
+  //   "minCompatibility" : "12.0.0"
+  // },
+  // "vehicle": {
+  //   "capabilities": [
+  //     "",
+  //     ""
+  //   ],
+  //   "defaultCapabilities": [
+  //     "onoff"
+  //   ],
+  //   "minCompatibility" : "12.0.0"
+  // },
+  // "washer_and_dryer": {
+  //   "capabilities": [
+  //     "",
+  //     ""
+  //   ],
+  //   "defaultCapabilities": [
+  //     "onoff"
+  //   ],
+  //   "minCompatibility" : "12.0.0"
+  // },
+  // "washer": {
+  //   "capabilities": [
+  //     "",
+  //     ""
+  //   ],
+  //   "defaultCapabilities": [
+  //     "onoff"
+  //   ],
+  //   "minCompatibility" : "12.0.0"
+  // },
+  // "waterheater": {
+  //   "capabilities": [
+  //     "",
+  //     ""
+  //   ],
+  //   "defaultCapabilities": [
+  //     "onoff"
+  //   ],
+  //   "minCompatibility" : "12.0.0"
+  // },
+  // "waterpurifier": {
+  //   "capabilities": [
+  //     "",
+  //     ""
+  //   ],
+  //   "defaultCapabilities": [
+  //     "onoff"
+  //   ],
+  //   "minCompatibility" : "12.0.0"
+  // },
+  // "watervalve": {
+  //   "capabilities": [
+  //     "",
+  //     ""
+  //   ],
+  //   "defaultCapabilities": [
+  //     "onoff"
+  //   ],
+  //   "minCompatibility" : "12.0.0"
+  // }
 }
 
 var default_options = {

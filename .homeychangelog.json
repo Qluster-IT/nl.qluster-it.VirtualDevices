@@ -52,5 +52,8 @@
   },
   "1.2.3": {
     "en": "Resolved: Custom icons for Mode device were also deleted after creation of a new VD."
+  },
+  "1.3.0": {
+    "en": "Improved: Added all possible Device Classes and Capabilities (based on the installed Homey Version)."
   }
 }
