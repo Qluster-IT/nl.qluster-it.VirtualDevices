@@ -55,5 +55,8 @@
   },
   "1.3.0": {
     "en": "Improved: Added all possible Device Classes and Capabilities (based on the installed Homey Version)."
+  },
+  "1.3.1": {
+    "en": "Resolved: Properties (like max, min) were not showing during pairing for temperatures."
   }
 }

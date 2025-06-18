@@ -8,9 +8,11 @@
       instructions: __('pair.select.capabilities')
     }
   });
-
+  var capabilitiesVue;
+  var capabilitiesVueAll;
+  var capabilitiesOptionsVue;
   Homey.emit('getAllCapabilities').then(function(capabilities) {
-    var capabilitiesVue = new Vue({
+    capabilitiesVue = new Vue({
       el: '#capabilitiesVue',
       data: {
         capabilities: [],
@@ -20,7 +22,7 @@
         'selectedCapabilities': function(val){ updateCapabilities( {'capabilities': val.concat(capabilitiesVueAll.selectedCapabilities)} ) }
       }
     });
-    var capabilitiesVueAll = new Vue({
+    capabilitiesVueAll = new Vue({
       el: '#capabilitiesVueAll',
       data: {
         capabilities: capabilities,
@@ -31,10 +33,17 @@
       }
     });
     
-    var capabilitiesOptionsVue = new Vue({
+    capabilitiesOptionsVue = new Vue({
       el: '#capabilitiesOptionsVue',
       data: {
-        capabilitiesOptions: []
+        capabilitiesOptions: {}
+      },
+      methods: {
+        forcesUpdateComponent() {
+          // your code
+          this.$forceUpdate();
+          // your code
+        }
       },
       watch: {
         'capabilitiesOptions.target_temperature.min':   _.debounce( function(val){ updateCapabilitiesOptions( {'target_temperature':  {'min':  val}} )}, 500),
@@ -43,7 +52,7 @@
         'capabilitiesOptions.measure_temperature.decimals': _.debounce( function(val){ updateCapabilitiesOptions( {'measure_temperature': {'decimals': val}} )}, 500),
       }
     });
-
+    
     Homey.emit('getPairingDevice', null, function (err, result) {
       if (err) {
         console.log(err);
@@ -83,8 +92,10 @@
       if(err){console.log(err); return;}
       // console.log(currrentPairingDevice);
 
-      var capabilitiesOptions = getCapabilitiesOptions( currrentPairingDevice.capabilities, currrentPairingDevice.capabilitiesOptions )
-      capabilitiesOptionsVue.capabilitiesOptions = capabilitiesOptions
+      var capabilitiesOptions = getCapabilitiesOptions( currrentPairingDevice.capabilities, currrentPairingDevice.capabilitiesOptions );
+      capabilitiesOptionsVue.capabilitiesOptions = capabilitiesOptions;
+      
+      capabilitiesOptionsVue.forcesUpdateComponent();
     });
   }
 
