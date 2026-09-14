@@ -1,22 +1,42 @@
 {
   "id": "com.arjankranenburg.virtual",
-  "version": "1.3.2",
+  "version": "1.4.0",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "brandColor": "#6720df",
   "description": {
     "en": "Virtual Devices to simulate 1 or more real devices",
-    "nl": "Virtuele Apparaten om 1 of meerdere apparaten te simuleren"
+    "nl": "Virtuele Apparaten om 1 of meerdere apparaten te simuleren",
+    "da": "Virtuelle enheder til at simulere 1 eller flere rigtige enheder",
+    "de": "Virtuelle Geräte zur Simulation von einem oder mehreren echten Geräten",
+    "es": "Dispositivos Virtuales para simular 1 o más dispositivos reales",
+    "fr": "Appareils virtuels pour simuler un ou plusieurs appareils réels",
+    "it": "Dispositivi virtuali per simulare 1 o più dispositivi reali",
+    "no": "Virtuelle enheter for å simulere 1 eller flere ekte enheter",
+    "sv": "Virtuella enheter för att simulera 1 eller flera riktiga enheter",
+    "pl": "Wirtualne urządzenia do symulacji 1 lub więcej prawdziwych urządzeń",
+    "ru": "Виртуальные устройства для имитации одного или нескольких реальных устройств",
+    "ko": "1개 이상의 실제 장치를 시뮬레이션하는 가상 장치",
+    "ar": "الأجهزة الافتراضية لمحاكاة جهاز واحد أو أكثر من الأجهزة الحقيقية"
   },
   "name": {
     "en": "Virtual Devices",
     "nl": "Virtuele Apparaten",
+    "da": "Virtuelle enheder",
     "de": "Virtuelle Geräte",
-    "no": "Virtuelle Enheter"
+    "es": "Dispositivos Virtuales",
+    "fr": "Appareils Virtuels",
+    "it": "Dispositivi Virtuali",
+    "no": "Virtuelle Enheter",
+    "sv": "Virtuella enheter",
+    "pl": "Wirtualne Urządzenia",
+    "ru": "Виртуальные устройства",
+    "ko": "가상 장치",
+    "ar": "الأجهزة الافتراضية"
   },
   "tags": {
     "en": [
-      "virtual device" 
+      "virtual device"
     ],
     "nl": [
       "virtuele apparaten"
@@ -46,7 +66,6 @@
         "name": "Arie J. Godschalk",
         "email": "arie@qluster-it.nl"
       }
-
     ],
     "translators": [
       {
@@ -63,22 +82,22 @@
       }
     ]
   },
-	"contributing": {
-		"donate": {
-			"paypal": {
-				"username": "QlusterIT"
-			},
+  "contributing": {
+    "donate": {
+      "paypal": {
+        "username": "QlusterIT"
+      },
       "patreon": {
-				"username": "QlusterIT"
-			},
+        "username": "QlusterIT"
+      },
       "githubSponsors": {
         "username": "XeroxQ"
       }
-		}
-	},
+    }
+  },
   "source": "https://bitbucket.org/QlusterIT/nl.qluster-it.virtualdevices/",
   "bugs": {
-        "url": "https://bitbucket.org/QlusterIT/nl.qluster-it.virtualdevices/issues"
+    "url": "https://bitbucket.org/QlusterIT/nl.qluster-it.virtualdevices/issues"
   },
   "athomForumDiscussionId": 3065,
   "homeyCommunityTopicId": 1723,
@@ -93,8 +112,17 @@
       "title": {
         "en": "Multi-mode state",
         "nl": "Multimode status",
+        "da": "Multi-tilstandstilstand",
         "de": "Multimodus Status",
-        "no": "Status multimodus"
+        "es": "Estado de múltiples modos",
+        "fr": "État multi-mode",
+        "it": "Stato multi-modalità",
+        "no": "Status multimodus",
+        "sv": "Flerlägesstatus",
+        "pl": "Stan multi-trybu",
+        "ru": "Многофункциональный режим",
+        "ko": "다중 모드 상태",
+        "ar": "وضع متعدد الأوضاع"
       },
       "getable": true,
       "setable": true
@@ -104,8 +132,17 @@
       "title": {
         "en": "Previous Multi-mode state",
         "nl": "Vorige Multimode status",
+        "da": "Tidligere multi-tilstandstilstand",
         "de": "Vorheriger Multimodus Status",
-        "no": "Forrige multimodus status"
+        "es": "Estado anterior de modo múltiple",
+        "fr": "État précédent en mode multiple",
+        "it": "Stato precedente della modalità multipla",
+        "no": "Forrige multimodus status",
+        "sv": "Föregående Multi-läge status",
+        "pl": "Poprzedni stan Multi-mode",
+        "ru": "Предыдущее состояние многорежимного устройства",
+        "ko": "이전 다중 모드 상태",
+        "ar": "الحالة السابقة متعددة الأوضاع"
       },
       "getable": true,
       "setable": false
@@ -118,8 +155,17 @@
         "title": {
           "en": "A virtual device changed",
           "nl": "Een virtueel apparaat is veranderd",
+          "da": "En virtuel enhed ændrede sig",
           "de": "Ein virtuelles Gerät hat sich geändert",
-          "no": "Ett virtuelt aparat ble endret"
+          "es": "Un dispositivo virtual cambió",
+          "fr": "Un appareil virtuel a changé",
+          "it": "Un dispositivo virtuale è cambiato",
+          "no": "Ett virtuelt aparat ble endret",
+          "sv": "En virtuell enhet ändrades",
+          "pl": "Wirtualne urządzenie zostało zmienione",
+          "ru": "Виртуальное устройство изменилось",
+          "ko": "가상 장치가 변경되었습니다.",
+          "ar": "تم تغيير الجهاز الافتراضي"
         },
         "tokens": [
           {
@@ -127,14 +173,32 @@
             "title": {
               "en": "value",
               "nl": "waarde",
+              "da": "værdi",
               "de": "Wert",
-              "no": "verdi"
+              "es": "valor",
+              "fr": "valeur",
+              "it": "valore",
+              "no": "verdi",
+              "sv": "värde",
+              "pl": "wartość",
+              "ru": "значение",
+              "ko": "값",
+              "ar": "قيمة"
             },
             "example": {
               "en": "true",
               "nl": "true",
+              "da": "sand",
               "de": "wahr",
-              "no": "sikker"
+              "es": "verdadero",
+              "fr": "vrai",
+              "it": "vero",
+              "no": "sikker",
+              "sv": "sant",
+              "pl": "prawda",
+              "ru": "правда",
+              "ko": "참",
+              "ar": "صحيح"
             }
           },
           {
@@ -142,14 +206,32 @@
             "title": {
               "en": "variable",
               "nl": "variabele",
+              "da": "variabel",
               "de": "Variable",
-              "no": "variabel"
+              "es": "variable",
+              "fr": "variable",
+              "it": "variabile",
+              "no": "variabel",
+              "sv": "variabel",
+              "pl": "zmienna",
+              "ru": "переменная",
+              "ko": "변수",
+              "ar": "متغير"
             },
             "example": {
               "en": "onoff",
               "nl": "aanuit",
+              "da": "tænd/sluk",
               "de": "An/Aus",
-              "no": "på/av"
+              "es": "encendido/apagado",
+              "fr": "onoff",
+              "it": "acceso/spento",
+              "no": "på/av",
+              "sv": "påav",
+              "pl": "włącz/wyłącz",
+              "ru": "вкл/выкл",
+              "ko": "켜짐/꺼짐",
+              "ar": "تشغيل/إيقاف"
             }
           },
           {
@@ -157,14 +239,32 @@
             "title": {
               "en": "device",
               "nl": "apparaat",
+              "da": "enhed",
               "de": "Gerät",
-              "no": "Enhet"
+              "es": "dispositivo",
+              "fr": "appareil",
+              "it": "dispositivo",
+              "no": "Enhet",
+              "sv": "enhet",
+              "pl": "urządzenie",
+              "ru": "устройство",
+              "ko": "장치",
+              "ar": "جهاز"
             },
             "example": {
               "en": "Virtual Lamp",
               "nl": "Virtuele Lamp",
+              "da": "Virtuel Lampe",
               "de": "Virtuelle Leuchte",
-              "no": "Virtuell lampe"
+              "es": "Lámpara Virtual",
+              "fr": "Lampe Virtuelle",
+              "it": "Lampada Virtuale",
+              "no": "Virtuell lampe",
+              "sv": "Virtuell Lampa",
+              "pl": "Wirtualna Lampa",
+              "ru": "Виртуальная лампа",
+              "ko": "가상 램프",
+              "ar": "المصباح الافتراضي"
             }
           }
         ]
@@ -174,8 +274,17 @@
         "title": {
           "en": "Pressed / changed",
           "nl": "Ingedrukt / veranderd",
+          "da": "Trykket / ændret",
           "de": "Gedrückt / verändert",
-          "no": "Trykket / endret"
+          "es": "Presionado / cambiado",
+          "fr": "Appuyé / changé",
+          "it": "Premuto / cambiato",
+          "no": "Trykket / endret",
+          "sv": "Tryckt / ändrat",
+          "pl": "Naciśnięto / zmieniono",
+          "ru": "Нажато / изменено",
+          "ko": "눌림 / 변경됨",
+          "ar": "تم الضغط / تم التغيير"
         },
         "args": [
           {
@@ -190,8 +299,17 @@
         "title": {
           "en": "Mode is on",
           "nl": "Modus wordt aangezet",
+          "da": "Tilstand er aktiveret",
           "de": "Modus ist anheschaltet",
-          "no": "Modus er på"
+          "es": "El modo está activado",
+          "fr": "Le mode est activé",
+          "it": "La modalità è attiva",
+          "no": "Modus er på",
+          "sv": "Läget är på",
+          "pl": "Tryb jest włączony",
+          "ru": "Режим включен",
+          "ko": "모드가 켜졌습니다.",
+          "ar": "الوضع مُفعل"
         },
         "args": [
           {
@@ -206,8 +324,17 @@
         "title": {
           "en": "Mode is off",
           "nl": "Modus wordt uitgezet",
+          "da": "Tilstand er slukket",
           "de": "Modus is ausgeschaltet",
-          "no": "Modus er av"
+          "es": "El modo está apagado",
+          "fr": "Le mode est désactivé",
+          "it": "La modalità è disattivata",
+          "no": "Modus er av",
+          "sv": "Läget är avstängt",
+          "pl": "Tryb jest wyłączony",
+          "ru": "Режим выключен",
+          "ko": "모드가 꺼져 있습니다.",
+          "ar": "الوضع متوقف"
         },
         "args": [
           {
@@ -222,8 +349,17 @@
         "title": {
           "en": "Mode Changed",
           "nl": "Modus Veranderd",
+          "da": "Tilstand ændret",
           "de": "Modus hat sich verändert",
-          "no": "Modus endret"
+          "es": "Modo cambiado",
+          "fr": "Mode changé",
+          "it": "Modalità cambiata",
+          "no": "Modus endret",
+          "sv": "Läge ändrat",
+          "pl": "Tryb zmieniony",
+          "ru": "Режим изменён",
+          "ko": "모드가 변경되었습니다.",
+          "ar": "تم تغيير الوضع"
         },
         "args": [
           {
@@ -239,8 +375,17 @@
         "title": {
           "en": "Multi Mode Changed",
           "nl": "Multi-Modus Veranderd",
+          "da": "Multi-tilstand ændret",
           "de": "Multimodus hat sich verändert",
-          "no": "Multimodus endret"
+          "es": "Modo múltiple cambiado",
+          "fr": "Changement de mode multiple",
+          "it": "Modalità multipla cambiata",
+          "no": "Multimodus endret",
+          "sv": "Multi-läge ändrat",
+          "pl": "Zmieniono tryb multi",
+          "ru": "Режим Multi изменён",
+          "ko": "멀티 모드 변경됨",
+          "ar": "تم تغيير الوضع المتعدد"
         },
         "args": [
           {
@@ -258,8 +403,17 @@
         "title": {
           "en": "Mode !{{is|isn't}} turned on",
           "nl": "Modus !{{is|is niet}} aangezet",
+          "da": "Tilstand !{{er|er ikke}} slået til",
           "de": "Modus !{{ist|ist nicht}} angeschaltet",
-          "no": "Modus !{{er|er ikke}} skrudd på"
+          "es": "¡Modo {{está|no está}} activado!",
+          "fr": "Mode !{{est|n'est pas}} activé",
+          "it": "Modalità !{{è|non è}} attivata",
+          "no": "Modus !{{er|er ikke}} skrudd på",
+          "sv": "Läge !{{is|isn't}} aktiverat",
+          "pl": "Tryb !{{jest|nie jest}} włączony",
+          "ru": "Режим {{включен|не включен}}",
+          "ko": "모드가 켜져 {{있습니다|있지 않습니다}}.",
+          "ar": "الوضع !{{مفعل|غير مفعل}}"
         },
         "args": [
           {
@@ -275,8 +429,17 @@
         "title": {
           "en": "Multi-mode !{{is|is not}} exactly",
           "nl": "Multi-modus !{{is|is niet}} exact",
+          "da": "Multi-mode !{{er|er ikke}} præcis",
           "de": "Multimodus !{{ist|ist nicht}} genau",
-          "no": "Multimodus !{{er|er ikke}} helt lik"
+          "es": "¡Modo múltiple! {{es|no es}} exactamente",
+          "fr": "Multi-mode !{{est|n'est pas}} exactement",
+          "it": "Multi-mode !{{è|non è}} esattamente",
+          "no": "Multimodus !{{er|er ikke}} helt lik",
+          "sv": "Multi-mode !{{är|är inte}} exakt",
+          "pl": "Tryb wielofunkcyjny! {{jest|nie jest}} dokładnie",
+          "ru": "Мульти-режим !{{is|is not}} точно",
+          "ko": "멀티 모드 !{{is|is not}} 정확히",
+          "ar": "متعدد الأوضاع !{{is|is not}} بالضبط"
         },
         "args": [
           {
@@ -285,8 +448,17 @@
             "placeholder": {
               "en": "State",
               "nl": "Status",
+              "da": "Tilstand",
               "de": "Status",
-              "no": "Status"
+              "es": "Estado",
+              "fr": "État",
+              "it": "Stato",
+              "no": "Status",
+              "sv": "Tillstånd",
+              "pl": "Stan",
+              "ru": "Состояние",
+              "ko": "상태",
+              "ar": "الحالة"
             }
           },
           {
@@ -303,8 +475,17 @@
         "title": {
           "en": "Set a virtual sensor value",
           "nl": "Zet de waarde van een virtuele sensor",
+          "da": "Indstil en virtuel sensorværdi",
           "de": "Lege einen virtuellen Sensorwert fest",
-          "no": "Sett en virtuell sensor verdi"
+          "es": "Establecer un valor de sensor virtual",
+          "fr": "Définir une valeur de capteur virtuel",
+          "it": "Imposta un valore del sensore virtuale",
+          "no": "Sett en virtuell sensor verdi",
+          "sv": "Ställ in ett virtuellt sensorvärde",
+          "pl": "Ustaw wartość wirtualnego czujnika",
+          "ru": "Установить значение виртуального датчика",
+          "ko": "가상 센서 값 설정",
+          "ar": "تعيين قيمة المستشعر الافتراضي"
         },
         "args": [
           {
@@ -313,8 +494,17 @@
             "placeholder": {
               "en": "Sensor",
               "nl": "Sensor",
+              "da": "Sensor",
               "de": "Sensor",
-              "no": "Sensor"
+              "es": "Sensor",
+              "fr": "Capteur",
+              "it": "Sensore",
+              "no": "Sensor",
+              "sv": "Sensor",
+              "pl": "Czujnik",
+              "ru": "Датчик",
+              "ko": "센서",
+              "ar": "مستشعر"
             }
           },
           {
@@ -323,8 +513,17 @@
             "placeholder": {
               "en": "Value",
               "nl": "Waarde",
+              "da": "Værdi",
               "de": "Wert",
-              "no": "Verdi"
+              "es": "Valor",
+              "fr": "Valeur",
+              "it": "Valore",
+              "no": "Verdi",
+              "sv": "Värde",
+              "pl": "Wartość",
+              "ru": "Значение",
+              "ko": "값",
+              "ar": "قيمة"
             }
           },
           {
@@ -333,19 +532,38 @@
             "filter": "driver_id=virtual_switch"
           }
         ]
-      },{
+      },
+      {
         "id": "set_sensor_value_oc",
         "title": {
           "en": "Set a virtual sensor value",
           "nl": "Zet de waarde van een virtuele sensor",
+          "da": "Indstil en virtuel sensorværdi",
           "de": "Lege einen virtuellen Sensorwert fest",
-          "no": "Sett en virtuell sensor verdi"
+          "es": "Establecer un valor de sensor virtual",
+          "fr": "Définir une valeur de capteur virtuel",
+          "it": "Imposta un valore del sensore virtuale",
+          "no": "Sett en virtuell sensor verdi",
+          "sv": "Ställ in ett virtuellt sensorvärde",
+          "pl": "Ustaw wartość wirtualnego czujnika",
+          "ru": "Установить значение виртуального датчика",
+          "ko": "가상 센서 값 설정",
+          "ar": "تعيين قيمة المستشعر الافتراضي"
         },
         "titleFormatted": {
           "en": "Set [[sensor]] to [[value]]",
           "nl": "Stel [[sensor]] in op [[value]]",
+          "da": "Indstil [[sensor]] til [[value]]",
           "de": "Setzen Sie [[sensor]] auf [[value]]",
-          "no": "Sett [[sensor]] til [[value]]"
+          "es": "Establecer [[sensor]] a [[value]]",
+          "fr": "Définir [[sensor]] sur [[value]]",
+          "it": "Imposta [[sensor]] su [[value]]",
+          "no": "Sett [[sensor]] til [[value]]",
+          "sv": "Ställ in [[sensor]] till [[value]]",
+          "pl": "Ustaw [[sensor]] na [[value]]",
+          "ru": "Установить [[sensor]] на [[value]]",
+          "ko": "[[sensor]]을(를) [[value]]로 설정하세요.",
+          "ar": "اضبط [[sensor]] على [[value]]"
         },
         "args": [
           {
@@ -354,8 +572,17 @@
             "placeholder": {
               "en": "Virtual Sensor",
               "nl": "Virtuele Sensor",
+              "da": "Virtuel Sensor",
               "de": "Virtuellen Sensorwert",
-              "no": "Virtuell Sensor"
+              "es": "Sensor Virtual",
+              "fr": "Capteur Virtuel",
+              "it": "Sensore Virtuale",
+              "no": "Virtuell Sensor",
+              "sv": "Virtuell Sensor",
+              "pl": "Wirtualny czujnik",
+              "ru": "Виртуальный датчик",
+              "ko": "가상 센서",
+              "ar": "مستشعر افتراضي"
             }
           },
           {
@@ -364,8 +591,17 @@
             "placeholder": {
               "en": "Value",
               "nl": "Waarde",
+              "da": "Værdi",
               "de": "Wert",
-              "no": "Verdi"
+              "es": "Valor",
+              "fr": "Valeur",
+              "it": "Valore",
+              "no": "Verdi",
+              "sv": "Värde",
+              "pl": "Wartość",
+              "ru": "Значение",
+              "ko": "값",
+              "ar": "القيمة"
             }
           },
           {
@@ -381,8 +617,17 @@
         "title": {
           "en": "Turn mode on",
           "nl": "Zet modus aan",
+          "da": "Tænd tilstand",
           "de": "Schalte Modus ein",
-          "no": "Skru modus på"
+          "es": "Activar modo",
+          "fr": "Activer le mode",
+          "it": "Attiva modalità",
+          "no": "Skru modus på",
+          "sv": "Slå på läge",
+          "pl": "Włącz tryb",
+          "ru": "Включить режим",
+          "ko": "모드 켜기",
+          "ar": "تشغيل الوضع"
         },
         "args": [
           {
@@ -398,8 +643,17 @@
         "title": {
           "en": "Turn mode off",
           "nl": "Zet modus uit",
+          "da": "Slå tilstand fra",
           "de": "Schalte Modus aus",
-          "no": "Skru modus av"
+          "es": "Desactivar modo",
+          "fr": "Désactiver le mode",
+          "it": "Disattiva modalità",
+          "no": "Skru modus av",
+          "sv": "Stäng av läget",
+          "pl": "Wyłącz tryb",
+          "ru": "Выключить режим",
+          "ko": "모드 끄기",
+          "ar": "إيقاف الوضع"
         },
         "args": [
           {
@@ -414,8 +668,17 @@
         "title": {
           "en": "Set mode on, no trigger",
           "nl": "Zet modus aan zonder trigger",
+          "da": "Indstil tilstand til, ingen udløser",
           "de": "Schalte Modus an, kein Auslöser",
-          "no": "Skru på modus, ingen trigger"
+          "es": "Establecer modo activado, sin activador",
+          "fr": "Définir le mode sur activé, pas de déclencheur",
+          "it": "Imposta modalità attiva, nessun trigger",
+          "no": "Skru på modus, ingen trigger",
+          "sv": "Ställ in läge på, ingen utlösare",
+          "pl": "Ustaw tryb włączony, brak wyzwalacza",
+          "ru": "Установить режим \"включено\", без триггера",
+          "ko": "모드 설정 켜기, 트리거 없음",
+          "ar": "تفعيل الوضع، بدون محفز"
         },
         "args": [
           {
@@ -430,8 +693,17 @@
         "title": {
           "en": "Set mode off, no trigger",
           "nl": "Zet modus uit zonder trigger",
+          "da": "Indstil tilstand til fra, ingen udløser",
           "de": "Schalte Modus aus, kein Auslöser",
-          "no": "Skru modus av, ingen trigger"
+          "es": "Establecer modo apagado, sin activador",
+          "fr": "Désactiver le mode, pas de déclencheur",
+          "it": "Imposta modalità off, nessun trigger",
+          "no": "Skru modus av, ingen trigger",
+          "sv": "Ställ in läge av, ingen utlösare",
+          "pl": "Ustaw tryb wyłączony, brak wyzwalacza",
+          "ru": "Установить режим \"выключено\", без триггера",
+          "ko": "모드 끄기, 트리거 없음",
+          "ar": "تعيين الوضع إلى إيقاف، لا يوجد محفز"
         },
         "args": [
           {
@@ -447,8 +719,17 @@
         "title": {
           "en": "Set multi-mode",
           "nl": "Zet multi modus",
+          "da": "Indstil multi-tilstand",
           "de": "Lege Multimodus fest",
-          "no": "Sett multimodus"
+          "es": "Establecer modo múltiple",
+          "fr": "Définir le mode multi",
+          "it": "Imposta modalità multipla",
+          "no": "Sett multimodus",
+          "sv": "Ställ in multi-läge",
+          "pl": "Ustaw tryb multi",
+          "ru": "Установить многорежимный режим",
+          "ko": "멀티 모드 설정",
+          "ar": "تعيين وضع متعدد"
         },
         "args": [
           {
@@ -457,8 +738,17 @@
             "placeholder": {
               "en": "New state",
               "nl": "Nieuwe status",
+              "da": "Ny tilstand",
               "de": "Neuer Status",
-              "no": "Ny status"
+              "es": "Nuevo estado",
+              "fr": "Nouvel état",
+              "it": "Nuovo stato",
+              "no": "Ny status",
+              "sv": "Nytt tillstånd",
+              "pl": "Nowy stan",
+              "ru": "Новое состояние",
+              "ko": "새 상태",
+              "ar": "حالة جديدة"
             }
           },
           {
@@ -476,8 +766,17 @@
       "name": {
         "en": "Device",
         "nl": "Apparaat",
+        "da": "Enhed",
         "de": "Gerät",
-        "no": "Enhet"
+        "es": "Dispositivo",
+        "fr": "Appareil",
+        "it": "Dispositivo",
+        "no": "Enhet",
+        "sv": "Enhet",
+        "pl": "Urządzenie",
+        "ru": "Устройство",
+        "ko": "장치",
+        "ar": "الجهاز"
       },
       "images": {
         "large": "drivers/virtual_switch/assets/images/large.png",
@@ -523,8 +822,17 @@
       "name": {
         "en": "Mode",
         "nl": "Modus",
+        "da": "Tilstand",
         "de": "Modus",
-        "no": "Modus"
+        "es": "Modo",
+        "fr": "Mode",
+        "it": "Modalità",
+        "no": "Modus",
+        "sv": "Läge",
+        "pl": "Tryb",
+        "ru": "Режим",
+        "ko": "모드",
+        "ar": "الوضع"
       },
       "images": {
         "large": "drivers/mode/assets/images/large.png",
@@ -574,8 +882,17 @@
       "name": {
         "en": "Multi-Mode",
         "nl": "Multi Modus",
+        "da": "Multi-Mode",
         "de": "MultiModus",
-        "no": "Multimodus"
+        "es": "Multi-modo",
+        "fr": "Multi-mode",
+        "it": "Multi-Modalità",
+        "no": "Multimodus",
+        "sv": "Multi-läge",
+        "pl": "Tryb wielofunkcyjny",
+        "ru": "Мульти-режим",
+        "ko": "멀티 모드",
+        "ar": "متعدد الأوضاع"
       },
       "images": {
         "large": "drivers/multi/assets/images/large.png",
