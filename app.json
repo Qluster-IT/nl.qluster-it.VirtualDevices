@@ -1,6 +1,6 @@
 {
   "id": "com.arjankranenburg.virtual",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "brandColor": "#6720df",
@@ -95,9 +95,9 @@
       }
     }
   },
-  "source": "https://bitbucket.org/QlusterIT/nl.qluster-it.virtualdevices/",
+  "source": "https://github.com/Qluster-IT/nl.qluster-it.VirtualDevices/",
   "bugs": {
-    "url": "https://bitbucket.org/QlusterIT/nl.qluster-it.virtualdevices/issues"
+    "url": "https://github.com/Qluster-IT/nl.qluster-it.VirtualDevices/issues"
   },
   "athomForumDiscussionId": 3065,
   "homeyCommunityTopicId": 1723,
