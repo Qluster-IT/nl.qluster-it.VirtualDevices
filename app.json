@@ -95,6 +95,7 @@
       }
     }
   },
+  "homepage": "https://github.com/Qluster-IT/nl.qluster-it.VirtualDevices/wiki",
   "source": "https://github.com/Qluster-IT/nl.qluster-it.VirtualDevices/",
   "bugs": {
     "url": "https://github.com/Qluster-IT/nl.qluster-it.VirtualDevices/issues"
