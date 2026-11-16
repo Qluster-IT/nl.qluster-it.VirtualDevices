@@ -4,8 +4,10 @@
 * [Sensors](sensor)
 * [Modes](mode)
 * [Versions](version)
-* [Questions](https://community.athom.com/t/virtual-devices/1723)
-* [Bugs, Issues, and Feature Requests](https://github.com/ArjanKranenburg/virtual-devices/issues)
+* [Repository](https://github.com/Qluster-IT/nl.qluster-it.VirtualDevices)
+* [Wiki](https://github.com/Qluster-IT/nl.qluster-it.VirtualDevices/wiki)
+* [Questions](https://community.homey.app/t/virtual-devices/1723)
+* [Bugs, Issues, and Feature Requests](https://github.com/Qluster-IT/nl.qluster-it.VirtualDevices/issues)
 
 This app gives you the opportunity to add Virtual Devices to Homey. You can operate the Virtual Devices from the UI and/or use them in flows.
 

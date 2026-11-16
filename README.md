@@ -18,12 +18,9 @@ Or you can add a mode and add it as a condition, e.g. to disable multiple flows 
 
 ## More information:
 
-There is more information, including How-to's on GitHub Pages:
-[https://arjankranenburg.github.io/virtual-devices/](https://arjankranenburg.github.io/virtual-devices/)
-
-Please report bugs on github:
-[https://github.com/ArjanKranenburg/virtual-devices/issues](https://github.com/ArjanKranenburg/virtual-devices/issues)
-
-Questions can be asked on the Virtual Devices topic of the Homey Forum: [https://community.athom.com/t/virtual-devices/1723](https://community.athom.com/t/virtual-devices/1723)
+* [Repository](https://github.com/Qluster-IT/nl.qluster-it.VirtualDevices)
+* [Wiki and how-to guides](https://github.com/Qluster-IT/nl.qluster-it.VirtualDevices/wiki)
+* [Report a bug or request a feature](https://github.com/Qluster-IT/nl.qluster-it.VirtualDevices/issues)
+* [Homey Community topic](https://community.homey.app/t/virtual-devices/1723)
 
 ...or on [Slack](https://athomcommunity.slack.com) (@arielaxed)

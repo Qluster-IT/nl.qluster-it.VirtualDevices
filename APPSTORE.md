@@ -6,16 +6,15 @@ Or you can add a mode and add it as a condition, e.g. to disable multiple flows 
 
 ## More information:
 
-There is more information, including How-to's on GitHub Pages:
-[https://arjankranenburg.github.io/virtual-devices/](https://arjankranenburg.github.io/virtual-devices/)
+For setup instructions and how-to guides, see the [Virtual Devices Wiki](https://github.com/Qluster-IT/nl.qluster-it.VirtualDevices/wiki).
+The [current source repository](https://github.com/Qluster-IT/nl.qluster-it.VirtualDevices) contains the app code.
 
 ## Feature Requests and Bugs
 
-Any help to improve this App is highly appreciated. Bug reports and requests for new Features can be done on github:
-[https://github.com/ArjanKranenburg/virtual-devices/issues](https://github.com/ArjanKranenburg/virtual-devices/issues)
+Any help to improve this App is highly appreciated. Report bugs or request features in the [current issue tracker](https://github.com/Qluster-IT/nl.qluster-it.VirtualDevices/issues).
 
 For questions or comments, please use the forum:
-[https://forum.athom.com/discussion/3065/app-virtual-devices-for-homey](https://forum.athom.com/discussion/3065/app-virtual-devices-for-homey)
+[https://community.homey.app/t/virtual-devices/1723](https://community.homey.app/t/virtual-devices/1723)
 
 ## If you like this App
 
