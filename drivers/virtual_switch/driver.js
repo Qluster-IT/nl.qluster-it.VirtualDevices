@@ -21,12 +21,16 @@ class VirtualDriver extends Homey.Driver {
 
     this.registerFlowCardAction_sensor('set_sensor_value', false);
     this.registerFlowCardAction_sensor('set_sensor_value_oc', true);
+    for (const type of ['number', 'boolean', 'string', 'enum']) {
+      this.registerTypedCapabilityAction(type);
+    }
     for (const kind of ['camera', 'album']) {
       this.homey.flow.getActionCard(`set_${kind}_image_url`).registerRunListener(args =>
         args.device.setMediaImage(kind, { url: media.imageUrl(args.url) }));
       this.homey.flow.getActionCard(`set_${kind}_image_token`).registerRunListener(args =>
         args.device.setMediaImageFromToken(kind, args.droptoken));
     }
+    this.homey.app.registerReleaseDriver('virtual_switch', this);
   }
 
   onPair(session) {
@@ -436,6 +440,56 @@ class VirtualDriver extends Homey.Driver {
         }
       });
     });
+  }
+
+  registerTypedCapabilityAction(type) {
+    const card = this.homey.flow.getActionCard(`set_capability_${type}`);
+    const definitionFor = id => getCapabilities()[id.split('.')[0]];
+    const selectedCapability = args => {
+      const device = validateItem('device', args.device);
+      const id = validateItem('capability', args.capability && args.capability.id);
+      const definition = definitionFor(id);
+      if (!device.getCapabilities().includes(id) || !definition || definition.type !== type) {
+        throw new Error(`Invalid ${type} capability: ${id}`);
+      }
+      return { device, id, definition };
+    };
+
+    card.registerRunListener(async args => {
+      const { device, id, definition } = selectedCapability(args);
+      const value = validateItem('value', args.value);
+      if (type === 'enum') {
+        if (!value || typeof value.id !== 'string' || !definition.values.some(option => option.id === value.id)) {
+          throw new Error(`Invalid choice for capability: ${id}`);
+        }
+        return device.setCapabilityValue(id, value.id);
+      }
+      if (typeof value !== type || (type === 'number' && !Number.isFinite(value))) {
+        throw new Error(`Invalid ${type} value for capability: ${id}`);
+      }
+      return device.setCapabilityValue(id, value);
+    });
+
+    card.registerArgumentAutocompleteListener('capability', async (query, args) => {
+      const device = validateItem('device', args.device);
+      const search = query.toLowerCase();
+      return device.getCapabilities()
+        .filter(id => {
+          const definition = definitionFor(id);
+          return definition && definition.type === type && id.toLowerCase().includes(search);
+        })
+        .map(id => ({ id, name: id }));
+    });
+    if (type === 'enum') {
+      card.registerArgumentAutocompleteListener('value', async (query, args) => {
+        const { definition } = selectedCapability(args);
+        const language = this.homey.i18n.getLanguage();
+        const search = query.toLowerCase();
+        return definition.values
+          .map(option => ({ id: option.id, name: option.title[language] || option.title.en }))
+          .filter(option => option.name.toLowerCase().includes(search) || option.id.toLowerCase().includes(search));
+      });
+    }
   }
 }
 

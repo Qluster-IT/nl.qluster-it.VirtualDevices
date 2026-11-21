@@ -1,4 +1,7 @@
 {
+	"release": {
+		"notice": "Virtual Devices 2.0: Pas bestaande apparaten aan via Repareren, kies uit meer pictogrammen en gebruik nieuwe opties voor energie en camera's."
+	},
 	"pair": {
 		"title": {
 			"capabilities": "Eigenschappen",

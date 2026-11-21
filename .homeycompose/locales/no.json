@@ -1,4 +1,7 @@
 {
+	"release": {
+		"notice": "Virtual Devices 2.0: Rediger eksisterende enheter via Reparer, velg blant flere ikoner og bruk nye energi- og kamerainnstillinger."
+	},
 	"pair": {
 		"title": {
 			"capabilities": "Muligheter",

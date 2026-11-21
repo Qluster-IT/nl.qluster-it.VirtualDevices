@@ -232,5 +232,8 @@
     "exclude_max": "Maximale ausgeschlossene Leistung (W)",
     "exclude_hint": "Werte zwischen diesen Grenzen werden null. Der Bereich muss null enthalten.",
     "approximated": "Leistungswert ist eine Schätzung"
+  },
+  "release": {
+    "notice": "Virtual Devices 2.0: Bearbeite bestehende Geräte über Reparieren, wähle aus mehr Symbolen und nutze neue Energie- und Kameraoptionen."
   }
 }

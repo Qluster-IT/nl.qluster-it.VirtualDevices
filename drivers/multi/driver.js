@@ -12,6 +12,7 @@ class MultiDriver extends Homey.Driver {
     
     this.registerFlowCardCondition('multi_mode_is', 'multi_state');
     this.registerFlowCardAction('multi_set_state', 'multi_state', multiModeTrigger);
+    this.homey.app.registerReleaseDriver('multi', this);
 	}
 
   onPair( session ) {

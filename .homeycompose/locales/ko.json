@@ -1,4 +1,7 @@
 {
+	"release": {
+		"notice": "Virtual Devices 2.0: 복구에서 기존 기기를 편집하고, 더 많은 아이콘과 새로운 에너지 및 카메라 옵션을 사용하세요."
+	},
 	"pair": {
 		"title": {
 			"capabilities": "기능",

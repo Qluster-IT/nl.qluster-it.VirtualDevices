@@ -53,6 +53,7 @@ function setup(icon = '../../../userdata/test-id.svg') {
   const driver = new Driver();
   driver.homey = {
     version: '12.3.0',
+    app: { registerReleaseDriver() {} },
     i18n: { getLanguage: () => 'en' },
     __: key => key,
     flow: { getActionCard: () => ({ registerRunListener() { return this; }, registerArgumentAutocompleteListener() {} }) },

@@ -18,6 +18,7 @@ class ModeDriver extends Homey.Driver {
     this.registerFlowCardAction('mode_action_off', false, [triggerDeviceOff, triggerDeviceChanged]); //deprecated
     this.registerFlowCardAction('mode_state_on', true, []);
     this.registerFlowCardAction('mode_state_off', false, []);
+    this.homey.app.registerReleaseDriver('mode', this);
   }
 
   onPair(session) {
@@ -136,14 +137,12 @@ class ModeDriver extends Homey.Driver {
   registerFlowCardAction(card_name, newState, flow_triggers) {
     let flowCardAction = this.homey.flow.getActionCard(card_name);
     flowCardAction
-      .registerRunListener((args, state) => {
+      .registerRunListener(async (args, state) => {
         try {
           let device = validateItem('device', args.device);
           this.log(device.getName() + ' -> State set to ' + newState);
           if (device.getCapabilityValue('onoff') !== newState) {
-
-            device.setCapabilityValue('onoff', newState) // Fire and forget
-              .catch(this.error);
+            await device.setCapabilityValue('onoff', newState);
 
             for (var i = 0; i < flow_triggers.length; i++) {
               // flow_triggers[i].trigger( device, {}, newState ) // Fire and forget
@@ -153,11 +152,11 @@ class ModeDriver extends Homey.Driver {
             }
           }
 
-          return Promise.resolve(true);
+          return true;
         }
         catch (error) {
-          this.log('Device action called with missing information: ' + error.message);
-          return Promise.reject(error);
+          this.error('Device action failed:', error);
+          throw error;
         }
       })
   }

@@ -232,5 +232,8 @@
     "exclude_max": "Maximaal uitgesloten vermogen (W)",
     "exclude_hint": "Waarden tussen deze grenzen worden nul. Het bereik moet nul bevatten.",
     "approximated": "Vermogensmeting is een schatting"
+  },
+  "release": {
+    "notice": "Virtual Devices 2.0: Pas bestaande apparaten aan via Repareren, kies uit meer pictogrammen en gebruik nieuwe opties voor energie en camera's."
   }
 }

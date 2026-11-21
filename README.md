@@ -12,6 +12,8 @@ For devices with an editable icon, Repair can replace it; restart Homey to see t
 
 Camera and doorbell devices can display a snapshot from an HTTP or HTTPS URL, configured during pairing or Repair. Flows can set their image from a URL or an image tag; the URL card can also refresh a snapshot. On supported Homeys, pairing and Repair also accept a live video URL. Speaker devices can display album art set by a Flow from a URL or image tag. Images are limited to 5 MB.
 
+Flow cards can set numeric, yes/no, text and choice capabilities using inputs for each type. Choice values are selected from the available options; use the existing sensor card when a choice must come from a Flow token.
+
 ## What works:
 
 * Virtual Devices: Switch, Alarm, Blinds, Hifi, Light, Security, TV, Heater
@@ -40,6 +42,7 @@ Camera and doorbell devices can display a snapshot from an HTTP or HTTPS URL, co
 * Edit devices with Repair, including capability options and editable icons.
 * Optional Homey Energy settings for batteries, cars, chargers and meters.
 * Camera snapshots, supported live video and speaker album art.
+* Flow cards for numeric, yes/no, text and choice values.
 
 ### 1.4.2
 * Moved source code and issues from Bitbucket to GitHub.

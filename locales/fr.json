@@ -232,5 +232,8 @@
     "exclude_max": "Puissance maximale exclue (W)",
     "exclude_hint": "Les valeurs entre ces limites deviennent nulles. La plage doit inclure zéro.",
     "approximated": "La puissance est une estimation"
+  },
+  "release": {
+    "notice": "Virtual Devices 2.0 : Modifiez les appareils existants avec Réparer, choisissez parmi plus d'icônes et utilisez les nouvelles options d'énergie et de caméra."
   }
 }

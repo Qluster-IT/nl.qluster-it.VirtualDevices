@@ -29,10 +29,7 @@
   ],
   "pair": [
     {
-      "id": "name",
-      "navigation": {
-        "next": "icon"
-      }
+      "id": "name"
     },
     {
       "id": "icon"

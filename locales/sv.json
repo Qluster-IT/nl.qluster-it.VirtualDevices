@@ -232,5 +232,8 @@
     "exclude_max": "Största undantagna effekt (W)",
     "exclude_hint": "Värden mellan gränserna blir noll. Intervallet måste inkludera noll.",
     "approximated": "Effektvärdet är en uppskattning"
+  },
+  "release": {
+    "notice": "Virtual Devices 2.0: Redigera befintliga enheter via Reparera, välj bland fler ikoner och använd nya energi- och kamerainställningar."
   }
 }

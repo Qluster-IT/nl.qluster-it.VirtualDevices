@@ -1,4 +1,7 @@
 {
+	"release": {
+		"notice": "Virtual Devices 2.0: Modifica i dispositivi esistenti con Ripara, scegli tra più icone e usa le nuove opzioni per energia e telecamera."
+	},
 	"pair": {
 		"title": {
 			"capabilities": "Capacità",

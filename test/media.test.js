@@ -150,6 +150,7 @@ test('media flow cards pass URL and image tags to the selected device', async ()
   const listeners = {};
   driver.log = () => {};
   driver.homey = {
+    app: { registerReleaseDriver() {} },
     flow: {
       getActionCard(id) {
         return {

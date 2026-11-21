@@ -1,4 +1,7 @@
 {
+	"release": {
+		"notice": "Virtual Devices 2.0: Bearbeite bestehende Geräte über Reparieren, wähle aus mehr Symbolen und nutze neue Energie- und Kameraoptionen."
+	},
 	"pair": {
 		"title": {
 			"capabilities": "Eigenschaften",

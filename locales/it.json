@@ -232,5 +232,8 @@
     "exclude_max": "Potenza massima esclusa (W)",
     "exclude_hint": "I valori tra questi limiti diventano zero. L’intervallo deve includere zero.",
     "approximated": "La potenza è una stima"
+  },
+  "release": {
+    "notice": "Virtual Devices 2.0: Modifica i dispositivi esistenti con Ripara, scegli tra più icone e usa le nuove opzioni per energia e telecamera."
   }
 }

@@ -232,5 +232,8 @@
     "exclude_max": "Maximum excluded power (W)",
     "exclude_hint": "Values between these limits become zero. The range must include zero.",
     "approximated": "Power reading is an estimate"
+  },
+  "release": {
+    "notice": "Virtual Devices 2.0: Edit existing devices with Repair, choose from more icons and use new Energy and camera options."
   }
 }

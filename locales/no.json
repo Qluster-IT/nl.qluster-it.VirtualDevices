@@ -233,5 +233,8 @@
     "exclude_max": "Største utelukkede effekt (W)",
     "exclude_hint": "Verdier mellom grensene blir null. Området må inkludere null.",
     "approximated": "Effektmålingen er et estimat"
+  },
+  "release": {
+    "notice": "Virtual Devices 2.0: Rediger eksisterende enheter via Reparer, velg blant flere ikoner og bruk nye energi- og kamerainnstillinger."
   }
 }

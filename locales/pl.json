@@ -232,5 +232,8 @@
     "exclude_max": "Maksymalna wykluczona moc (W)",
     "exclude_hint": "Wartości między granicami stają się zerem. Zakres musi obejmować zero.",
     "approximated": "Odczyt mocy jest szacunkowy"
+  },
+  "release": {
+    "notice": "Virtual Devices 2.0: Edytuj istniejące urządzenia przez Napraw, wybieraj spośród większej liczby ikon i korzystaj z nowych opcji energii i kamery."
   }
 }

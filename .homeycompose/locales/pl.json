@@ -1,4 +1,7 @@
 {
+	"release": {
+		"notice": "Virtual Devices 2.0: Edytuj istniejące urządzenia przez Napraw, wybieraj spośród większej liczby ikon i korzystaj z nowych opcji energii i kamery."
+	},
 	"pair": {
 		"title": {
 			"capabilities": "Funkcje",

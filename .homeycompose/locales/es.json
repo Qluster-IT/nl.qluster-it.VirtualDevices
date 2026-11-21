@@ -1,4 +1,7 @@
 {
+	"release": {
+		"notice": "Virtual Devices 2.0: Edita dispositivos existentes mediante Reparar, elige entre más iconos y usa las nuevas opciones de energía y cámara."
+	},
 	"pair": {
 		"title": {
 			"capabilities": "Capacidades",

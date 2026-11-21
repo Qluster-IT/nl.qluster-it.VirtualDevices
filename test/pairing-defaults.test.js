@@ -33,6 +33,39 @@ test('custom pairing and repair views and their local resources exist at Homey p
   }
 });
 
+test('pairing waits for the device name to save before continuing', () => {
+  const html = fs.readFileSync('drivers/virtual_switch/pair/name.html', 'utf8');
+  const script = html.match(/<script>([\s\S]*?)<\/script>/)[1];
+  const elements = {
+    'device-name': { value: '', disabled: true },
+    'name-next': { disabled: true },
+  };
+  const callbacks = {};
+  const calls = [];
+  const Homey = {
+    setTitle() {},
+    emit(event, data, callback) { calls.push([event, data]); callbacks[event] = callback; },
+    nextView() { calls.push(['nextView']); },
+    alert(message) { calls.push(['alert', message]); },
+  };
+  const view = { Homey, __: key => key, document: { getElementById: id => elements[id] } };
+  vm.runInNewContext(script, view);
+  assert.equal(elements['device-name'].disabled, true);
+  callbacks.getPairingDevice(null, { name: 'Previous name' });
+  assert.equal(elements['device-name'].value, 'Previous name');
+  elements['device-name'].value = 'New name';
+  view.continuePairing();
+  assert.equal(elements['name-next'].disabled, true);
+  assert.equal(calls.some(([event]) => event === 'nextView'), false);
+  assert.equal(calls.at(-1)[1].name, 'New name');
+  callbacks.setName(new Error('Save failed'));
+  assert.equal(elements['name-next'].disabled, false);
+  assert.equal(calls.at(-1)[1], 'Save failed');
+  view.continuePairing();
+  callbacks.setName(null);
+  assert.equal(calls.at(-1)[0], 'nextView');
+});
+
 test('pairing and repair icons have a non-percentage height under Homey button styling', () => {
   for (const [file, selector] of [
     ['drivers/virtual_switch/pair/icon.html', '.vd-icon'],

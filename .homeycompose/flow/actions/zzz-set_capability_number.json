@@ -1,0 +1,93 @@
+{
+  "id": "set_capability_number",
+  "title": {
+    "en": "Set a numeric capability value",
+    "nl": "Stel een getalswaarde in",
+    "da": "Indstil en numerisk egenskab",
+    "de": "Zahlenwert einer Eigenschaft setzen",
+    "es": "Establecer un valor numérico",
+    "fr": "Définir une valeur numérique",
+    "it": "Imposta un valore numerico",
+    "no": "Angi en tallverdi",
+    "sv": "Ange ett numeriskt värde",
+    "pl": "Ustaw wartość liczbową",
+    "ru": "Установить числовое значение",
+    "ko": "숫자 속성 값 설정",
+    "ar": "تعيين قيمة رقمية"
+  },
+  "titleFormatted": {
+    "en": "Set [[capability]] to [[value]]",
+    "nl": "Stel [[capability]] in op [[value]]",
+    "da": "Indstil [[capability]] til [[value]]",
+    "de": "Setzen Sie [[capability]] auf [[value]]",
+    "es": "Establecer [[capability]] a [[value]]",
+    "fr": "Définir [[capability]] sur [[value]]",
+    "it": "Imposta [[capability]] su [[value]]",
+    "no": "Sett [[capability]] til [[value]]",
+    "sv": "Ställ in [[capability]] till [[value]]",
+    "pl": "Ustaw [[capability]] na [[value]]",
+    "ru": "Установить [[capability]] на [[value]]",
+    "ko": "[[capability]]을(를) [[value]]로 설정하세요.",
+    "ar": "اضبط [[capability]] على [[value]]"
+  },
+  "args": [
+    {
+      "name": "capability",
+      "type": "autocomplete",
+      "title": {
+        "en": "Capability",
+        "nl": "Eigenschap",
+        "da": "Egenskab",
+        "de": "Eigenschaft",
+        "es": "Propiedad",
+        "fr": "Propriété",
+        "it": "Proprietà",
+        "no": "Egenskap",
+        "sv": "Egenskap",
+        "pl": "Właściwość",
+        "ru": "Свойство",
+        "ko": "속성",
+        "ar": "الخاصية"
+      },
+      "placeholder": {
+        "en": "Capability",
+        "nl": "Eigenschap",
+        "da": "Egenskab",
+        "de": "Eigenschaft",
+        "es": "Propiedad",
+        "fr": "Propriété",
+        "it": "Proprietà",
+        "no": "Egenskap",
+        "sv": "Egenskap",
+        "pl": "Właściwość",
+        "ru": "Свойство",
+        "ko": "속성",
+        "ar": "الخاصية"
+      }
+    },
+    {
+      "name": "value",
+      "type": "number",
+      "title": {
+        "en": "Value",
+        "nl": "Waarde",
+        "da": "Værdi",
+        "de": "Wert",
+        "es": "Valor",
+        "fr": "Valeur",
+        "it": "Valore",
+        "no": "Verdi",
+        "sv": "Värde",
+        "pl": "Wartość",
+        "ru": "Значение",
+        "ko": "값",
+        "ar": "القيمة"
+      }
+    },
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=virtual_switch"
+    }
+  ]
+}
