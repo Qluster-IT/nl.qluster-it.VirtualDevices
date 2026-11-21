@@ -1,2 +1,8 @@
+AGENTS.md
+.github/
 .gitignore
-docs
+.vscode/
+docs/
+test/
+tools/
+package-lock.json

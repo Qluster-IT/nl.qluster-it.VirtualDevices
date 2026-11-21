@@ -1,4 +1,8 @@
 {
+  "scripts": {
+    "test": "node --test",
+    "postinstall": "node tools/prune-dependencies.js"
+  },
   "dependencies": {
     "homey-lib": "^2.52.0"
   }
