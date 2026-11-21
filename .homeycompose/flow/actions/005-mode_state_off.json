@@ -1,0 +1,25 @@
+{
+  "id": "mode_state_off",
+  "title": {
+    "en": "Set mode off, no trigger",
+    "nl": "Zet modus uit zonder trigger",
+    "da": "Indstil tilstand til fra, ingen udløser",
+    "de": "Schalte Modus aus, kein Auslöser",
+    "es": "Establecer modo apagado, sin activador",
+    "fr": "Désactiver le mode, pas de déclencheur",
+    "it": "Imposta modalità off, nessun trigger",
+    "no": "Skru modus av, ingen trigger",
+    "sv": "Ställ in läge av, ingen utlösare",
+    "pl": "Ustaw tryb wyłączony, brak wyzwalacza",
+    "ru": "Установить режим \"выключено\", без триггера",
+    "ko": "모드 끄기, 트리거 없음",
+    "ar": "تعيين الوضع إلى إيقاف، لا يوجد محفز"
+  },
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=mode"
+    }
+  ]
+}

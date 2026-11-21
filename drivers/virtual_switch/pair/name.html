@@ -1,4 +1,3 @@
-<link rel="stylesheet" type="text/css" href="../../../assets/styles.css" />
 <script src='../../../assets/vue.min.js'></script>
 <script src='../../../assets/lodash.min.js'></script>
 <script>
@@ -19,7 +18,6 @@
       'name': _.debounce( function(val){
         Homey.emit('setName', {'name': val}, function (err, result) {
           if(err){console.log(err); return;}
-          console.log(result);
         });
       }, 500)
     }
@@ -27,6 +25,6 @@
 </script>
 
 <span id='name_instructions'>{{instructions}}</span>
-<div id='device_name'>
-  <input v-model='name'>
+<div id='device_name' class="homey-form-group">
+  <input class="homey-form-input" v-model='name' :aria-label="__('pair.select.name')">
 </div>

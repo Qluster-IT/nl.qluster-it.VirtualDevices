@@ -3,7 +3,10 @@ var devices = {
     "capabilities": [
       "onoff",
       "dim",
-      "measure_power"
+      "measure_power",
+      "meter_power",
+      "meter_power.imported",
+      "meter_power.exported"
     ],
     "defaultCapabilities": [
       "onoff"
@@ -57,7 +60,9 @@ var devices = {
       "windowcoverings_tilt_set",
       "windowcoverings_tilt_up",
       "windowcoverings_closed",
-      "windowcoverings_set"
+      "windowcoverings_set",
+      "measure_battery",
+      "alarm_battery"
     ],
     "defaultCapabilities": [
       "onoff"
@@ -67,7 +72,9 @@ var devices = {
     "capabilities": [
       "onoff",
       "dim",
-      "measure_power"
+      "measure_power",
+      "fan_speed",
+      "fan_mode"
     ],
     "defaultCapabilities": [
       "onoff"
@@ -92,7 +99,9 @@ var devices = {
       "onoff",
       "target_temperature",
       "measure_temperature",
-      "measure_power"
+      "measure_power",
+      "operational_state",
+      "progress"
     ],
     "defaultCapabilities": [
       "onoff"
@@ -132,7 +141,10 @@ var devices = {
     "capabilities": [
       "target_temperature",
       "thermostat_mode",
-      "measure_temperature"
+      "measure_temperature",
+      "measure_humidity",
+      "measure_battery",
+      "alarm_battery"
     ],
     "defaultCapabilities": [
       "target_temperature",
@@ -160,6 +172,8 @@ var devices = {
       "measure_wind_strength",
       "measure_battery",
       "meter_power",
+      "meter_power.imported",
+      "meter_power.exported",
       "meter_gas",
       "meter_water",
       "meter_rain",
@@ -176,7 +190,12 @@ var devices = {
   "lock": {
     "capabilities": [
       "locked",
-      "lock_mode"
+      "lock_mode",
+      "button",
+      "alarm_contact",
+      "alarm_tamper",
+      "alarm_battery",
+      "measure_battery"
     ],
     "defaultCapabilities": [
       "locked"
@@ -190,7 +209,9 @@ var devices = {
       "windowcoverings_tilt_set",
       "windowcoverings_tilt_up",
       "windowcoverings_closed",
-      "windowcoverings_set"
+      "windowcoverings_set",
+      "measure_battery",
+      "alarm_battery"
     ],
     "defaultCapabilities": [
       "windowcoverings_state"
@@ -201,7 +222,9 @@ var devices = {
       "onoff",
       "windowcoverings_state",
       "windowcoverings_closed",
-      "windowcoverings_set"
+      "windowcoverings_set",
+      "measure_battery",
+      "alarm_battery"
     ],
     "defaultCapabilities": [
       "windowcoverings_state"
@@ -209,7 +232,11 @@ var devices = {
   },
   "doorbell": {
     "capabilities": [
-      "button"
+      "button",
+      "alarm_motion",
+      "alarm_tamper",
+      "alarm_battery",
+      "measure_battery"
     ],
     "defaultCapabilities": [
       "button"
@@ -228,7 +255,12 @@ var devices = {
   "solarpanel": {
     "capabilities": [
       "meter_power",
-      "measure_power"
+      "measure_power",
+      "measure_voltage",
+      "measure_current",
+      "meter_power.exported",
+      "target_power",
+      "target_power_mode"
     ],
     "defaultCapabilities": [
       "measure_power"
@@ -237,7 +269,12 @@ var devices = {
   "vacuumcleaner": {
     "capabilities": [
       "onoff",
-      "vacuumcleaner_state"
+      "vacuumcleaner_state",
+      "vacuumcleaner_job_mode",
+      "operational_state",
+      "measure_battery",
+      "battery_charging_state",
+      "alarm_problem"
     ],
     "defaultCapabilities": [
       "vacuumcleaner_state"
@@ -303,7 +340,7 @@ var devices = {
     "defaultCapabilities": ["onoff", "target_temperature", "progress"]
   },
   "airpurifier": {
-    "capabilities": ["onoff", "fan_speed", "fan_mode", "target_humidity", "measure_humidity", "measure_aqi", "level_aqi", "measure_pm25", "measure_co2", "measure_power"],
+    "capabilities": ["onoff", "fan_speed", "fan_mode", "target_humidity", "measure_humidity", "measure_aqi", "level_aqi", "measure_pm25", "measure_co2", "measure_hepa_filter", "measure_carbon_filter", "measure_power"],
     "defaultCapabilities": ["onoff", "fan_speed", "measure_aqi"]
   },
   "airtreatment": {
@@ -311,7 +348,7 @@ var devices = {
     "defaultCapabilities": ["onoff", "fan_mode", "measure_humidity"]
   },
   "battery": {
-    "capabilities": ["measure_battery", "battery_charging_state", "measure_voltage", "measure_power"],
+    "capabilities": ["measure_battery", "battery_charging_state", "measure_voltage", "measure_power", "meter_power.imported", "meter_power.exported", "target_power", "target_power_mode"],
     "defaultCapabilities": ["measure_battery", "battery_charging_state"]
   },
   "bicycle": {
@@ -351,7 +388,7 @@ var devices = {
     "defaultCapabilities": ["onoff", "laundry_dryer_dryness", "progress"]
   },
   "evcharger": {
-    "capabilities": ["onoff", "evcharger_charging", "evcharger_charging_state", "target_power", "measure_power", "measure_voltage", "measure_current", "meter_power"],
+    "capabilities": ["onoff", "evcharger_charging", "evcharger_charging_state", "target_power", "target_power_mode", "measure_power", "measure_voltage", "measure_current", "meter_power", "meter_power.imported", "meter_power.exported"],
     "defaultCapabilities": ["onoff", "evcharger_charging", "evcharger_charging_state"]
   },
   "faucet": {
@@ -383,7 +420,7 @@ var devices = {
     "defaultCapabilities": ["onoff"]
   },
   "garagedoor": {
-    "capabilities": ["garagedoor_closed", "button", "alarm_contact", "alarm_generic"],
+    "capabilities": ["garagedoor_closed", "button", "alarm_contact", "alarm_generic", "alarm_tamper", "measure_battery"],
     "defaultCapabilities": ["garagedoor_closed"]
   },
   "grill": {
@@ -467,7 +504,7 @@ var devices = {
     "defaultCapabilities": ["onoff", "alarm_generic"]
   },
   "smokealarm": {
-    "capabilities": ["alarm_smoke", "alarm_fire", "alarm_heat", "alarm_battery", "alarm_tamper"],
+    "capabilities": ["alarm_smoke", "alarm_fire", "alarm_heat", "alarm_battery", "alarm_tamper", "measure_battery", "button"],
     "defaultCapabilities": ["alarm_smoke", "alarm_battery"]
   },
   "sprinkler": {
@@ -1000,3 +1037,5 @@ var default_options = {
   }
 
 }
+
+if (typeof module !== 'undefined') module.exports = { devices, default_options };

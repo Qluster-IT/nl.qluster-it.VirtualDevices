@@ -1,5 +1,10 @@
-Den här appen ger dig möjligheten att lägga till virtuella enheter till Homey. Du kan styra de virtuella enheterna från användargränssnittet och/eller använda dem i flöden.
+Skapa enkla virtuella enheter i Homey, till exempel strömbrytare, sensorer och termostater. Styr dem i Homey och använd dem i Flows.
 
-Eller så kan du lägga till ett läge och använda det som ett villkor, t.ex. för att stänga av flera flöden när du åker på semester.
+Du kan också använda lägen, till exempel semesterläge, som villkor i Flows.
 
-Om du vill ha (mycket) mer anpassning, kolla in den avancerade virtuella enheten från appen Device Capabilities.
+Välj enhetsklass, egenskaper och ikon. Du kan ändra klass och egenskaper senare via Reparera. För mer avancerad anpassning kan du använda en Advanced Virtual Device från appen Device Capabilities.
+
+Kameror och dörrklockor stöder ögonblicksbilder och, på Homey-enheter som stöds, livevideo. Flows kan ange kamerabilder och albumomslag för högtalare.
+
+Community Forum: https://community.homey.app/t/virtual-devices/1723
+För wiki och användarmanual, välj Besök webbplats under Utvecklarens webbplats på appens sida i Homey App Store.

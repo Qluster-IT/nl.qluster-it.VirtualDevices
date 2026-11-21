@@ -1,0 +1,25 @@
+{
+  "id": "mode_off",
+  "title": {
+    "en": "Mode is off",
+    "nl": "Modus wordt uitgezet",
+    "da": "Tilstand er slukket",
+    "de": "Modus is ausgeschaltet",
+    "es": "El modo está apagado",
+    "fr": "Le mode est désactivé",
+    "it": "La modalità è disattivata",
+    "no": "Modus er av",
+    "sv": "Läget är avstängt",
+    "pl": "Tryb jest wyłączony",
+    "ru": "Режим выключен",
+    "ko": "모드가 꺼져 있습니다.",
+    "ar": "الوضع متوقف"
+  },
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=mode"
+    }
+  ]
+}

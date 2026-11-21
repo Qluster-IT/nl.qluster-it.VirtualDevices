@@ -1,5 +1,10 @@
-이 앱은 Virtual Devices를 Homey에 추가할 수 있는 기회를 제공합니다. UI에서 Virtual Devices를 작동시키거나 흐름에서 사용할 수 있습니다.
+Homey에서 스위치, 센서, 온도조절기와 같은 간단한 가상 장치를 만드세요. Homey에서 제어하고 Flow에 사용할 수 있습니다.
 
-또는 모드를 추가하고 조건으로 설정할 수도 있습니다. 예를 들어, 휴가 갈 때 여러 흐름을 비활성화하는 용도로 사용할 수 있습니다.
+휴가 모드와 같은 모드를 Flow의 조건으로 사용할 수도 있습니다.
 
-더 많은 사용자 정의가 필요하다면, Device Capabilities 앱의 Advanced Virtual Device를 확인해보세요.
+장치 클래스, 기능 및 아이콘을 선택하세요. 나중에 복구를 통해 클래스와 기능을 변경할 수 있습니다. 더 세밀하게 설정하려면 Device Capabilities 앱의 Advanced Virtual Device를 사용하세요.
+
+카메라와 초인종은 스냅샷을 지원하며, 지원되는 Homey에서는 실시간 영상도 지원합니다. Flow로 카메라 이미지와 스피커 앨범 아트를 설정할 수 있습니다.
+
+커뮤니티 포럼: https://community.homey.app/t/virtual-devices/1723
+위키와 사용 설명서는 Homey App Store의 이 앱 페이지에서 개발자 웹사이트 아래의 웹사이트 방문을 선택하세요.

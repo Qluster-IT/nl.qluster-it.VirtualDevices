@@ -1,0 +1,45 @@
+{
+  "id": "multi_mode_is",
+  "deprecated": true,
+  "title": {
+    "en": "Multi-mode !{{is|is not}} exactly",
+    "nl": "Multi-modus !{{is|is niet}} exact",
+    "da": "Multi-mode !{{er|er ikke}} præcis",
+    "de": "Multimodus !{{ist|ist nicht}} genau",
+    "es": "¡Modo múltiple! {{es|no es}} exactamente",
+    "fr": "Multi-mode !{{est|n'est pas}} exactement",
+    "it": "Multi-mode !{{è|non è}} esattamente",
+    "no": "Multimodus !{{er|er ikke}} helt lik",
+    "sv": "Multi-mode !{{är|är inte}} exakt",
+    "pl": "Tryb wielofunkcyjny! {{jest|nie jest}} dokładnie",
+    "ru": "Мульти-режим !{{is|is not}} точно",
+    "ko": "멀티 모드 !{{is|is not}} 정확히",
+    "ar": "متعدد الأوضاع !{{is|is not}} بالضبط"
+  },
+  "args": [
+    {
+      "name": "state",
+      "type": "text",
+      "placeholder": {
+        "en": "State",
+        "nl": "Status",
+        "da": "Tilstand",
+        "de": "Status",
+        "es": "Estado",
+        "fr": "État",
+        "it": "Stato",
+        "no": "Status",
+        "sv": "Tillstånd",
+        "pl": "Stan",
+        "ru": "Состояние",
+        "ko": "상태",
+        "ar": "الحالة"
+      }
+    },
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=multi"
+    }
+  ]
+}

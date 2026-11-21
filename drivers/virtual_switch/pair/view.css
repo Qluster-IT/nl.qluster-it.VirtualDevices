@@ -1,0 +1,55 @@
+.vd-screen {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.vd-content {
+  flex: 1;
+}
+
+.vd-screen > .vd-screen {
+  flex: 1;
+}
+
+.vd-actions {
+  position: sticky;
+  bottom: -16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+  gap: var(--homey-su-1, 8px);
+  margin: 24px -16px -16px;
+  padding: 16px;
+  background: var(--homey-color-white, white);
+  z-index: 1;
+}
+
+.vd-actions > :first-child:not(:last-child) {
+  justify-self: start;
+}
+
+.vd-section {
+  margin: 20px 0;
+}
+
+.vd-disclosure {
+  margin: 12px 0;
+}
+
+.vd-disclosure > summary {
+  cursor: pointer;
+  padding: 8px 0;
+}
+
+.homey-form-checkbox-input {
+  display: block !important;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.homey-form-checkbox-input:focus + .homey-form-checkbox-checkmark {
+  outline: 2px solid var(--homey-color-blue, #1688ee);
+  outline-offset: 2px;
+}

@@ -1,0 +1,45 @@
+{
+  "id": "multi_set_state",
+  "deprecated": true,
+  "title": {
+    "en": "Set multi-mode",
+    "nl": "Zet multi modus",
+    "da": "Indstil multi-tilstand",
+    "de": "Lege Multimodus fest",
+    "es": "Establecer modo múltiple",
+    "fr": "Définir le mode multi",
+    "it": "Imposta modalità multipla",
+    "no": "Sett multimodus",
+    "sv": "Ställ in multi-läge",
+    "pl": "Ustaw tryb multi",
+    "ru": "Установить многорежимный режим",
+    "ko": "멀티 모드 설정",
+    "ar": "تعيين وضع متعدد"
+  },
+  "args": [
+    {
+      "name": "multi_state",
+      "type": "text",
+      "placeholder": {
+        "en": "New state",
+        "nl": "Nieuwe status",
+        "da": "Ny tilstand",
+        "de": "Neuer Status",
+        "es": "Nuevo estado",
+        "fr": "Nouvel état",
+        "it": "Nuovo stato",
+        "no": "Ny status",
+        "sv": "Nytt tillstånd",
+        "pl": "Nowy stan",
+        "ru": "Новое состояние",
+        "ko": "새 상태",
+        "ar": "حالة جديدة"
+      }
+    },
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=multi"
+    }
+  ]
+}

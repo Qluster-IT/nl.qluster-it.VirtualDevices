@@ -1,6 +1,7 @@
 {
+  "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "com.arjankranenburg.virtual",
-  "version": "1.4.2",
+  "version": "2.0.0",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "brandColor": "#6720df",
@@ -36,16 +37,117 @@
   },
   "tags": {
     "en": [
-      "virtual device"
+      "virtual",
+      "device",
+      "devices",
+      "switch",
+      "sensor",
+      "mode"
     ],
     "nl": [
-      "virtuele apparaten"
+      "virtual",
+      "device",
+      "devices",
+      "virtueel",
+      "virtuele",
+      "apparaat",
+      "apparaten",
+      "schakelaar"
+    ],
+    "da": [
+      "virtual",
+      "device",
+      "devices",
+      "virtuel",
+      "virtuelle",
+      "enhed",
+      "enheder"
     ],
     "de": [
-      "virtuelle Geräte"
+      "virtual",
+      "device",
+      "devices",
+      "virtuelles",
+      "virtuelle",
+      "Gerät",
+      "Geräte"
+    ],
+    "es": [
+      "virtual",
+      "device",
+      "devices",
+      "dispositivo",
+      "dispositivos",
+      "virtuales"
+    ],
+    "fr": [
+      "virtual",
+      "device",
+      "devices",
+      "appareil",
+      "appareils",
+      "virtuel",
+      "virtuels"
+    ],
+    "it": [
+      "virtual",
+      "device",
+      "devices",
+      "dispositivo",
+      "dispositivi",
+      "virtuale",
+      "virtuali"
     ],
     "no": [
-      "virtuelle enheter"
+      "virtual",
+      "device",
+      "devices",
+      "virtuell",
+      "virtuelle",
+      "enhet",
+      "enheter"
+    ],
+    "sv": [
+      "virtual",
+      "device",
+      "devices",
+      "virtuell",
+      "virtuella",
+      "enhet",
+      "enheter"
+    ],
+    "pl": [
+      "virtual",
+      "device",
+      "devices",
+      "urządzenie",
+      "urządzenia",
+      "wirtualne"
+    ],
+    "ru": [
+      "virtual",
+      "device",
+      "devices",
+      "виртуальное",
+      "виртуальные",
+      "устройство",
+      "устройства"
+    ],
+    "ko": [
+      "virtual",
+      "device",
+      "devices",
+      "가상",
+      "장치"
+    ],
+    "ar": [
+      "virtual",
+      "device",
+      "devices",
+      "جهاز",
+      "افتراضي",
+      "الأجهزة",
+      "الافتراضية"
     ]
   },
   "author": {
@@ -110,48 +212,6 @@
     "small": "./assets/images/small.png"
   },
   "category": "tools",
-  "capabilities": {
-    "multi_state": {
-      "type": "string",
-      "title": {
-        "en": "Multi-mode state",
-        "nl": "Multimode status",
-        "da": "Multi-tilstandstilstand",
-        "de": "Multimodus Status",
-        "es": "Estado de múltiples modos",
-        "fr": "État multi-mode",
-        "it": "Stato multi-modalità",
-        "no": "Status multimodus",
-        "sv": "Flerlägesstatus",
-        "pl": "Stan multi-trybu",
-        "ru": "Многофункциональный режим",
-        "ko": "다중 모드 상태",
-        "ar": "وضع متعدد الأوضاع"
-      },
-      "getable": true,
-      "setable": true
-    },
-    "previous_state": {
-      "type": "string",
-      "title": {
-        "en": "Previous Multi-mode state",
-        "nl": "Vorige Multimode status",
-        "da": "Tidligere multi-tilstandstilstand",
-        "de": "Vorheriger Multimodus Status",
-        "es": "Estado anterior de modo múltiple",
-        "fr": "État précédent en mode multiple",
-        "it": "Stato precedente della modalità multipla",
-        "no": "Forrige multimodus status",
-        "sv": "Föregående Multi-läge status",
-        "pl": "Poprzedni stan Multi-mode",
-        "ru": "Предыдущее состояние многорежимного устройства",
-        "ko": "이전 다중 모드 상태",
-        "ar": "الحالة السابقة متعددة الأوضاع"
-      },
-      "getable": true,
-      "setable": false
-    }
-  },
   "flow": {
     "triggers": [
       {
@@ -761,68 +821,193 @@
             "filter": "driver_id=multi"
           }
         ]
+      },
+      {
+        "id": "set_album_image_token",
+        "title": {
+          "en": "Set album art from image tag",
+          "nl": "Stel albumhoes in via afbeeldingstag",
+          "da": "Indstil albumcover fra billedtag",
+          "de": "Albumcover über Bild-Tag festlegen",
+          "es": "Establecer portada de álbum desde etiqueta de imagen",
+          "fr": "Définir la pochette par étiquette image",
+          "it": "Imposta copertina album da tag immagine",
+          "no": "Angi albumomslag fra bildebrikke",
+          "sv": "Ange skivomslag från bildtagg",
+          "pl": "Ustaw okładkę albumu ze znacznika obrazu",
+          "ru": "Задать обложку альбома из тега изображения",
+          "ko": "이미지 태그로 앨범 아트 설정",
+          "ar": "تعيين غلاف الألبوم من علامة صورة"
+        },
+        "droptoken": [
+          "image"
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=virtual_switch&class=speaker"
+          }
+        ]
+      },
+      {
+        "id": "set_album_image_url",
+        "title": {
+          "en": "Set album art from URL",
+          "nl": "Stel albumhoes in via URL",
+          "da": "Indstil albumcover fra URL",
+          "de": "Albumcover über URL festlegen",
+          "es": "Establecer portada de álbum desde URL",
+          "fr": "Définir la pochette par URL",
+          "it": "Imposta copertina album da URL",
+          "no": "Angi albumomslag fra URL",
+          "sv": "Ange skivomslag från URL",
+          "pl": "Ustaw okładkę albumu z adresu URL",
+          "ru": "Задать обложку альбома по URL",
+          "ko": "URL로 앨범 아트 설정",
+          "ar": "تعيين غلاف الألبوم من رابط"
+        },
+        "titleFormatted": {
+          "en": "Set album art from URL: [[url]]",
+          "nl": "Stel albumhoes in via URL: [[url]]",
+          "da": "Indstil albumcover fra URL: [[url]]",
+          "de": "Albumcover über URL festlegen: [[url]]",
+          "es": "Establecer portada de álbum desde URL: [[url]]",
+          "fr": "Définir la pochette par URL: [[url]]",
+          "it": "Imposta copertina album da URL: [[url]]",
+          "no": "Angi albumomslag fra URL: [[url]]",
+          "sv": "Ange skivomslag från URL: [[url]]",
+          "pl": "Ustaw okładkę albumu z adresu URL: [[url]]",
+          "ru": "Задать обложку альбома по URL: [[url]]",
+          "ko": "URL로 앨범 아트 설정: [[url]]",
+          "ar": "تعيين غلاف الألبوم من رابط: [[url]]"
+        },
+        "args": [
+          {
+            "name": "url",
+            "type": "text",
+            "title": {
+              "en": "URL",
+              "nl": "URL",
+              "da": "URL",
+              "de": "URL",
+              "es": "URL",
+              "fr": "URL",
+              "it": "URL",
+              "no": "URL",
+              "sv": "URL",
+              "pl": "Adres URL",
+              "ru": "URL",
+              "ko": "URL",
+              "ar": "الرابط"
+            },
+            "placeholder": {
+              "en": "http://…",
+              "nl": "http://…"
+            }
+          },
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=virtual_switch&class=speaker"
+          }
+        ]
+      },
+      {
+        "id": "set_camera_image_token",
+        "title": {
+          "en": "Set camera image from image tag",
+          "nl": "Stel camera-afbeelding in via afbeeldingstag",
+          "da": "Indstil kamerabillede fra billedtag",
+          "de": "Kamerabild über Bild-Tag festlegen",
+          "es": "Establecer imagen de cámara desde etiqueta de imagen",
+          "fr": "Définir l’image de caméra par étiquette image",
+          "it": "Imposta immagine telecamera da tag immagine",
+          "no": "Angi kamerabilde fra bildebrikke",
+          "sv": "Ange kamerabild från bildtagg",
+          "pl": "Ustaw obraz kamery ze znacznika obrazu",
+          "ru": "Задать изображение камеры из тега изображения",
+          "ko": "이미지 태그로 카메라 이미지 설정",
+          "ar": "تعيين صورة الكاميرا من علامة صورة"
+        },
+        "droptoken": [
+          "image"
+        ],
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=virtual_switch&class=camera|doorbell"
+          }
+        ]
+      },
+      {
+        "id": "set_camera_image_url",
+        "title": {
+          "en": "Set camera image from URL",
+          "nl": "Stel camera-afbeelding in via URL",
+          "da": "Indstil kamerabillede fra URL",
+          "de": "Kamerabild über URL festlegen",
+          "es": "Establecer imagen de cámara desde URL",
+          "fr": "Définir l’image de caméra par URL",
+          "it": "Imposta immagine telecamera da URL",
+          "no": "Angi kamerabilde fra URL",
+          "sv": "Ange kamerabild från URL",
+          "pl": "Ustaw obraz kamery z adresu URL",
+          "ru": "Задать изображение камеры по URL",
+          "ko": "URL로 카메라 이미지 설정",
+          "ar": "تعيين صورة الكاميرا من رابط"
+        },
+        "titleFormatted": {
+          "en": "Set camera image from URL: [[url]]",
+          "nl": "Stel camera-afbeelding in via URL: [[url]]",
+          "da": "Indstil kamerabillede fra URL: [[url]]",
+          "de": "Kamerabild über URL festlegen: [[url]]",
+          "es": "Establecer imagen de cámara desde URL: [[url]]",
+          "fr": "Définir l’image de caméra par URL: [[url]]",
+          "it": "Imposta immagine telecamera da URL: [[url]]",
+          "no": "Angi kamerabilde fra URL: [[url]]",
+          "sv": "Ange kamerabild från URL: [[url]]",
+          "pl": "Ustaw obraz kamery z adresu URL: [[url]]",
+          "ru": "Задать изображение камеры по URL: [[url]]",
+          "ko": "URL로 카메라 이미지 설정: [[url]]",
+          "ar": "تعيين صورة الكاميرا من رابط: [[url]]"
+        },
+        "args": [
+          {
+            "name": "url",
+            "type": "text",
+            "title": {
+              "en": "URL",
+              "nl": "URL",
+              "da": "URL",
+              "de": "URL",
+              "es": "URL",
+              "fr": "URL",
+              "it": "URL",
+              "no": "URL",
+              "sv": "URL",
+              "pl": "Adres URL",
+              "ru": "URL",
+              "ko": "URL",
+              "ar": "الرابط"
+            },
+            "placeholder": {
+              "en": "http://…",
+              "nl": "http://…"
+            }
+          },
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=virtual_switch&class=camera|doorbell"
+          }
+        ]
       }
     ]
   },
   "drivers": [
     {
-      "id": "virtual_switch",
-      "name": {
-        "en": "Device",
-        "nl": "Apparaat",
-        "da": "Enhed",
-        "de": "Gerät",
-        "es": "Dispositivo",
-        "fr": "Appareil",
-        "it": "Dispositivo",
-        "no": "Enhet",
-        "sv": "Enhet",
-        "pl": "Urządzenie",
-        "ru": "Устройство",
-        "ko": "장치",
-        "ar": "الجهاز"
-      },
-      "images": {
-        "large": "drivers/virtual_switch/assets/images/large.png",
-        "small": "drivers/virtual_switch/assets/images/small.png"
-      },
-      "class": "other",
-      "capabilities": [
-        "onoff"
-      ],
-      "pair": [
-        {
-          "id": "name",
-          "navigation": {
-            "next": "icon"
-          }
-        },
-        {
-          "id": "icon",
-          "navigation": {
-            "prev": "name"
-          }
-        },
-        {
-          "id": "class",
-          "navigation": {
-            "prev": "icon"
-          }
-        },
-        {
-          "id": "capabilities",
-          "navigation": {
-            "next": "done",
-            "prev": "class"
-          }
-        },
-        {
-          "id": "done"
-        }
-      ]
-    },
-    {
-      "id": "mode",
       "name": {
         "en": "Mode",
         "nl": "Modus",
@@ -854,10 +1039,7 @@
           }
         },
         {
-          "id": "icon",
-          "navigation": {
-            "prev": "name"
-          }
+          "id": "icon"
         },
         {
           "id": "done"
@@ -878,10 +1060,10 @@
             ]
           }
         ]
-      }
+      },
+      "id": "mode"
     },
     {
-      "id": "multi",
       "deprecated": true,
       "name": {
         "en": "Multi-Mode",
@@ -927,7 +1109,111 @@
             ]
           }
         ]
-      }
+      },
+      "id": "multi"
+    },
+    {
+      "name": {
+        "en": "Device",
+        "nl": "Apparaat",
+        "da": "Enhed",
+        "de": "Gerät",
+        "es": "Dispositivo",
+        "fr": "Appareil",
+        "it": "Dispositivo",
+        "no": "Enhet",
+        "sv": "Enhet",
+        "pl": "Urządzenie",
+        "ru": "Устройство",
+        "ko": "장치",
+        "ar": "الجهاز"
+      },
+      "images": {
+        "large": "drivers/virtual_switch/assets/images/large.png",
+        "small": "drivers/virtual_switch/assets/images/small.png"
+      },
+      "class": "other",
+      "capabilities": [
+        "onoff"
+      ],
+      "repair": [
+        {
+          "id": "repair"
+        }
+      ],
+      "pair": [
+        {
+          "id": "name",
+          "navigation": {
+            "next": "icon"
+          }
+        },
+        {
+          "id": "icon"
+        },
+        {
+          "id": "class",
+          "navigation": {
+            "prev": "icon"
+          }
+        },
+        {
+          "id": "capabilities",
+          "navigation": {
+            "next": "capability_options",
+            "prev": "class"
+          }
+        },
+        {
+          "id": "capability_options"
+        },
+        {
+          "id": "done"
+        }
+      ],
+      "id": "virtual_switch"
     }
-  ]
+  ],
+  "capabilities": {
+    "multi_state": {
+      "type": "string",
+      "title": {
+        "en": "Multi-mode state",
+        "nl": "Multimode status",
+        "da": "Multi-tilstandstilstand",
+        "de": "Multimodus Status",
+        "es": "Estado de múltiples modos",
+        "fr": "État multi-mode",
+        "it": "Stato multi-modalità",
+        "no": "Status multimodus",
+        "sv": "Flerlägesstatus",
+        "pl": "Stan multi-trybu",
+        "ru": "Многофункциональный режим",
+        "ko": "다중 모드 상태",
+        "ar": "وضع متعدد الأوضاع"
+      },
+      "getable": true,
+      "setable": true
+    },
+    "previous_state": {
+      "type": "string",
+      "title": {
+        "en": "Previous Multi-mode state",
+        "nl": "Vorige Multimode status",
+        "da": "Tidligere multi-tilstandstilstand",
+        "de": "Vorheriger Multimodus Status",
+        "es": "Estado anterior de modo múltiple",
+        "fr": "État précédent en mode multiple",
+        "it": "Stato precedente della modalità multipla",
+        "no": "Forrige multimodus status",
+        "sv": "Föregående Multi-läge status",
+        "pl": "Poprzedni stan Multi-mode",
+        "ru": "Предыдущее состояние многорежимного устройства",
+        "ko": "이전 다중 모드 상태",
+        "ar": "الحالة السابقة متعددة الأوضاع"
+      },
+      "getable": true,
+      "setable": false
+    }
+  }
 }

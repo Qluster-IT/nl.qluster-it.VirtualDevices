@@ -1,0 +1,60 @@
+{
+  "name": {
+    "en": "Device",
+    "nl": "Apparaat",
+    "da": "Enhed",
+    "de": "Gerät",
+    "es": "Dispositivo",
+    "fr": "Appareil",
+    "it": "Dispositivo",
+    "no": "Enhet",
+    "sv": "Enhet",
+    "pl": "Urządzenie",
+    "ru": "Устройство",
+    "ko": "장치",
+    "ar": "الجهاز"
+  },
+  "images": {
+    "large": "drivers/virtual_switch/assets/images/large.png",
+    "small": "drivers/virtual_switch/assets/images/small.png"
+  },
+  "class": "other",
+  "capabilities": [
+    "onoff"
+  ],
+  "repair": [
+    {
+      "id": "repair"
+    }
+  ],
+  "pair": [
+    {
+      "id": "name",
+      "navigation": {
+        "next": "icon"
+      }
+    },
+    {
+      "id": "icon"
+    },
+    {
+      "id": "class",
+      "navigation": {
+        "prev": "icon"
+      }
+    },
+    {
+      "id": "capabilities",
+      "navigation": {
+        "next": "capability_options",
+        "prev": "class"
+      }
+    },
+    {
+      "id": "capability_options"
+    },
+    {
+      "id": "done"
+    }
+  ]
+}

@@ -1,5 +1,10 @@
-This app gives you the opportunity to add Virtual Devices to Homey. You can operate the Virtual Devices from the UI and/or use them in flows.
+Create simple virtual devices in Homey, such as switches, sensors and thermostats. Control them in Homey and use them in Flows.
 
-Or you can add a mode and add it as a condition, e.g. to disable multiple flows when going on Holiday.
+You can also use modes, such as a holiday mode, as Flow conditions.
 
-If you want (way) more customisation, check out the Advanced Virtual Device from the Device Capabilities app.
+Choose a device class, capabilities and an icon. Edit the class and capabilities later through Repair. For more advanced customization, use an Advanced Virtual Device from the Device Capabilities app.
+
+Camera and doorbell devices support snapshots and, on supported Homeys, live video. Flows can set camera images and speaker album art.
+
+Community Forum: https://community.homey.app/t/virtual-devices/1723
+For the wiki and user manual, select Visit website under Developer website on this app's Homey App Store page.

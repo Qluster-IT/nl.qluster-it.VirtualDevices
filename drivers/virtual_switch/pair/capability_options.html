@@ -1,0 +1,116 @@
+<script src="../../../assets/vue.min.js"></script>
+<script src="./capability-options.js"></script>
+<script src="./energy-options.js"></script>
+<link rel="stylesheet" href="./view.css">
+
+<div id="capability-options-view" class="vd-screen">
+  <div class="vd-screen" v-if="loaded">
+    <div class="vd-content">
+    <capability-options :selected="selected" :definitions="definitions" :options="options" @change="changeOption"></capability-options>
+    <energy-options :device-class="deviceClass" :selected="selected" :definitions="definitions"
+      :energy="energy" :support="energySupport" @change="changeEnergy"></energy-options>
+    <div v-if="isCamera" class="vd-section">
+      <h3>{{ __('media.camera') }}</h3>
+      <div class="homey-form-group">
+        <label class="homey-form-label" for="camera-image">{{ __('media.image_url') }}</label>
+        <input class="homey-form-input" id="camera-image" type="url" v-model="media.image" @input="saveMediaDraft" autocomplete="off">
+        <p>{{ __('media.image_hint') }}</p>
+      </div>
+      <div v-if="videoSupported" class="homey-form-group">
+        <label class="homey-form-label" for="camera-video">{{ __('media.video_url') }}</label>
+        <input class="homey-form-input" id="camera-video" type="text" v-model="media.video" @input="saveMediaDraft" autocomplete="off">
+        <p>{{ __('media.video_hint') }}</p>
+      </div>
+    </div>
+    </div>
+    <div class="vd-actions">
+      <button class="homey-button-transparent" type="button" :disabled="saving" @click="previous">{{ __('capability_options.previous') }}</button>
+      <button class="homey-button-primary" type="button" :disabled="saving" @click="finish">{{ __('pair.device.add') }}</button>
+    </div>
+  </div>
+</div>
+<script>
+  Homey.setTitle(__('capability_options.heading'));
+  var optionsView = new Vue({
+    el: '#capability-options-view',
+    data: { loaded: false, saving: false, selected: [], definitions: {}, options: {}, pending: [],
+      isCamera: false, videoSupported: false, media: { image: '', video: '' },
+      deviceClass: '', energy: {}, energySupport: {} },
+    methods: {
+      previous: function () { Homey.showView('capabilities'); },
+      saveMediaDraft: function () {
+        var draft = { image: this.media.image, video: this.media.video };
+        var request = Homey.emit('setMediaDraft', draft).catch(async error => {
+          await Homey.alert(error.message, 'error');
+          throw error;
+        });
+        this.pending.push(request);
+        request.catch(() => {});
+      },
+      changeOption: function (id, field, value, discardDraft) {
+        var request = Homey.emit('updateCapabilitiesOptions', { [id]: { [field]: value } })
+          .then(device => { this.options = device.capabilitiesOptions; })
+          .catch(async error => {
+            if (discardDraft) discardDraft();
+            await Homey.alert(error.message, 'error');
+            throw error;
+          });
+        this.pending.push(request);
+        request.catch(() => {});
+      },
+      changeEnergy: function (key, value) {
+        var previous = this.energy;
+        this.energy = Object.assign({}, this.energy, { [key]: value });
+        var request = Homey.emit('setEnergyDraft', { [key]: value }).catch(async error => {
+          this.energy = previous;
+          await Homey.alert(error.message, 'error');
+          throw error;
+        });
+        this.pending.push(request);
+        request.catch(() => {});
+      },
+      finish: async function () {
+        if (!this.selected.length) {
+          await Homey.alert(__('repair.select_required'), 'warning');
+          return;
+        }
+        this.saving = true;
+        try {
+          var pending = this.pending.splice(0);
+          var results = await Promise.allSettled(pending);
+          if (results.some(result => result.status === 'rejected')) {
+            this.saving = false;
+            return;
+          }
+          if (this.isCamera) await Homey.emit('updateMedia', this.media);
+          var energy = Object.assign({}, this.energy);
+          Object.keys(energy).forEach(key => {
+            if (key.endsWith('Capability') && energy[key] && !this.selected.includes(energy[key])) energy[key] = null;
+          });
+          await Homey.emit('updateEnergy', energy);
+          await Homey.showView('done');
+        } catch (error) {
+          await Homey.alert(error.message, 'error');
+          this.saving = false;
+        }
+      }
+    }
+  });
+  Promise.all([Homey.emit('getAllCapabilities'), Homey.emit('getPairingDevice')])
+    .then(async function ([definitions, device]) {
+      optionsView.definitions = definitions;
+      optionsView.selected = device.capabilities.slice();
+      optionsView.options = device.capabilitiesOptions;
+      optionsView.deviceClass = device.class;
+      var energyData = await Promise.all([Homey.emit('getEnergyDraft'), Homey.emit('energySupport')]);
+      optionsView.energy = energyData[0];
+      optionsView.energySupport = energyData[1];
+      optionsView.isCamera = ['camera', 'doorbell'].includes(device.class);
+      if (optionsView.isCamera) {
+        var [draft, support] = await Promise.all([Homey.emit('getMediaDraft'), Homey.emit('mediaSupport')]);
+        optionsView.media = draft;
+        optionsView.videoSupported = support.video;
+      }
+      optionsView.loaded = true;
+    }).catch(error => Homey.alert(error.message, 'error'));
+</script>

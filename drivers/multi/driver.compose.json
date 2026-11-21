@@ -1,0 +1,48 @@
+{
+  "deprecated": true,
+  "name": {
+    "en": "Multi-Mode",
+    "nl": "Multi Modus",
+    "da": "Multi-Mode",
+    "de": "MultiModus",
+    "es": "Multi-modo",
+    "fr": "Multi-mode",
+    "it": "Multi-Modalità",
+    "no": "Multimodus",
+    "sv": "Multi-läge",
+    "pl": "Tryb wielofunkcyjny",
+    "ru": "Мульти-режим",
+    "ko": "멀티 모드",
+    "ar": "متعدد الأوضاع"
+  },
+  "images": {
+    "large": "drivers/multi/assets/images/large.png",
+    "small": "drivers/multi/assets/images/small.png"
+  },
+  "class": "other",
+  "capabilities": [
+    "onoff",
+    "multi_state"
+  ],
+  "capabilitiesOptions": {
+    "onoff": {
+      "greyout": false
+    }
+  },
+  "mobile": {
+    "components": [
+      {
+        "id": "icon",
+        "capabilities": [
+          "onoff"
+        ]
+      },
+      {
+        "id": "toggle",
+        "capabilities": [
+          "onoff"
+        ]
+      }
+    ]
+  }
+}

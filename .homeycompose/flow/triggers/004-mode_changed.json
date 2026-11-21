@@ -1,0 +1,25 @@
+{
+  "id": "mode_changed",
+  "title": {
+    "en": "Mode Changed",
+    "nl": "Modus Veranderd",
+    "da": "Tilstand ændret",
+    "de": "Modus hat sich verändert",
+    "es": "Modo cambiado",
+    "fr": "Mode changé",
+    "it": "Modalità cambiata",
+    "no": "Modus endret",
+    "sv": "Läge ändrat",
+    "pl": "Tryb zmieniony",
+    "ru": "Режим изменён",
+    "ko": "모드가 변경되었습니다.",
+    "ar": "تم تغيير الوضع"
+  },
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=mode"
+    }
+  ]
+}

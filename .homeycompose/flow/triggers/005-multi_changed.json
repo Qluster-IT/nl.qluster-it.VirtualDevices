@@ -1,0 +1,26 @@
+{
+  "id": "multi_changed",
+  "deprecated": true,
+  "title": {
+    "en": "Multi Mode Changed",
+    "nl": "Multi-Modus Veranderd",
+    "da": "Multi-tilstand ændret",
+    "de": "Multimodus hat sich verändert",
+    "es": "Modo múltiple cambiado",
+    "fr": "Changement de mode multiple",
+    "it": "Modalità multipla cambiata",
+    "no": "Multimodus endret",
+    "sv": "Multi-läge ändrat",
+    "pl": "Zmieniono tryb multi",
+    "ru": "Режим Multi изменён",
+    "ko": "멀티 모드 변경됨",
+    "ar": "تم تغيير الوضع المتعدد"
+  },
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=multi"
+    }
+  ]
+}

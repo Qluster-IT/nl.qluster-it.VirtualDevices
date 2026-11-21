@@ -52,6 +52,22 @@
       "not_changeable": " Attenzione: queste impostazioni non possono essere modificate successivamente"
     }
   },
+  "repair": {
+    "title": "Modifica dispositivo virtuale",
+    "save": "Salva",
+    "confirm": "Cambiare la classe o rimuovere capacità può interrompere i Flow esistenti. Continuare?",
+    "legacy_icon": "Questo dispositivo usa una vecchia icona integrata. Crea nuovamente il dispositivo per cambiare l’icona.",
+    "keep_icon": "Mantieni l’icona, carica un SVG o scegli un’altra icona.",
+    "icon_restart": "Riavvia Homey per vedere la nuova icona.",
+    "select_required": "Seleziona almeno una capacità.",
+    "invalid": "Controlla i valori e l’icona selezionati.",
+    "partial": "Alcune modifiche potrebbero essere già state applicate. Controlla il dispositivo prima di riprovare.",
+    "minimum": "Minimo",
+    "maximum": "Massimo",
+    "step": "Incremento",
+    "decimals": "Decimali",
+    "more_capabilities": "Altre funzionalità"
+  },
   "class": {
     "other": "Altro",
     "light": "Luce",
@@ -183,5 +199,38 @@
     "work": "Lavoro",
     "window_closed": "Finestra chiusa",
     "window_open": "Finestra aperta"
+  },
+  "capability_options": {
+    "heading": "Opzioni delle funzionalità",
+    "name": "Nome",
+    "hint": "Lascia vuoto un campo per usare il valore predefinito di Homey.",
+    "next_view": "Puoi impostare le opzioni delle funzionalità nella schermata successiva.",
+    "next": "Avanti",
+    "previous": "Indietro"
+  },
+  "media": {
+    "camera": "Telecamera",
+    "image_url": "URL istantanea",
+    "image_hint": "URL HTTP o HTTPS facoltativo dell’immagine. Anche un Flow può impostare un’immagine.",
+    "video_url": "URL video",
+    "video_hint": "URL facoltativo di uno stream RTSP, RTMP, HLS, DASH o altro supportato.",
+    "remove_image": "Rimuovi l’immagine impostata da un Flow"
+  },
+  "energy": {
+    "heading": "Energia",
+    "hint": "Impostazioni facoltative per Homey Energia. Le misurazioni virtuali possono duplicare i dispositivi reali.",
+    "home_battery": "Batteria domestica",
+    "electric_car": "Auto elettrica",
+    "ev_charger": "Caricatore per veicoli elettrici",
+    "cumulative": "Misura tutta la casa",
+    "cumulative_hint": "Attiva solo per un contatore generale della casa.",
+    "imported": "Energia importata / caricata",
+    "exported": "Energia esportata / scaricata",
+    "default": "Predefinito di Homey",
+    "meter_hint": "Usa letture cumulative separate in kWh che aumentano soltanto.",
+    "exclude_min": "Potenza minima esclusa (W)",
+    "exclude_max": "Potenza massima esclusa (W)",
+    "exclude_hint": "I valori tra questi limiti diventano zero. L’intervallo deve includere zero.",
+    "approximated": "La potenza è una stima"
   }
 }

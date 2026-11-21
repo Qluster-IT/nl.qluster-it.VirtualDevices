@@ -1,0 +1,28 @@
+{
+  "id": "set_album_image_token",
+  "title": {
+    "en": "Set album art from image tag",
+    "nl": "Stel albumhoes in via afbeeldingstag",
+    "da": "Indstil albumcover fra billedtag",
+    "de": "Albumcover über Bild-Tag festlegen",
+    "es": "Establecer portada de álbum desde etiqueta de imagen",
+    "fr": "Définir la pochette par étiquette image",
+    "it": "Imposta copertina album da tag immagine",
+    "no": "Angi albumomslag fra bildebrikke",
+    "sv": "Ange skivomslag från bildtagg",
+    "pl": "Ustaw okładkę albumu ze znacznika obrazu",
+    "ru": "Задать обложку альбома из тега изображения",
+    "ko": "이미지 태그로 앨범 아트 설정",
+    "ar": "تعيين غلاف الألبوم من علامة صورة"
+  },
+  "droptoken": [
+    "image"
+  ],
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=virtual_switch&class=speaker"
+    }
+  ]
+}

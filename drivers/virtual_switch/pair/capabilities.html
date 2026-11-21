@@ -10,12 +10,12 @@
   });
   var capabilitiesVue;
   var capabilitiesVueAll;
-  var capabilitiesOptionsVue;
   Homey.emit('getAllCapabilities').then(function(capabilities) {
     capabilitiesVue = new Vue({
       el: '#capabilitiesVue',
       data: {
         capabilities: [],
+        capabilityTitles: Object.fromEntries(Object.entries(capabilities).map(([id, value]) => [id, value.title])),
         selectedCapabilities: []
       },
       watch: {
@@ -29,27 +29,7 @@
         selectedCapabilities: []
       },
       watch: {
-        'selectedCapabilities': function(val){ updateCapabilities( {'capabilities':val.concat(capabilitiesVue.selectedCapabilities)} ) }
-      }
-    });
-    
-    capabilitiesOptionsVue = new Vue({
-      el: '#capabilitiesOptionsVue',
-      data: {
-        capabilitiesOptions: {}
-      },
-      methods: {
-        forcesUpdateComponent() {
-          // your code
-          this.$forceUpdate();
-          // your code
-        }
-      },
-      watch: {
-        'capabilitiesOptions.target_temperature.min':   _.debounce( function(val){ updateCapabilitiesOptions( {'target_temperature':  {'min':  val}} )}, 500),
-        'capabilitiesOptions.target_temperature.max':   _.debounce( function(val){ updateCapabilitiesOptions( {'target_temperature':  {'max':  val}} )}, 500),
-        'capabilitiesOptions.target_temperature.step':  _.debounce( function(val){ updateCapabilitiesOptions( {'target_temperature':  {'step': val}} )}, 500),
-        'capabilitiesOptions.measure_temperature.decimals': _.debounce( function(val){ updateCapabilitiesOptions( {'measure_temperature': {'decimals': val}} )}, 500),
+        'selectedCapabilities': function(val){ updateCapabilities( {'capabilities':capabilitiesVue.selectedCapabilities.concat(val)} ) }
       }
     });
     
@@ -58,14 +38,21 @@
         console.log(err);
         return;
       }
-      console.log('result from getPairingDevice:');
-      console.log(result);
       Homey.emit('log', result, function (err, result2) {});
 
       Homey.setTitle(__('pair.title.device') + ' ' + result.name);
 
-      capabilitiesVue.capabilities = devices[result.class] ? devices[result.class].capabilities : [];
-      capabilitiesVue.selectedCapabilities =  devices[result.class] ? devices[result.class].defaultCapabilities : [];
+      var defaults = devices[result.class];
+      capabilitiesVue.capabilities = defaults ? defaults.capabilities.filter(key => capabilities[key]) : [];
+      if (result.capabilities.length) {
+        capabilitiesVue.selectedCapabilities = result.capabilities.filter(key => capabilitiesVue.capabilities.includes(key));
+        capabilitiesVueAll.selectedCapabilities = result.capabilities.filter(key => !capabilitiesVue.capabilities.includes(key) && capabilities[key]);
+      } else {
+        capabilitiesVue.selectedCapabilities = defaults ? defaults.defaultCapabilities.filter(key => capabilities[key]) : [];
+        if (!capabilitiesVue.selectedCapabilities.length && capabilitiesVue.capabilities.length) {
+          capabilitiesVue.selectedCapabilities = [capabilitiesVue.capabilities[0]];
+        }
+      }
       for (let i = 0; i < capabilitiesVue.capabilities.length; i++) {
         const element = capabilitiesVue.capabilities[i];
         delete capabilitiesVueAll.capabilities[element];
@@ -81,7 +68,7 @@
       
       //capabilitiesVueAll.selectedCapabilities =  result.capabilities;
 
-      updateCapabilities( {'capabilities': capabilitiesVue.selectedCapabilities } );
+      updateCapabilities( {'capabilities': capabilitiesVue.selectedCapabilities.concat(capabilitiesVueAll.selectedCapabilities) } );
     });
   });
   
@@ -89,108 +76,34 @@
 
   function updateCapabilities( capabilities ) {
     Homey.emit('updateCapabilities', capabilities, function (err, currrentPairingDevice) {
-      if(err){console.log(err); return;}
-      // console.log(currrentPairingDevice);
-
-      var capabilitiesOptions = getCapabilitiesOptions( currrentPairingDevice.capabilities, currrentPairingDevice.capabilitiesOptions );
-      capabilitiesOptionsVue.capabilitiesOptions = capabilitiesOptions;
-      
-      capabilitiesOptionsVue.forcesUpdateComponent();
+      if(err){Homey.alert(err.message, 'error'); return;}
     });
-  }
-
-  function updateCapabilitiesOptions(capabilityOptionChanges) {
-    Homey.emit('updateCapabilitiesOptions', capabilityOptionChanges, function (err, currrentPairingDevice) {
-      if(err){console.log(err); return;}
-      // console.log(currrentPairingDevice);
-    });
-  }
-
-  function getCapabilitiesOptions( capabilities, currentCapabilitiesOptions ) {
-    var newCapabilitiesOptions = {}
-    capabilities.forEach( capability => {
-      if ( !currentCapabilitiesOptions.hasOwnProperty(capability) ) { 
-        if ( default_options.hasOwnProperty(capability) ) {
-          newCapabilitiesOptions[capability] = JSON.parse(JSON.stringify(default_options[capability])) 
-        }
-      } else {
-        newCapabilitiesOptions[capability] = JSON.parse(JSON.stringify(currentCapabilitiesOptions[capability]))
-      }
-    })
-
-    return newCapabilitiesOptions
-  }
-
-  function validateNumber( value, min, max, step ) {
-    if (value < min) return min;
-    if (value > max) return max;
-
-    step || (step = 1.0);
-    var inv = 1.0 / step;
-    if (value != Math.round(value*inv)/inv) return Math.round(value*inv)/inv
-
-    return value
   }
 
 </script>
 
 <span id='capab_instructions'>{{instructions}}</span>
+<p data-i18n="capability_options.next_view"></p>
 
 <div id="capabilitiesVue">
-  <ul id="devices-list" v-if="capabilities && capabilities.length>0" >
-    <li class="device" v-for="(key, value) in capabilities">
-		<label :for="key" class="name">
-			<div class="overlay"></div>
-			<span class="name" tabindex="-1">{{ __('capability.' + key) }}</span>
-		</label>
-		<label :for="key" class="checkbox">
-			<input :id="key" :value="key" name="device" type="checkbox" tabindex="2" v-model="selectedCapabilities">
-		</label>
-	</li>
-  </ul>
+  <div class="homey-form-group" v-if="capabilities && capabilities.length>0">
+    <label class="homey-form-checkbox" v-for="key in capabilities" :key="key">
+      <input class="homey-form-checkbox-input" :value="key" type="checkbox" v-model="selectedCapabilities">
+      <span class="homey-form-checkbox-checkmark"></span>
+      <span class="homey-form-checkbox-text">{{ capabilityTitles[key] || key }}</span>
+    </label>
+  </div>
 </div>
 
-<div id="capabilitiesOptionsVue">
-  <span v-if="capabilitiesOptions.hasOwnProperty('target_temperature')">
-    <div>
-      <span>{{ __('capability.target_temperature') }}</span>
-      <div>
-        <label>minimum</label>
-        <input type="number" step="0.1" min="-200" max="500" v-model.number='capabilitiesOptions.target_temperature.min' oninput="javascript: if(this.value!= validateNumber(this.value, -200, 500, 0.1)) this.value = validateNumber(this.value, -200, 500, 0.1)">
-      </div>
-      <div>
-        <label>maximum</label>
-        <input type="number" step="0.1" min="-200" max="500" v-model.number='capabilitiesOptions.target_temperature.max' oninput="javascript:  if(this.value!= validateNumber(this.value, -200, 500, 0.1)) this.value = validateNumber(this.value, -200, 500, 0.1)">
-      </div>
-      <div>
-        <label>step</label>
-        <input type="number" step="0.1" min="0" max="5" v-model.number='capabilitiesOptions.target_temperature.step' oninput="javascript:  if(this.value!= validateNumber(this.value, 0, 5, 0.1)) this.value = validateNumber(this.value, 0, 5, 0.1)">  
-      </div>
-    </div>
-  </span>
-  <span v-if="capabilitiesOptions.hasOwnProperty('measure_temperature')">
-    <div>
-      <span>{{ __('capability.measure_temperature') }}</span>
-      <div>
-        <label>decimals</label>
-        <input type="number" step="1" min="0" max="5" v-model.number='capabilitiesOptions.measure_temperature.decimals' oninput="javascript:  if(this.value!= validateNumber(this.value, 0, 5, 1)) this.value = validateNumber(this.value, 0, 5, 1)">  
-      </div>
-   </div>
-  </span>
+<div id="capabilitiesVueAll">
+  <details class="vd-disclosure">
+    <summary class="homey-form-label">{{ __('repair.more_capabilities') }}</summary>
+    <label class="homey-form-checkbox" v-for="(value, key) in capabilities" :key="key">
+      <input class="homey-form-checkbox-input" :value="key" type="checkbox" v-model="selectedCapabilities">
+      <span class="homey-form-checkbox-checkmark"></span>
+      <span class="homey-form-checkbox-text">{{ value.title }} ({{ key }})</span>
+    </label>
+  </details>
 </div>
 
-
-<div id="capabilitiesVueAll" style="margin-top:50px;">
-  <ul id="devices-list" >
-    <li class="device" v-for="(value, key) in capabilities">
-      <label :for="key" class="name">
-        <div class="overlay"></div>
-        <span class="name" tabindex="-1">{{ value.title  }} ({{ key }})</span>
-      </label>
-      <label :for="key" class="checkbox">
-        <input :id="key" :value="key" name="device" type="checkbox" tabindex="2" v-model="selectedCapabilities">
-      </label>
-    </li>
-  </ul>
-</div>
-
+<link rel="stylesheet" href="./view.css">

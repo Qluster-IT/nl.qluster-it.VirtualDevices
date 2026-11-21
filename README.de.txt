@@ -1,5 +1,10 @@
-Diese App bietet dir die Möglichkeit, virtuelle Geräte zu Homey hinzuzufügen. Du kannst die virtuellen Geräte über die Benutzeroberfläche bedienen und/oder sie in Flows verwenden.
+Erstelle einfache virtuelle Geräte in Homey, zum Beispiel Schalter, Sensoren und Thermostate. Steuere sie in Homey und verwende sie in Flows.
 
-Du kannst auch einen Modus hinzufügen und ihn als Bedingung verwenden, z.B. um mehrere Flows zu deaktivieren, wenn du in den Urlaub fährst.
+Du kannst auch Modi, etwa einen Urlaubsmodus, als Flow-Bedingung verwenden.
 
-Wenn du (viel) mehr Anpassungsmöglichkeiten möchtest, schau dir das Advanced Virtual Device aus der Device Capabilities App an.
+Wähle Geräteklasse, Funktionen und Symbol. Klasse und Funktionen lassen sich später über Reparieren ändern. Für umfangreichere Anpassungen verwende ein Advanced Virtual Device aus der App Device Capabilities.
+
+Kameras und Türklingeln unterstützen Schnappschüsse und auf unterstützten Homeys Livevideo. Flows können Kamerabilder und Lautsprecher-Albumcover festlegen.
+
+Community-Forum: https://community.homey.app/t/virtual-devices/1723
+Für Wiki und Benutzerhandbuch wähle auf der Homey App Store-Seite dieser App unter Entwickler-Website die Option Website besuchen.

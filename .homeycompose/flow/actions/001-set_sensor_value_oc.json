@@ -1,0 +1,78 @@
+{
+  "id": "set_sensor_value_oc",
+  "title": {
+    "en": "Set a virtual sensor value",
+    "nl": "Zet de waarde van een virtuele sensor",
+    "da": "Indstil en virtuel sensorværdi",
+    "de": "Lege einen virtuellen Sensorwert fest",
+    "es": "Establecer un valor de sensor virtual",
+    "fr": "Définir une valeur de capteur virtuel",
+    "it": "Imposta un valore del sensore virtuale",
+    "no": "Sett en virtuell sensor verdi",
+    "sv": "Ställ in ett virtuellt sensorvärde",
+    "pl": "Ustaw wartość wirtualnego czujnika",
+    "ru": "Установить значение виртуального датчика",
+    "ko": "가상 센서 값 설정",
+    "ar": "تعيين قيمة المستشعر الافتراضي"
+  },
+  "titleFormatted": {
+    "en": "Set [[sensor]] to [[value]]",
+    "nl": "Stel [[sensor]] in op [[value]]",
+    "da": "Indstil [[sensor]] til [[value]]",
+    "de": "Setzen Sie [[sensor]] auf [[value]]",
+    "es": "Establecer [[sensor]] a [[value]]",
+    "fr": "Définir [[sensor]] sur [[value]]",
+    "it": "Imposta [[sensor]] su [[value]]",
+    "no": "Sett [[sensor]] til [[value]]",
+    "sv": "Ställ in [[sensor]] till [[value]]",
+    "pl": "Ustaw [[sensor]] na [[value]]",
+    "ru": "Установить [[sensor]] на [[value]]",
+    "ko": "[[sensor]]을(를) [[value]]로 설정하세요.",
+    "ar": "اضبط [[sensor]] على [[value]]"
+  },
+  "args": [
+    {
+      "name": "sensor",
+      "type": "autocomplete",
+      "placeholder": {
+        "en": "Virtual Sensor",
+        "nl": "Virtuele Sensor",
+        "da": "Virtuel Sensor",
+        "de": "Virtuellen Sensorwert",
+        "es": "Sensor Virtual",
+        "fr": "Capteur Virtuel",
+        "it": "Sensore Virtuale",
+        "no": "Virtuell Sensor",
+        "sv": "Virtuell Sensor",
+        "pl": "Wirtualny czujnik",
+        "ru": "Виртуальный датчик",
+        "ko": "가상 센서",
+        "ar": "مستشعر افتراضي"
+      }
+    },
+    {
+      "name": "value",
+      "type": "text",
+      "placeholder": {
+        "en": "Value",
+        "nl": "Waarde",
+        "da": "Værdi",
+        "de": "Wert",
+        "es": "Valor",
+        "fr": "Valeur",
+        "it": "Valore",
+        "no": "Verdi",
+        "sv": "Värde",
+        "pl": "Wartość",
+        "ru": "Значение",
+        "ko": "값",
+        "ar": "القيمة"
+      }
+    },
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=virtual_switch"
+    }
+  ]
+}

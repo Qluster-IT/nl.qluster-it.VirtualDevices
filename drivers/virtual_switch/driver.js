@@ -2,8 +2,14 @@
 
 const Homey = require('homey');
 const fs = require('fs');
-const DRIVER_LOCATION = "/app/com.arjankranenburg.virtual/drivers/virtual_switch/";
+const path = require('path');
 const { getDeviceClasses, getCapabilities } = require('homey-lib');
+const pairingIcons = require('./pairing-icons.json');
+const { iconReference, hasEditableIcon, decodeIcon, writeIcon, deleteIcon } = require('./icon-storage');
+const { updateOptions } = require('./capability-options');
+const { updateEnergy } = require('./energy');
+const { default_options } = require('./pair/capabilities');
+const media = require('./media');
 
 //let app;
 let homey;
@@ -15,12 +21,22 @@ class VirtualDriver extends Homey.Driver {
 
     this.registerFlowCardAction_sensor('set_sensor_value', false);
     this.registerFlowCardAction_sensor('set_sensor_value_oc', true);
+    for (const kind of ['camera', 'album']) {
+      this.homey.flow.getActionCard(`set_${kind}_image_url`).registerRunListener(args =>
+        args.device.setMediaImage(kind, { url: media.imageUrl(args.url) }));
+      this.homey.flow.getActionCard(`set_${kind}_image_token`).registerRunListener(args =>
+        args.device.setMediaImageFromToken(kind, args.droptoken));
+    }
   }
 
   onPair(session) {
+    let mediaDraft = { image: '', video: '' };
+    let energyDraft = {};
+    const energyDrafts = {};
     let pairingDevice = {
       name: this.homey.__('pair.default.name.device'),
       settings: {},
+      store: {},
       data: {
         id: guid(),
         version: 3
@@ -40,8 +56,11 @@ class VirtualDriver extends Homey.Driver {
         
       // }
       console.log('setClass: ' + data);
-      pairingDevice.class = data.class;
-      console.log('pairingDevice: ' + JSON.stringify(pairingDevice));
+      if (pairingDevice.class !== data.class) {
+        if (pairingDevice.class) energyDrafts[pairingDevice.class] = energyDraft;
+        energyDraft = energyDrafts[data.class] || {};
+        pairingDevice.class = data.class;
+      }
       return pairingDevice;
     });
 
@@ -64,7 +83,7 @@ class VirtualDriver extends Homey.Driver {
     });
 
     session.setHandler('getAllCapabilities', (data) => {
-      let capabilities = getCapabilities();
+      let capabilities = availableCapabilities(this.homey);
       let language = homey.i18n.getLanguage();
       let newCapabilities = {};
       for (let i = 0; i < Object.keys(capabilities).length; i++) {
@@ -73,7 +92,8 @@ class VirtualDriver extends Homey.Driver {
         if(!cls.minCompatibility || getRequiredVersion(cls.minCompatibility)) {
           newCapabilities[key] = {
             minCompatibility : cls.minCompatibility,
-            title: cls.title[language] ? cls.title[language] : cls.title['en']
+            title: cls.title[language] ? cls.title[language] : cls.title['en'],
+            type: cls.type
           }
         }        
       }
@@ -83,7 +103,6 @@ class VirtualDriver extends Homey.Driver {
     session.setHandler('setName', (data) => {
       console.log('setName: ' + data);
       pairingDevice.name = data.name;
-      console.log('pairingDevice: ' + JSON.stringify(pairingDevice));
       return pairingDevice;
     });
 
@@ -92,30 +111,110 @@ class VirtualDriver extends Homey.Driver {
       return pairingDevice;
     });
 
+    session.setHandler('mediaSupport', () => ({ video: media.supportsVideo(this.homey) }));
+    session.setHandler('getMediaDraft', () => mediaDraft);
+    session.setHandler('setMediaDraft', data => {
+      if (!data || typeof data.image !== 'string' || typeof data.video !== 'string') {
+        throw new Error(this.homey.__('repair.invalid'));
+      }
+      mediaDraft = { image: data.image, video: data.video };
+    });
+    session.setHandler('updateMedia', data => {
+      if (!media.CAMERA_CLASSES.includes(pairingDevice.class) || !data || typeof data !== 'object') {
+        throw new Error(this.homey.__('repair.invalid'));
+      }
+      const image = media.imageUrl(data.image, true);
+      const video = media.videoUrl(data.video || '', true);
+      if (video && !media.supportsVideo(this.homey)) throw new Error('Video is not supported on this Homey');
+      if (image) pairingDevice.store.cameraImage = { url: image };
+      else delete pairingDevice.store.cameraImage;
+      if (video) pairingDevice.store.cameraVideoUrl = video;
+      else delete pairingDevice.store.cameraVideoUrl;
+      return true;
+    });
+
     session.setHandler('updateCapabilities', (data) => {
       console.log('updateCapabilities: ' + JSON.stringify(data));
       pairingDevice.capabilities = data.capabilities;
+      data.capabilities.forEach(id => {
+        if (!pairingDevice.capabilitiesOptions[id] && default_options[id]) {
+          pairingDevice.capabilitiesOptions[id] = { ...default_options[id] };
+        }
+        const meterOptions = defaultMeterOptions(id);
+        if (!pairingDevice.capabilitiesOptions[id] && meterOptions) pairingDevice.capabilitiesOptions[id] = meterOptions;
+      });
       return pairingDevice;
     });
 
     session.setHandler('updateCapabilitiesOptions', (capabilityOptionChanges) => {
-      console.log('updateCapabilitiesOptions: ' + JSON.stringify(capabilityOptionChanges));
+      const available = availableCapabilities(this.homey);
       Object.keys(capabilityOptionChanges).forEach(capability => {
-        if (Object.keys(capabilityOptionChanges[capability]).length === 0) {
-          delete pairingDevice.capabilitiesOptions[capability]
-        } else {
-          if (pairingDevice.capabilitiesOptions[capability] == null) pairingDevice.capabilitiesOptions[capability] = {}
-
-          Object.keys(capabilityOptionChanges[capability]).forEach(capabilityOptionKey => {
-            pairingDevice.capabilitiesOptions[capability][capabilityOptionKey] = JSON.parse(JSON.stringify(capabilityOptionChanges[capability][capabilityOptionKey]))
-          })
+        if (!pairingDevice.capabilities.includes(capability) || !available[capability]) {
+          throw new Error(this.homey.__('repair.invalid'));
         }
-      })
+        pairingDevice.capabilitiesOptions[capability] = updateOptions(
+          pairingDevice.capabilitiesOptions[capability], capabilityOptionChanges[capability], available[capability],
+          this.homey.__('repair.invalid'), capability,
+        );
+      });
       return pairingDevice;
     });
 
-    session.setHandler('getIcons', (data) => {
-      var device_data = [
+    session.setHandler('energySupport', () => energySupport());
+    session.setHandler('getEnergyDraft', () => {
+      if (pairingDevice.class === 'evcharger' && energySupport().evCharger
+        && !Object.prototype.hasOwnProperty.call(energyDraft, 'evCharger')) {
+        energyDraft.evCharger = true;
+      }
+      return energyDraft;
+    });
+    session.setHandler('setEnergyDraft', changes => {
+      updateEnergy(energyDraft, changes, pairingDevice.class, pairingDevice.capabilities,
+        energySupport(), this.homey.__('repair.invalid'));
+      energyDraft = { ...energyDraft, ...changes };
+      return energyDraft;
+    });
+    session.setHandler('updateEnergy', changes => {
+      const energy = updateEnergy({}, changes, pairingDevice.class, pairingDevice.capabilities,
+        energySupport(), this.homey.__('repair.invalid'));
+      if (Object.keys(energy).length) pairingDevice.store.pendingEnergy = energy;
+      else delete pairingDevice.store.pendingEnergy;
+    });
+
+    session.setHandler('getIcons', () => this.getIcons());
+
+    session.setHandler('setIcon', async (data) => {
+      const icon = this.getIcons().find(item => item.location === data.icon.location);
+      if (!icon) throw new Error('Invalid icon');
+      const contents = await fs.promises.readFile(path.join(__dirname, 'assets', icon.location));
+      await writeIcon(pairingDevice.data.id, contents);
+      pairingDevice.data.icon = iconReference(pairingDevice.data.id);
+      pairingDevice.icon = pairingDevice.data.icon;
+      return pairingDevice;
+    });
+
+    session.setHandler('saveIcon', async (data) => {
+      await writeIcon(pairingDevice.data.id, decodeIcon(data));
+      pairingDevice.data.icon = iconReference(pairingDevice.data.id);
+      pairingDevice.icon = pairingDevice.data.icon;
+      return pairingDevice;
+    });
+
+    session.setHandler('disconnect', () => {
+      console.log("User aborted pairing, or pairing is finished");
+
+      this.homey.setTimeout(() => {
+        let devices = this.getDevices();
+        if (hasEditableIcon(pairingDevice.data) && !devices.find(x => x.getData().icon === pairingDevice.data.icon)) {
+          deleteIcon(pairingDevice.data.id).catch(error => this.error(error));
+        }
+      }, 10000);
+      return true;
+    })
+  }
+
+  getIcons() {
+      const device_data = [
         getIconNameAndLocation('switch'),
         getIconNameAndLocation('light'),
         getIconNameAndLocation('button'),
@@ -153,48 +252,144 @@ class VirtualDriver extends Homey.Driver {
         getIconNameAndLocation('washer'),
       ]
 
+      const additionalIcons = new Set();
+      Object.values(pairingIcons).forEach(icons => {
+        icons.forEach(icon => additionalIcons.add(icon));
+      });
+      additionalIcons.forEach(icon => device_data.push(getIconNameAndLocation('mdi/' + icon)));
+
       return device_data;
-    });
+  }
 
-    session.setHandler('setIcon', (data) => {
-      console.log('setIcon: ' + data);
-      pairingDevice.data.icon = data.icon.location;
-      pairingDevice.icon = data.icon.location;
-      if (this.homey.version == undefined) {
-        pairingDevice.icon = DRIVER_LOCATION + "assets/" + data.icon.location;
-      }
-      console.log('pairingDevice: ' + JSON.stringify(pairingDevice));
-      return pairingDevice;
-    });
-
-    session.setHandler('saveIcon', function (data, callback) {
+  onRepair(session, device) {
+    const getOptions = id => {
       try {
-        console.log('saveIcon: ' + JSON.stringify(data));
-        listFiles("/userdata");
-        uploadIcon(data, pairingDevice.data.id);
-        var deviceIcon = "../../../userdata/" + pairingDevice.data.id + ".svg";
-
-        pairingDevice.data.icon = deviceIcon;
-        pairingDevice.icon = deviceIcon;
-        return pairingDevice;
-
+        return device.getCapabilityOptions(id) || {};
       } catch (error) {
-        console.log('saveIcon ERROR ' + JSON.stringify(error));
+        if (error.message === `Invalid Capability: ${id}` && device.hasCapability(id)) return {};
         throw error;
       }
+    };
+    const localize = entries => {
+      const language = this.homey.i18n.getLanguage();
+      const result = {};
+      Object.entries(entries).forEach(([id, entry]) => {
+        if (!entry.minCompatibility || getRequiredVersion(entry.minCompatibility)) {
+          result[id] = { title: entry.title[language] || entry.title.en, type: entry.type };
+        }
+      });
+      return sortObject(result, 'title');
+    };
+
+    session.setHandler('repairLoad', () => {
+      const capabilities = device.getCapabilities();
+      const options = {};
+      capabilities.forEach(id => { options[id] = getOptions(id); });
+      return {
+        name: device.getName(),
+        class: device.getClass(),
+        capabilities,
+        options,
+        classes: localize(getDeviceClasses()),
+        allCapabilities: localize(availableCapabilities(this.homey)),
+        energy: device.getEnergy() || {},
+        energySupport: energySupport(),
+        icons: hasEditableIcon(device.getData()) ? this.getIcons() : [],
+        iconEditable: hasEditableIcon(device.getData()),
+        media: {
+          image: (device.getStoreValue('cameraImage') || {}).url || '',
+          imageFromFlow: !!(device.getStoreValue('cameraImage') || {}).data,
+          video: device.getStoreValue('cameraVideoUrl') || '',
+          videoSupported: media.supportsVideo(this.homey),
+        }
+      };
     });
 
-    session.setHandler('disconnect', () => {
-      console.log("User aborted pairing, or pairing is finished");
-      
-      this.homey.setTimeout(() => {
-        let devices = this.getDevices();
-        if (typeof pairingDevice.data.icon !== 'undefined' && pairingDevice.data.icon !== null && pairingDevice.data.icon.indexOf("../userdata/") > -1 && !devices.find(x => x.getData().icon == pairingDevice.data.icon)) {
-          removeIcon(pairingDevice.data.icon);
+    session.setHandler('repairSave', async data => {
+      const classes = getDeviceClasses();
+      const available = availableCapabilities(this.homey);
+      const current = device.getCapabilities();
+      if (!data || typeof data.class !== 'string'
+        || (!classes[data.class] && data.class !== device.getClass())
+        || (classes[data.class] && classes[data.class].minCompatibility
+          && !getRequiredVersion(classes[data.class].minCompatibility)
+          && data.class !== device.getClass())
+        || !Array.isArray(data.capabilities) || !data.capabilities.length
+        || new Set(data.capabilities).size !== data.capabilities.length
+        || data.capabilities.some(id => typeof id !== 'string'
+          || (!available[id] && !current.includes(id))
+          || (available[id] && available[id].minCompatibility
+            && !getRequiredVersion(available[id].minCompatibility) && !current.includes(id)))) {
+        throw new Error(this.homey.__('repair.invalid'));
+      }
+
+      const options = data.options === undefined ? {} : data.options;
+      if (!options || typeof options !== 'object' || Array.isArray(options)
+        || Object.keys(options).some(id => !data.capabilities.includes(id))) {
+        throw new Error(this.homey.__('repair.invalid'));
+      }
+      const updatedOptions = {};
+      for (const id of Object.keys(options)) {
+        updatedOptions[id] = updateOptions(
+          current.includes(id) ? getOptions(id) : (defaultMeterOptions(id) || {}), options[id], available[id],
+          this.homey.__('repair.invalid'), id,
+        );
+      }
+
+      const currentEnergy = device.getEnergy() || {};
+      const updatedEnergy = updateEnergy(currentEnergy, data.energy === undefined ? {} : data.energy,
+        data.class, data.capabilities, energySupport(), this.homey.__('repair.invalid'), device.getClass(),
+        current.filter(id => !data.capabilities.includes(id)));
+      const energyChanged = JSON.stringify(updatedEnergy) !== JSON.stringify(currentEnergy);
+
+      let mediaChanges;
+      if (data.media !== undefined) {
+        if (!media.CAMERA_CLASSES.includes(data.class) || !data.media || typeof data.media !== 'object') {
+          throw new Error(this.homey.__('repair.invalid'));
         }
-      }, 10000);
-      return true;
-    })
+        mediaChanges = {};
+        if (data.media.image !== undefined) mediaChanges.image = media.imageUrl(data.media.image, true);
+        if (data.media.video !== undefined) {
+          mediaChanges.video = media.videoUrl(data.media.video, true);
+          if (!media.supportsVideo(this.homey)) throw new Error('Video is not supported on this Homey');
+        }
+      }
+
+      let iconContents;
+      if (data.icon) {
+        if (!hasEditableIcon(device.getData())) throw new Error(this.homey.__('repair.legacy_icon'));
+        if (data.icon.upload) {
+          iconContents = decodeIcon(data.icon.upload);
+        } else {
+          const icon = this.getIcons().find(item => item.location === data.icon.location);
+          if (!icon) throw new Error(this.homey.__('repair.invalid'));
+          iconContents = await fs.promises.readFile(path.join(__dirname, 'assets', icon.location));
+        }
+      }
+
+      for (const id of data.capabilities) {
+        if (!current.includes(id)) {
+          await device.addCapability(id);
+          device.registerVirtualCapabilities([id]);
+          const meterOptions = defaultMeterOptions(id);
+          if (meterOptions && !updatedOptions[id]) updatedOptions[id] = meterOptions;
+        }
+      }
+      if (data.class !== device.getClass()) await device.setClass(data.class);
+      for (const id of Object.keys(updatedOptions)) {
+        await device.setCapabilityOptions(id, updatedOptions[id]);
+      }
+      if (energyChanged) await device.setEnergy(updatedEnergy);
+      for (const id of current) {
+        if (!data.capabilities.includes(id)) await device.removeCapability(id);
+      }
+      if (iconContents) await writeIcon(device.getData().id, iconContents);
+      if (mediaChanges && mediaChanges.image !== undefined) {
+        await device.setMediaImage('camera', mediaChanges.image ? { url: mediaChanges.image } : null);
+      }
+      if (mediaChanges && mediaChanges.video !== undefined) await device.setCameraVideoUrl(mediaChanges.video);
+      return { iconChanged: !!iconContents };
+    });
   }
 
   registerFlowCardAction_sensor(card_name, oc) {
@@ -260,53 +455,6 @@ function getIconNameAndLocation(name) {
   }
 };
 
-function listFiles(path) {
-  console.log("listFiles: ");
-  return new Promise((resolve, reject) => {
-    try {
-      fs.readdirSync(path).forEach(file => {
-        console.log(file);
-      });
-    } catch (error) {
-      return reject(error);
-    }
-  })
-}
-
-function uploadIcon(img, id) {
-  return new Promise((resolve, reject) => {
-    try {
-      const path = "../userdata/" + id + ".svg";
-      const base64 = img.replace("data:image/svg+xml;base64,", '');
-      fs.writeFile(path, base64, 'base64', (error) => {
-        if (error) {
-          return reject(error);
-        } else {
-          return resolve(true);
-        }
-      });
-    } catch (error) {
-      return reject(error);
-    }
-  })
-}
-
-function removeIcon(iconpath) {
-  console.log("removeIcon( " + iconpath + " )");
-  return new Promise((resolve, reject) => {
-    try {
-      if (fs.existsSync(iconpath)) {
-        fs.unlinkSync(iconpath);
-        return resolve(true);
-      } else {
-        return resolve(true);
-      }
-    } catch (error) {
-      return reject(error);
-    }
-  })
-}
-
 
 function validateItem(item, value) {
   if (typeof (value) == 'undefined' || value == null) {
@@ -348,6 +496,37 @@ function getRequiredVersion(version) {
       );
   }
   return true;
+}
+
+function energySupport() {
+  return {
+    homeBattery: getRequiredVersion('12.3.0'),
+    electricCar: getRequiredVersion('12.4.5'),
+    evCharger: getRequiredVersion('12.4.5'),
+    cumulativeMeters: getRequiredVersion('12.3.0'),
+    deviceMeters: getRequiredVersion('12.4.5'),
+  };
+}
+
+function availableCapabilities(instance) {
+  const capabilities = { ...getCapabilities() };
+  if (getRequiredVersion('12.3.0')) {
+    for (const direction of ['imported', 'exported']) {
+      capabilities[`meter_power.${direction}`] = {
+        ...capabilities.meter_power,
+        title: Object.fromEntries(['en', instance.i18n.getLanguage()].map(language =>
+          [language, instance.__(`energy.${direction}`)])),
+      };
+    }
+  }
+  return capabilities;
+}
+
+function defaultMeterOptions(id) {
+  const direction = id === 'meter_power.imported' ? 'imported' : id === 'meter_power.exported' ? 'exported' : null;
+  if (!direction) return null;
+  const languages = ['en', 'nl', 'de', 'da', 'es', 'fr', 'it', 'no', 'sv', 'pl', 'ru', 'ko', 'ar'];
+  return { title: Object.fromEntries(languages.map(language => [language, require(`../../locales/${language}.json`).energy[direction]])) };
 }
 
 

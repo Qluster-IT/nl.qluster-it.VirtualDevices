@@ -27,6 +27,6 @@
 </script>
 
 <span id='submodename_instructions'>{{instructions}}</span>
-<div id='submode_name'>
-  <input v-model='name'>
+<div id='submode_name' class="homey-form-group">
+  <input class="homey-form-input" v-model='name' :aria-label="__('pair.select.mode.name')">
 </div>

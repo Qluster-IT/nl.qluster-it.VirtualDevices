@@ -1,0 +1,26 @@
+{
+  "id": "mode",
+  "deprecated": true,
+  "title": {
+    "en": "Mode !{{is|isn't}} turned on",
+    "nl": "Modus !{{is|is niet}} aangezet",
+    "da": "Tilstand !{{er|er ikke}} slået til",
+    "de": "Modus !{{ist|ist nicht}} angeschaltet",
+    "es": "¡Modo {{está|no está}} activado!",
+    "fr": "Mode !{{est|n'est pas}} activé",
+    "it": "Modalità !{{è|non è}} attivata",
+    "no": "Modus !{{er|er ikke}} skrudd på",
+    "sv": "Läge !{{is|isn't}} aktiverat",
+    "pl": "Tryb !{{jest|nie jest}} włączony",
+    "ru": "Режим {{включен|не включен}}",
+    "ko": "모드가 켜져 {{있습니다|있지 않습니다}}.",
+    "ar": "الوضع !{{مفعل|غير مفعل}}"
+  },
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=mode"
+    }
+  ]
+}

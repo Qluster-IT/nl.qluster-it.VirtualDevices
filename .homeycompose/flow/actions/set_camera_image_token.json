@@ -1,0 +1,28 @@
+{
+  "id": "set_camera_image_token",
+  "title": {
+    "en": "Set camera image from image tag",
+    "nl": "Stel camera-afbeelding in via afbeeldingstag",
+    "da": "Indstil kamerabillede fra billedtag",
+    "de": "Kamerabild über Bild-Tag festlegen",
+    "es": "Establecer imagen de cámara desde etiqueta de imagen",
+    "fr": "Définir l’image de caméra par étiquette image",
+    "it": "Imposta immagine telecamera da tag immagine",
+    "no": "Angi kamerabilde fra bildebrikke",
+    "sv": "Ange kamerabild från bildtagg",
+    "pl": "Ustaw obraz kamery ze znacznika obrazu",
+    "ru": "Задать изображение камеры из тега изображения",
+    "ko": "이미지 태그로 카메라 이미지 설정",
+    "ar": "تعيين صورة الكاميرا من علامة صورة"
+  },
+  "droptoken": [
+    "image"
+  ],
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=virtual_switch&class=camera|doorbell"
+    }
+  ]
+}

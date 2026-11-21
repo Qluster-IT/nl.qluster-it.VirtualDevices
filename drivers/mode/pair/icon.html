@@ -1,12 +1,12 @@
 <style>
   .vd-icon{
     display: block;
-    width: 6.5em;
-    height: 4.5em;
+    width: 70%;
+    height: 75%;
     -webkit-mask-size: contain;
     -webkit-mask-position: center center;
     -webkit-mask-repeat: no-repeat;
-    background: #333;
+    background: currentColor;
     vertical-align: middle;
     flex: 0 0 auto;
     margin-left: auto;
@@ -14,28 +14,20 @@
   }
 
   .vd-icon-tile {
-      /* height: 60px; */
-      position: relative; 
-    padding: 5px; 
-    height: 30px; 
-    margin-bottom: 5px;
-    /* background: #eee; */
-    /* border: 1px solid rgba(0,0,0,0.05); */
-    border-radius: 3px;
-    line-height: 30px; 
-    cursor: pointer; 
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 72px;
+    padding: 5px;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
   }
 
   #icon_list {
     margin: 0px;
   }
   
-  .form-group {
-    width: 100%;
-    display: block;
-    margin-bottom: 12px;
-  }
-
   #preview-outerframe {
     display: none;
     width: 100%;
@@ -48,19 +40,8 @@
     height: 125px;
     padding: 20px;
   }
-  .buttons {
-    margin-top: 5px;
-    bottom: 0;
-    text-align: right;
-  }
-  .button:disabled {
-    color: #ccc;
-  }
-  .button:enabled {
-    background-color: #00c139 !important;
-    color: #fff;
-  }
 </style>
+<link rel="stylesheet" href="../../virtual_switch/pair/view.css">
 <script src='../../../assets/vue.min.js'></script>
 <script src='../../../assets/vue-masonry.min.js'></script>
 <script>
@@ -129,9 +110,11 @@
   }
 </script>
 
+<div class="vd-screen">
+<div class="vd-content">
 <div>
   <span data-i18n="pair.select.icon.custom">If you wish to use a custom icon for your device you can upload it here. The icon needs to be in .svg format.</span>
-  <div class="form-group">
+  <div class="homey-form-group">
       <input id="custom-icon" type="file" accept=".svg" name="image" onchange="loadIcon(event)">
   </div>
   <div id="preview-outerframe">
@@ -139,9 +122,6 @@
       <img id="preview" />
     </div>
   </div>
-  <div class="form-group buttons">
-    <button id="save-icon" class="button" data-i18n="pair.button.icon.use" disabled>Save & use</button>
-  </div>  
 </div>
 
 <div>
@@ -151,10 +131,15 @@
       :cols="3"
       :gutter="10"
       >
-      <div v-for="(item, index) in icons" :key="index" v-on:click='addIcon(item)'>
-        <label for="icon" class="vd-icon-tile">
-          <span class="vd-icon" v-bind:style="{WebkitMaskImage: 'url(/app/com.arjankranenburg.virtual/drivers/mode/assets/' + item.location + ')'}"></span>
-        </label>
+      <button v-for="(item, index) in icons" :key="index" type="button" class="vd-icon-tile"
+        :aria-label="item.name" :title="item.name" v-on:click='addIcon(item)'>
+        <span class="vd-icon" v-bind:style="{WebkitMaskImage: 'url(/app/com.arjankranenburg.virtual/drivers/mode/assets/' + item.location + ')'}"></span>
+      </button>
+      </div>
+      <div class="vd-actions">
+        <button class="homey-button-transparent" type="button" onclick="Homey.showView('name')" data-i18n="capability_options.previous"></button>
+        <button id="save-icon" class="homey-button-primary" type="button" data-i18n="pair.button.icon.use" disabled>Save & use</button>
+      </div>
       </div>
     </masonry>
   </ul>

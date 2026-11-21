@@ -52,6 +52,22 @@
       "not_changeable": " Ostrzeżenie: te ustawienia nie mogą być zmienione później"
     }
   },
+  "repair": {
+    "title": "Edytuj urządzenie wirtualne",
+    "save": "Zapisz",
+    "confirm": "Zmiana klasy lub usunięcie funkcji może uszkodzić istniejące Flow. Kontynuować?",
+    "legacy_icon": "To urządzenie używa starszej wbudowanej ikony. Utwórz urządzenie ponownie, aby zmienić ikonę.",
+    "keep_icon": "Zachowaj ikonę, prześlij plik SVG lub wybierz inną ikonę.",
+    "icon_restart": "Uruchom Homey ponownie, aby zobaczyć nową ikonę.",
+    "select_required": "Wybierz co najmniej jedną funkcję.",
+    "invalid": "Sprawdź wybrane wartości i ikonę.",
+    "partial": "Niektóre zmiany mogły już zostać zastosowane. Sprawdź urządzenie przed ponowną próbą.",
+    "minimum": "Minimum",
+    "maximum": "Maksimum",
+    "step": "Krok",
+    "decimals": "Miejsca dziesiętne",
+    "more_capabilities": "Więcej funkcji"
+  },
   "class": {
     "other": "Inne",
     "light": "Światło",
@@ -183,5 +199,38 @@
     "work": "Praca",
     "window_closed": "Zamknięte okno",
     "window_open": "Otwarte okno"
+  },
+  "capability_options": {
+    "heading": "Opcje funkcji",
+    "name": "Nazwa",
+    "hint": "Pozostaw pole puste, aby użyć wartości domyślnej Homey.",
+    "next_view": "Opcje funkcji można ustawić na następnym ekranie.",
+    "next": "Dalej",
+    "previous": "Wstecz"
+  },
+  "media": {
+    "camera": "Kamera",
+    "image_url": "Adres URL migawki",
+    "image_hint": "Opcjonalny adres HTTP lub HTTPS obrazu. Obraz można też ustawić za pomocą Flow.",
+    "video_url": "Adres URL wideo",
+    "video_hint": "Opcjonalny adres strumienia RTSP, RTMP, HLS, DASH lub innego obsługiwanego.",
+    "remove_image": "Usuń obraz ustawiony przez Flow"
+  },
+  "energy": {
+    "heading": "Energia",
+    "hint": "Opcjonalne ustawienia Homey Energia. Wirtualne odczyty mogą podwójnie liczyć rzeczywiste urządzenia.",
+    "home_battery": "Magazyn energii",
+    "electric_car": "Samochód elektryczny",
+    "ev_charger": "Ładowarka samochodowa",
+    "cumulative": "Mierzy cały dom",
+    "cumulative_hint": "Włącz tylko dla licznika całego domu.",
+    "imported": "Energia pobrana / naładowana",
+    "exported": "Energia oddana / rozładowana",
+    "default": "Domyślne Homey",
+    "meter_hint": "Użyj oddzielnych narastających odczytów kWh, które tylko rosną.",
+    "exclude_min": "Minimalna wykluczona moc (W)",
+    "exclude_max": "Maksymalna wykluczona moc (W)",
+    "exclude_hint": "Wartości między granicami stają się zerem. Zakres musi obejmować zero.",
+    "approximated": "Odczyt mocy jest szacunkowy"
   }
 }

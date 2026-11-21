@@ -1,0 +1,20 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Previous Multi-mode state",
+    "nl": "Vorige Multimode status",
+    "da": "Tidligere multi-tilstandstilstand",
+    "de": "Vorheriger Multimodus Status",
+    "es": "Estado anterior de modo múltiple",
+    "fr": "État précédent en mode multiple",
+    "it": "Stato precedente della modalità multipla",
+    "no": "Forrige multimodus status",
+    "sv": "Föregående Multi-läge status",
+    "pl": "Poprzedni stan Multi-mode",
+    "ru": "Предыдущее состояние многорежимного устройства",
+    "ko": "이전 다중 모드 상태",
+    "ar": "الحالة السابقة متعددة الأوضاع"
+  },
+  "getable": true,
+  "setable": false
+}

@@ -1,15 +1,12 @@
 <style>
   .deviceclass {
-    position: relative;
-    padding: 10px;
-    height: 40px;
-    margin-bottom: 5px;
-    background: #eee;
-    border: 1px solid rgba(0,0,0,0.05);
-    border-radius: 3px;
-    /* line-height: 30px; */
-    cursor: pointer;
-    word-break: break-word;
+    width: 100%;
+    min-height: 48px;
+    height: auto;
+    margin-bottom: 10px;
+    padding: 8px;
+    white-space: normal;
+    overflow-wrap: anywhere;
   }
 </style>
 
@@ -55,7 +52,6 @@
       console.log(err);
       return;
     }
-    console.log(device);
     Homey.setTitle(__('pair.title.device') + ' ' + device.name);
   })
 
@@ -64,12 +60,12 @@
 <span id='class_instructions'>{{instructions}}</span>
 <ul id='devices-list'>
   <masonry
-    :cols="3"
+    :cols="2"
     :gutter="10"
     >
-    <div v-for='(value, key) in classes'  v-on:click='addClass(key)' class='deviceclass'>
-      <span tabindex="-1">{{ value.title }}</span>
-    </div>
+    <button v-for='(value, key) in classes' :key="key" type="button" v-on:click='addClass(key)' class='homey-button-secondary-shadow deviceclass'>
+      {{ value.title }}
+    </button>
   </masonry>
 </ul>
 <!-- <span class="name" tabindex="-1" :variant="key" v-bind:variant2="class.'key'" :data-i18n="class.'key'">tbd</span> -->

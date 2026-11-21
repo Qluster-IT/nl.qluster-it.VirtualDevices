@@ -1,0 +1,214 @@
+{
+  "id": "com.arjankranenburg.virtual",
+  "version": "2.0.0",
+  "compatibility": ">=5.0.0",
+  "sdk": 3,
+  "brandColor": "#6720df",
+  "description": {
+    "en": "Virtual Devices to simulate 1 or more real devices",
+    "nl": "Virtuele Apparaten om 1 of meerdere apparaten te simuleren",
+    "da": "Virtuelle enheder til at simulere 1 eller flere rigtige enheder",
+    "de": "Virtuelle Geräte zur Simulation von einem oder mehreren echten Geräten",
+    "es": "Dispositivos Virtuales para simular 1 o más dispositivos reales",
+    "fr": "Appareils virtuels pour simuler un ou plusieurs appareils réels",
+    "it": "Dispositivi virtuali per simulare 1 o più dispositivi reali",
+    "no": "Virtuelle enheter for å simulere 1 eller flere ekte enheter",
+    "sv": "Virtuella enheter för att simulera 1 eller flera riktiga enheter",
+    "pl": "Wirtualne urządzenia do symulacji 1 lub więcej prawdziwych urządzeń",
+    "ru": "Виртуальные устройства для имитации одного или нескольких реальных устройств",
+    "ko": "1개 이상의 실제 장치를 시뮬레이션하는 가상 장치",
+    "ar": "الأجهزة الافتراضية لمحاكاة جهاز واحد أو أكثر من الأجهزة الحقيقية"
+  },
+  "name": {
+    "en": "Virtual Devices",
+    "nl": "Virtuele Apparaten",
+    "da": "Virtuelle enheder",
+    "de": "Virtuelle Geräte",
+    "es": "Dispositivos Virtuales",
+    "fr": "Appareils Virtuels",
+    "it": "Dispositivi Virtuali",
+    "no": "Virtuelle Enheter",
+    "sv": "Virtuella enheter",
+    "pl": "Wirtualne Urządzenia",
+    "ru": "Виртуальные устройства",
+    "ko": "가상 장치",
+    "ar": "الأجهزة الافتراضية"
+  },
+  "tags": {
+    "en": [
+      "virtual",
+      "device",
+      "devices",
+      "switch",
+      "sensor",
+      "mode"
+    ],
+    "nl": [
+      "virtual",
+      "device",
+      "devices",
+      "virtueel",
+      "virtuele",
+      "apparaat",
+      "apparaten",
+      "schakelaar"
+    ],
+    "da": [
+      "virtual",
+      "device",
+      "devices",
+      "virtuel",
+      "virtuelle",
+      "enhed",
+      "enheder"
+    ],
+    "de": [
+      "virtual",
+      "device",
+      "devices",
+      "virtuelles",
+      "virtuelle",
+      "Gerät",
+      "Geräte"
+    ],
+    "es": [
+      "virtual",
+      "device",
+      "devices",
+      "dispositivo",
+      "dispositivos",
+      "virtuales"
+    ],
+    "fr": [
+      "virtual",
+      "device",
+      "devices",
+      "appareil",
+      "appareils",
+      "virtuel",
+      "virtuels"
+    ],
+    "it": [
+      "virtual",
+      "device",
+      "devices",
+      "dispositivo",
+      "dispositivi",
+      "virtuale",
+      "virtuali"
+    ],
+    "no": [
+      "virtual",
+      "device",
+      "devices",
+      "virtuell",
+      "virtuelle",
+      "enhet",
+      "enheter"
+    ],
+    "sv": [
+      "virtual",
+      "device",
+      "devices",
+      "virtuell",
+      "virtuella",
+      "enhet",
+      "enheter"
+    ],
+    "pl": [
+      "virtual",
+      "device",
+      "devices",
+      "urządzenie",
+      "urządzenia",
+      "wirtualne"
+    ],
+    "ru": [
+      "virtual",
+      "device",
+      "devices",
+      "виртуальное",
+      "виртуальные",
+      "устройство",
+      "устройства"
+    ],
+    "ko": [
+      "virtual",
+      "device",
+      "devices",
+      "가상",
+      "장치"
+    ],
+    "ar": [
+      "virtual",
+      "device",
+      "devices",
+      "جهاز",
+      "افتراضي",
+      "الأجهزة",
+      "الافتراضية"
+    ]
+  },
+  "author": {
+    "name": "Arie J. Godschalk",
+    "email": "arie@qluster-it.nl"
+  },
+  "contributors": {
+    "developers": [
+      {
+        "name": "Arjan Kranenburg",
+        "email": "arjan.kranenburg@gmail.com"
+      },
+      {
+        "name": "Danee de Kruyff",
+        "email": "daneedekruyff@outlook.com"
+      },
+      {
+        "name": "Arie J. Godschalk",
+        "email": "arie@qluster-it.nl"
+      }
+    ],
+    "translators": [
+      {
+        "name": "🇬🇧 Arjan Kranenburg"
+      },
+      {
+        "name": "🇳🇱 Arjan Kranenburg"
+      },
+      {
+        "name": "🇩🇪 Philipp Schnittger"
+      },
+      {
+        "name": "🇳🇴 Vegard Fladby"
+      }
+    ]
+  },
+  "contributing": {
+    "donate": {
+      "paypal": {
+        "username": "QlusterIT"
+      },
+      "patreon": {
+        "username": "QlusterIT"
+      },
+      "githubSponsors": {
+        "username": "Qluster-IT"
+      },
+      "bunq": {
+        "username": "QlusterIT"
+      }
+    }
+  },
+  "homepage": "https://github.com/Qluster-IT/nl.qluster-it.VirtualDevices/wiki",
+  "source": "https://github.com/Qluster-IT/nl.qluster-it.VirtualDevices/",
+  "bugs": {
+    "url": "https://github.com/Qluster-IT/nl.qluster-it.VirtualDevices/issues"
+  },
+  "athomForumDiscussionId": 3065,
+  "homeyCommunityTopicId": 1723,
+  "images": {
+    "large": "./assets/images/large.png",
+    "small": "./assets/images/small.png"
+  },
+  "category": "tools"
+}

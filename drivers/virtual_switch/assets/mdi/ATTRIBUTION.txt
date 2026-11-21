@@ -1,0 +1,5 @@
+These icons are from Material Design Icons by Pictogrammers,
+@mdi/svg version 7.4.47: https://pictogrammers.com/library/mdi/
+
+The icons are distributed under the Apache License, Version 2.0.
+See PICTOGRAMMERS-LICENSE.txt and APACHE-LICENSE.txt in this directory.

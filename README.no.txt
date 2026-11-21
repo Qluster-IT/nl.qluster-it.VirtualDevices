@@ -1,5 +1,10 @@
-Denne appen gir deg muligheten til å legge til virtuelle enheter til Homey. Du kan betjene de virtuelle enhetene fra UI-en og/eller bruke dem i flows.
+Opprett enkle virtuelle enheter i Homey, som brytere, sensorer og termostater. Styr dem i Homey og bruk dem i Flows.
 
-Eller du kan legge til en modus og bruke den som en betingelse, f.eks. for å deaktivere flere flows når du drar på ferie.
+Du kan også bruke moduser, for eksempel feriemodus, som betingelser i Flows.
 
-Hvis du vil ha (mye) mer tilpasning, sjekk ut Advanced Virtual Device fra Device Capabilities-appen.
+Velg enhetsklasse, egenskaper og ikon. Du kan endre klasse og egenskaper senere via Reparer. For mer avansert tilpasning kan du bruke en Advanced Virtual Device fra appen Device Capabilities.
+
+Kameraer og ringeklokker støtter øyeblikksbilder og, på støttede Homeyer, direktesendt video. Flower kan angi kamerabilder og albumomslag for høyttalere.
+
+Community Forum: https://community.homey.app/t/virtual-devices/1723
+For wiki og brukerhåndbok velger du Besøk nettsted under Utviklerens nettsted på appens side i Homey App Store.

@@ -1,0 +1,26 @@
+{
+  "id": "mode_action_off",
+  "deprecated": true,
+  "title": {
+    "en": "Turn mode off",
+    "nl": "Zet modus uit",
+    "da": "Slå tilstand fra",
+    "de": "Schalte Modus aus",
+    "es": "Desactivar modo",
+    "fr": "Désactiver le mode",
+    "it": "Disattiva modalità",
+    "no": "Skru modus av",
+    "sv": "Stäng av läget",
+    "pl": "Wyłącz tryb",
+    "ru": "Выключить режим",
+    "ko": "모드 끄기",
+    "ar": "إيقاف الوضع"
+  },
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=mode"
+    }
+  ]
+}

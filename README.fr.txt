@@ -1,5 +1,10 @@
-Cette application vous permet d'ajouter des Appareils Virtuels à Homey. Vous pouvez les contrôler depuis l'interface utilisateur et/ou les utiliser dans des flux.
+Créez des appareils virtuels simples dans Homey, comme des interrupteurs, des capteurs et des thermostats. Contrôlez-les dans Homey et utilisez-les dans des Flows.
 
-Vous pouvez également ajouter un mode et l'utiliser comme condition, par exemple pour désactiver plusieurs flux lorsque vous partez en vacances.
+Vous pouvez aussi utiliser des modes, comme un mode vacances, comme conditions dans les Flows.
 
-Si vous souhaitez (beaucoup) plus de personnalisation, jetez un œil à l'Appareil Virtuel Avancé de l'application Capabilities Device.
+Choisissez une classe d'appareil, des capacités et une icône. Modifiez la classe et les capacités plus tard via Réparer. Pour une personnalisation plus avancée, utilisez un Advanced Virtual Device de l'application Device Capabilities.
+
+Les caméras et sonnettes prennent en charge les captures et, sur les Homey compatibles, la vidéo en direct. Les Flows peuvent définir les images des caméras et les pochettes des enceintes.
+
+Forum communautaire : https://community.homey.app/t/virtual-devices/1723
+Pour accéder au wiki et au manuel, sélectionnez Visiter le site sous Site web du développeur sur la page Homey App Store de cette application.

@@ -52,6 +52,22 @@
       "not_changeable": " Advarsel: disse indstillinger kan ikke ændres bagefter"
     }
   },
+  "repair": {
+    "title": "Rediger virtuel enhed",
+    "save": "Gem",
+    "confirm": "Ændring af klasse eller fjernelse af egenskaber kan ødelægge eksisterende Flows. Fortsæt?",
+    "legacy_icon": "Denne enhed bruger et ældre indbygget ikon. Opret enheden igen for at ændre ikonet.",
+    "keep_icon": "Behold ikonet, upload en SVG-fil, eller vælg et andet ikon.",
+    "icon_restart": "Genstart Homey for at se det nye ikon.",
+    "select_required": "Vælg mindst én egenskab.",
+    "invalid": "Kontroller de valgte værdier og ikonet.",
+    "partial": "Nogle ændringer kan allerede være anvendt. Kontroller enheden, før du prøver igen.",
+    "minimum": "Minimum",
+    "maximum": "Maksimum",
+    "step": "Trin",
+    "decimals": "Decimaler",
+    "more_capabilities": "Flere egenskaber"
+  },
   "class": {
     "other": "Andet",
     "light": "Lys",
@@ -183,5 +199,38 @@
     "work": "Arbejder",
     "window_closed": "Lukket vindue",
     "window_open": "Åbent vindue"
+  },
+  "capability_options": {
+    "heading": "Egenskabsindstillinger",
+    "name": "Navn",
+    "hint": "Lad et felt stå tomt for at bruge Homeys standardværdi.",
+    "next_view": "Du kan indstille egenskaberne på næste skærm.",
+    "next": "Næste",
+    "previous": "Forrige"
+  },
+  "media": {
+    "camera": "Kamera",
+    "image_url": "Snapshot-URL",
+    "image_hint": "Valgfri HTTP- eller HTTPS-billed-URL. Et Flow kan også indstille et billede.",
+    "video_url": "Video-URL",
+    "video_hint": "Valgfri RTSP-, RTMP-, HLS-, DASH- eller anden understøttet stream-URL.",
+    "remove_image": "Fjern billedet indstillet af et Flow"
+  },
+  "energy": {
+    "heading": "Energi",
+    "hint": "Valgfrie indstillinger for Homey Energi. Virtuelle målinger kan tælle rigtige enheder dobbelt.",
+    "home_battery": "Hjemmebatteri",
+    "electric_car": "Elbil",
+    "ev_charger": "Ladestander",
+    "cumulative": "Måler hele hjemmet",
+    "cumulative_hint": "Aktivér kun for en samlet måler for hjemmet.",
+    "imported": "Importeret / opladet energi",
+    "exported": "Eksporteret / afladet energi",
+    "default": "Homeys standard",
+    "meter_hint": "Brug separate kumulative kWh-målinger, som kun må stige.",
+    "exclude_min": "Minimum udelukket effekt (W)",
+    "exclude_max": "Maksimum udelukket effekt (W)",
+    "exclude_hint": "Værdier mellem grænserne bliver nul. Intervallet skal indeholde nul.",
+    "approximated": "Effektmålingen er et estimat"
   }
 }

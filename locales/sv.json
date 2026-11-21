@@ -52,6 +52,22 @@
       "not_changeable": " Varning: dessa inställningar kan inte ändras senare"
     }
   },
+  "repair": {
+    "title": "Redigera virtuell enhet",
+    "save": "Spara",
+    "confirm": "Om du ändrar klass eller tar bort egenskaper kan befintliga Flows sluta fungera. Fortsätta?",
+    "legacy_icon": "Enheten använder en äldre inbyggd ikon. Skapa enheten på nytt för att ändra ikonen.",
+    "keep_icon": "Behåll ikonen, ladda upp en SVG-fil eller välj en annan ikon.",
+    "icon_restart": "Starta om Homey för att se den nya ikonen.",
+    "select_required": "Välj minst en egenskap.",
+    "invalid": "Kontrollera de valda värdena och ikonen.",
+    "partial": "Vissa ändringar kan redan ha genomförts. Kontrollera enheten innan du försöker igen.",
+    "minimum": "Minimum",
+    "maximum": "Maximum",
+    "step": "Steg",
+    "decimals": "Decimaler",
+    "more_capabilities": "Fler egenskaper"
+  },
   "class": {
     "other": "Annat",
     "light": "Lampa",
@@ -183,5 +199,38 @@
     "work": "Jobba",
     "window_closed": "Stängt fönster",
     "window_open": "Öppet fönster"
+  },
+  "capability_options": {
+    "heading": "Egenskapsinställningar",
+    "name": "Namn",
+    "hint": "Lämna ett fält tomt för att använda Homeys standardvärde.",
+    "next_view": "Du kan ställa in egenskapsalternativ på nästa skärm.",
+    "next": "Nästa",
+    "previous": "Föregående"
+  },
+  "media": {
+    "camera": "Kamera",
+    "image_url": "Ögonblicksbildens URL",
+    "image_hint": "Valfri HTTP- eller HTTPS-bild-URL. Ett Flow kan också ange en bild.",
+    "video_url": "Video-URL",
+    "video_hint": "Valfri URL för RTSP-, RTMP-, HLS-, DASH- eller annan ström som stöds.",
+    "remove_image": "Ta bort bilden som angetts av ett Flow"
+  },
+  "energy": {
+    "heading": "Energi",
+    "hint": "Valfria inställningar för Homey Energi. Virtuella mätningar kan räkna verkliga enheter dubbelt.",
+    "home_battery": "Hembatteri",
+    "electric_car": "Elbil",
+    "ev_charger": "Elbilsladdare",
+    "cumulative": "Mäter hela hemmet",
+    "cumulative_hint": "Aktivera bara för en totalmätare för hemmet.",
+    "imported": "Importerad / laddad energi",
+    "exported": "Exporterad / urladdad energi",
+    "default": "Homeys standard",
+    "meter_hint": "Använd separata kumulativa kWh-värden som bara ökar.",
+    "exclude_min": "Minsta undantagna effekt (W)",
+    "exclude_max": "Största undantagna effekt (W)",
+    "exclude_hint": "Värden mellan gränserna blir noll. Intervallet måste inkludera noll.",
+    "approximated": "Effektvärdet är en uppskattning"
   }
 }

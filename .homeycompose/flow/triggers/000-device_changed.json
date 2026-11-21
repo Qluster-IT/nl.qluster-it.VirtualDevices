@@ -1,0 +1,119 @@
+{
+  "id": "device_changed",
+  "title": {
+    "en": "A virtual device changed",
+    "nl": "Een virtueel apparaat is veranderd",
+    "da": "En virtuel enhed ændrede sig",
+    "de": "Ein virtuelles Gerät hat sich geändert",
+    "es": "Un dispositivo virtual cambió",
+    "fr": "Un appareil virtuel a changé",
+    "it": "Un dispositivo virtuale è cambiato",
+    "no": "Ett virtuelt aparat ble endret",
+    "sv": "En virtuell enhet ändrades",
+    "pl": "Wirtualne urządzenie zostało zmienione",
+    "ru": "Виртуальное устройство изменилось",
+    "ko": "가상 장치가 변경되었습니다.",
+    "ar": "تم تغيير الجهاز الافتراضي"
+  },
+  "tokens": [
+    {
+      "name": "value",
+      "title": {
+        "en": "value",
+        "nl": "waarde",
+        "da": "værdi",
+        "de": "Wert",
+        "es": "valor",
+        "fr": "valeur",
+        "it": "valore",
+        "no": "verdi",
+        "sv": "värde",
+        "pl": "wartość",
+        "ru": "значение",
+        "ko": "값",
+        "ar": "قيمة"
+      },
+      "example": {
+        "en": "true",
+        "nl": "true",
+        "da": "sand",
+        "de": "wahr",
+        "es": "verdadero",
+        "fr": "vrai",
+        "it": "vero",
+        "no": "sikker",
+        "sv": "sant",
+        "pl": "prawda",
+        "ru": "правда",
+        "ko": "참",
+        "ar": "صحيح"
+      }
+    },
+    {
+      "name": "variable",
+      "title": {
+        "en": "variable",
+        "nl": "variabele",
+        "da": "variabel",
+        "de": "Variable",
+        "es": "variable",
+        "fr": "variable",
+        "it": "variabile",
+        "no": "variabel",
+        "sv": "variabel",
+        "pl": "zmienna",
+        "ru": "переменная",
+        "ko": "변수",
+        "ar": "متغير"
+      },
+      "example": {
+        "en": "onoff",
+        "nl": "aanuit",
+        "da": "tænd/sluk",
+        "de": "An/Aus",
+        "es": "encendido/apagado",
+        "fr": "onoff",
+        "it": "acceso/spento",
+        "no": "på/av",
+        "sv": "påav",
+        "pl": "włącz/wyłącz",
+        "ru": "вкл/выкл",
+        "ko": "켜짐/꺼짐",
+        "ar": "تشغيل/إيقاف"
+      }
+    },
+    {
+      "name": "device",
+      "title": {
+        "en": "device",
+        "nl": "apparaat",
+        "da": "enhed",
+        "de": "Gerät",
+        "es": "dispositivo",
+        "fr": "appareil",
+        "it": "dispositivo",
+        "no": "Enhet",
+        "sv": "enhet",
+        "pl": "urządzenie",
+        "ru": "устройство",
+        "ko": "장치",
+        "ar": "جهاز"
+      },
+      "example": {
+        "en": "Virtual Lamp",
+        "nl": "Virtuele Lamp",
+        "da": "Virtuel Lampe",
+        "de": "Virtuelle Leuchte",
+        "es": "Lámpara Virtual",
+        "fr": "Lampe Virtuelle",
+        "it": "Lampada Virtuale",
+        "no": "Virtuell lampe",
+        "sv": "Virtuell Lampa",
+        "pl": "Wirtualna Lampa",
+        "ru": "Виртуальная лампа",
+        "ko": "가상 램프",
+        "ar": "المصباح الافتراضي"
+      }
+    }
+  ]
+}

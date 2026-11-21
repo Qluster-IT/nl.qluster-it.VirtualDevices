@@ -1,0 +1,25 @@
+{
+  "id": "mode_on",
+  "title": {
+    "en": "Mode is on",
+    "nl": "Modus wordt aangezet",
+    "da": "Tilstand er aktiveret",
+    "de": "Modus ist anheschaltet",
+    "es": "El modo está activado",
+    "fr": "Le mode est activé",
+    "it": "La modalità è attiva",
+    "no": "Modus er på",
+    "sv": "Läget är på",
+    "pl": "Tryb jest włączony",
+    "ru": "Режим включен",
+    "ko": "모드가 켜졌습니다.",
+    "ar": "الوضع مُفعل"
+  },
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=mode"
+    }
+  ]
+}

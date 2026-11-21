@@ -1,0 +1,63 @@
+{
+  "id": "set_camera_image_url",
+  "title": {
+    "en": "Set camera image from URL",
+    "nl": "Stel camera-afbeelding in via URL",
+    "da": "Indstil kamerabillede fra URL",
+    "de": "Kamerabild über URL festlegen",
+    "es": "Establecer imagen de cámara desde URL",
+    "fr": "Définir l’image de caméra par URL",
+    "it": "Imposta immagine telecamera da URL",
+    "no": "Angi kamerabilde fra URL",
+    "sv": "Ange kamerabild från URL",
+    "pl": "Ustaw obraz kamery z adresu URL",
+    "ru": "Задать изображение камеры по URL",
+    "ko": "URL로 카메라 이미지 설정",
+    "ar": "تعيين صورة الكاميرا من رابط"
+  },
+  "titleFormatted": {
+    "en": "Set camera image from URL: [[url]]",
+    "nl": "Stel camera-afbeelding in via URL: [[url]]",
+    "da": "Indstil kamerabillede fra URL: [[url]]",
+    "de": "Kamerabild über URL festlegen: [[url]]",
+    "es": "Establecer imagen de cámara desde URL: [[url]]",
+    "fr": "Définir l’image de caméra par URL: [[url]]",
+    "it": "Imposta immagine telecamera da URL: [[url]]",
+    "no": "Angi kamerabilde fra URL: [[url]]",
+    "sv": "Ange kamerabild från URL: [[url]]",
+    "pl": "Ustaw obraz kamery z adresu URL: [[url]]",
+    "ru": "Задать изображение камеры по URL: [[url]]",
+    "ko": "URL로 카메라 이미지 설정: [[url]]",
+    "ar": "تعيين صورة الكاميرا من رابط: [[url]]"
+  },
+  "args": [
+    {
+      "name": "url",
+      "type": "text",
+      "title": {
+        "en": "URL",
+        "nl": "URL",
+        "da": "URL",
+        "de": "URL",
+        "es": "URL",
+        "fr": "URL",
+        "it": "URL",
+        "no": "URL",
+        "sv": "URL",
+        "pl": "Adres URL",
+        "ru": "URL",
+        "ko": "URL",
+        "ar": "الرابط"
+      },
+      "placeholder": {
+        "en": "http://…",
+        "nl": "http://…"
+      }
+    },
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=virtual_switch&class=camera|doorbell"
+    }
+  ]
+}

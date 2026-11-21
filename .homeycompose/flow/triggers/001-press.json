@@ -1,0 +1,25 @@
+{
+  "id": "press",
+  "title": {
+    "en": "Pressed / changed",
+    "nl": "Ingedrukt / veranderd",
+    "da": "Trykket / ændret",
+    "de": "Gedrückt / verändert",
+    "es": "Presionado / cambiado",
+    "fr": "Appuyé / changé",
+    "it": "Premuto / cambiato",
+    "no": "Trykket / endret",
+    "sv": "Tryckt / ändrat",
+    "pl": "Naciśnięto / zmieniono",
+    "ru": "Нажато / изменено",
+    "ko": "눌림 / 변경됨",
+    "ar": "تم الضغط / تم التغيير"
+  },
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=virtual_switch"
+    }
+  ]
+}

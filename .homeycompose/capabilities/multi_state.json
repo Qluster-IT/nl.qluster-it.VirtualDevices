@@ -1,0 +1,20 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Multi-mode state",
+    "nl": "Multimode status",
+    "da": "Multi-tilstandstilstand",
+    "de": "Multimodus Status",
+    "es": "Estado de múltiples modos",
+    "fr": "État multi-mode",
+    "it": "Stato multi-modalità",
+    "no": "Status multimodus",
+    "sv": "Flerlägesstatus",
+    "pl": "Stan multi-trybu",
+    "ru": "Многофункциональный режим",
+    "ko": "다중 모드 상태",
+    "ar": "وضع متعدد الأوضاع"
+  },
+  "getable": true,
+  "setable": true
+}

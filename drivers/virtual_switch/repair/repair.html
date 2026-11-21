@@ -1,0 +1,250 @@
+<link rel="stylesheet" href="../pair/view.css">
+<script src="../../../assets/vue.min.js"></script>
+<script src="../pair/capabilities.js"></script>
+<script src="../pair/capability-options.js"></script>
+<script src="../pair/energy-options.js"></script>
+<style>
+  .repair-icons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .repair-icon { height: 72px; border: 1px solid transparent; background: transparent; cursor: pointer; }
+  .repair-icon.selected { border-color: var(--homey-color-blue, #6720df); border-radius: 6px; }
+  .repair-icon span { display: block; width: 100%; height: 48px; background: currentColor; -webkit-mask: center / contain no-repeat; }
+</style>
+
+<div id="repair" class="vd-screen">
+  <div v-if="loaded" class="vd-screen">
+    <div class="vd-content">
+    <div v-show="step === 'selection'">
+    <div class="homey-form-group vd-section">
+      <label class="homey-form-label" for="repair-class">{{ __('pair.title.class') }}</label>
+      <select class="homey-form-select" id="repair-class" v-model="deviceClass">
+        <option v-for="(value, key) in classes" :key="key" :value="key">{{ value.title }}</option>
+      </select>
+    </div>
+
+    <div class="vd-section">
+      <h3>{{ __('pair.title.capabilities') }}</h3>
+      <p>{{ __('pair.select.capabilities') }}</p>
+      <p>{{ __('capability_options.next_view') }}</p>
+      <label v-for="item in visibleCapabilities" :key="item.id" class="homey-form-checkbox">
+        <input class="homey-form-checkbox-input" type="checkbox" :value="item.id" v-model="selected">
+        <span class="homey-form-checkbox-checkmark"></span>
+        <span class="homey-form-checkbox-text">{{ item.title }} ({{ item.id }})</span>
+      </label>
+      <details v-if="otherCapabilities.length" class="vd-disclosure">
+        <summary class="homey-form-label">{{ __('repair.more_capabilities') }}</summary>
+        <label v-for="item in otherCapabilities" :key="item.id" class="homey-form-checkbox">
+          <input class="homey-form-checkbox-input" type="checkbox" :value="item.id" v-model="selected">
+          <span class="homey-form-checkbox-checkmark"></span>
+          <span class="homey-form-checkbox-text">{{ item.title }} ({{ item.id }})</span>
+        </label>
+      </details>
+    </div>
+
+    <div class="vd-section">
+      <h3>{{ __('pair.title.icon') }}</h3>
+      <p v-if="!iconEditable">{{ __('repair.legacy_icon') }}</p>
+      <div v-else>
+        <p>{{ __('repair.keep_icon') }}</p>
+        <label class="homey-form-label" for="repair-icon-upload">{{ __('pair.select.icon.custom') }}</label>
+        <input id="repair-icon-upload" type="file" accept=".svg,image/svg+xml" @change="uploadIcon">
+        <details class="vd-disclosure">
+          <summary class="homey-form-label">{{ __('pair.select.icon.standard') }}</summary>
+          <div class="repair-icons">
+            <button v-for="icon in icons" :key="icon.location" type="button" class="repair-icon"
+              :class="{ selected: selectedIcon && selectedIcon.location === icon.location }"
+              :title="icon.name" :aria-label="icon.name" @click="chooseIcon(icon)">
+              <span :style="{ height: '48px', WebkitMaskImage: 'url(/app/com.arjankranenburg.virtual/drivers/virtual_switch/assets/' + icon.location + ')' }"></span>
+            </button>
+          </div>
+        </details>
+        <p v-if="selectedIcon">{{ __('repair.icon_restart') }}</p>
+      </div>
+    </div>
+
+    </div>
+    <div v-show="step === 'options'">
+      <div class="vd-section">
+        <capability-options :selected="selected" :definitions="capabilities" :options="draftOptions" @change="changeOption"></capability-options>
+      </div>
+      <energy-options :device-class="deviceClass" :selected="selected" :definitions="capabilities"
+        :energy="energy" :support="energySupport" @change="changeEnergy"></energy-options>
+      <div v-if="['camera', 'doorbell'].includes(deviceClass)" class="vd-section">
+        <h3>{{ __('media.camera') }}</h3>
+        <div class="homey-form-group">
+          <label class="homey-form-label" for="repair-image">{{ __('media.image_url') }}</label>
+          <input class="homey-form-input" id="repair-image" type="url" v-model="media.image" autocomplete="off">
+          <p>{{ __('media.image_hint') }}</p>
+        </div>
+        <label v-if="media.imageFromFlow && !media.image" class="homey-form-checkbox">
+          <input class="homey-form-checkbox-input" type="checkbox" v-model="clearFlowImage">
+          <span class="homey-form-checkbox-checkmark"></span>
+          <span class="homey-form-checkbox-text">{{ __('media.remove_image') }}</span>
+        </label>
+        <div v-if="media.videoSupported" class="homey-form-group">
+          <label class="homey-form-label" for="repair-video">{{ __('media.video_url') }}</label>
+          <input class="homey-form-input" id="repair-video" type="text" v-model="media.video" autocomplete="off">
+          <p>{{ __('media.video_hint') }}</p>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div class="vd-actions">
+      <button v-if="step === 'selection'" class="homey-button-primary" type="button" :disabled="uploading" @click="next">{{ __('capability_options.next') }}</button>
+      <template v-else>
+        <button class="homey-button-transparent" type="button" :disabled="saving" @click="step = 'selection'">{{ __('capability_options.previous') }}</button>
+        <button class="homey-button-primary" type="button" :disabled="saving" @click="save">{{ __('repair.save') }}</button>
+      </template>
+    </div>
+  </div>
+</div>
+<script>
+  Homey.setTitle(__('repair.title'));
+  var repair = new Vue({
+    el: '#repair',
+    data: {
+      loaded: false, saving: false, uploading: false, uploadSequence: 0, step: 'selection', deviceClass: '', initialClass: '', classes: {},
+      capabilities: {}, selected: [], initialSelected: [], icons: [], iconEditable: false,
+      selectedIcon: null, draftOptions: {}, optionChanges: {},
+      energy: {}, energySupport: {}, energyChanges: {},
+      media: { image: '', video: '', videoSupported: false }, initialMedia: { image: '', video: '' }, clearFlowImage: false
+    },
+    watch: {
+      selected: function (selected) {
+        selected.forEach(id => {
+          if (!this.initialSelected.includes(id) && default_options[id] && !this.draftOptions[id]) {
+            Vue.set(this.draftOptions, id, Object.assign({}, default_options[id]));
+            Vue.set(this.optionChanges, id, Object.assign({}, default_options[id]));
+          }
+        });
+      }
+    },
+    computed: {
+      capabilityList: function () {
+        var preferred = devices[this.deviceClass] ? devices[this.deviceClass].capabilities : [];
+        var keys = Object.keys(this.capabilities);
+        var ordered = preferred.filter(key => keys.includes(key));
+        keys.forEach(key => { if (!ordered.includes(key)) ordered.push(key); });
+        return ordered.map(key => ({ id: key, title: this.capabilities[key].title }));
+      },
+      visibleCapabilities: function () {
+        var preferred = devices[this.deviceClass] ? devices[this.deviceClass].capabilities : [];
+        return this.capabilityList.filter(item => preferred.includes(item.id) || this.initialSelected.includes(item.id));
+      },
+      otherCapabilities: function () {
+        var visible = new Set(this.visibleCapabilities.map(item => item.id));
+        return this.capabilityList.filter(item => !visible.has(item.id));
+      }
+    },
+    methods: {
+      next: async function () {
+        if (!this.selected.length) {
+          await Homey.alert(__('repair.select_required'), 'warning');
+          return;
+        }
+        this.step = 'options';
+      },
+      changeOption: function (id, field, value) {
+        var draft = Object.assign({}, this.draftOptions[id]);
+        if (value === null) delete draft[field];
+        else draft[field] = field === 'title' ? { en: value } : value;
+        Vue.set(this.draftOptions, id, draft);
+        Vue.set(this.optionChanges, id, Object.assign({}, this.optionChanges[id], { [field]: value }));
+      },
+      changeEnergy: function (key, value) {
+        Vue.set(this.energy, key, value);
+        Vue.set(this.energyChanges, key, value);
+      },
+      chooseIcon: function (icon) {
+        this.uploadSequence++;
+        this.uploading = false;
+        this.selectedIcon = this.selectedIcon && this.selectedIcon.location === icon.location
+          ? null : { location: icon.location };
+        document.getElementById('repair-icon-upload').value = '';
+      },
+      uploadIcon: function (event) {
+        var sequence = ++this.uploadSequence;
+        this.uploading = false;
+        var file = event.target.files[0];
+        if (!file) return;
+        if (file.size > 780000) {
+          Homey.alert(__('repair.invalid'), 'error');
+          event.target.value = '';
+          return;
+        }
+        this.uploading = true;
+        var reader = new FileReader();
+        reader.onload = () => {
+          if (sequence !== this.uploadSequence) return;
+          this.uploading = false;
+          this.selectedIcon = { upload: reader.result };
+        };
+        reader.onerror = () => {
+          if (sequence !== this.uploadSequence) return;
+          this.uploading = false;
+          Homey.alert(__('repair.invalid'), 'error');
+        };
+        reader.readAsDataURL(new Blob([file], { type: 'image/svg+xml' }));
+      },
+      save: async function () {
+        if (!this.selected.length) {
+          await Homey.alert(__('repair.select_required'), 'warning');
+          return;
+        }
+        if (this.deviceClass !== this.initialClass
+          || this.initialSelected.some(id => !this.selected.includes(id))) {
+          if (!await Homey.confirm(__('repair.confirm'), 'warning')) return;
+        }
+        var options = {};
+        this.selected.forEach(id => { if (this.optionChanges[id]) options[id] = this.optionChanges[id]; });
+        var mediaChanges;
+        var energyChanges = {};
+        Object.keys(this.energyChanges).forEach(key => {
+          var requiredClass = { homeBattery: 'battery', electricCar: 'car', evCharger: 'evcharger' }[key];
+          if (!requiredClass || requiredClass === this.deviceClass) {
+            var value = this.energyChanges[key];
+            energyChanges[key] = key.endsWith('Capability') && value && !this.selected.includes(value) ? null : value;
+          }
+        });
+        if (['camera', 'doorbell'].includes(this.deviceClass)) {
+          mediaChanges = {};
+          if (this.media.image !== this.initialMedia.image) mediaChanges.image = this.media.image;
+          else if (this.clearFlowImage && !this.media.image) mediaChanges.image = '';
+          if (this.media.videoSupported && this.media.video !== this.initialMedia.video) mediaChanges.video = this.media.video;
+        }
+        this.saving = true;
+        try {
+          var result = await Homey.emit('repairSave', {
+            class: this.deviceClass, capabilities: this.selected, options: options, icon: this.selectedIcon, media: mediaChanges,
+            energy: energyChanges
+          });
+          if (result.iconChanged) await Homey.alert(__('repair.icon_restart'), 'info');
+          Homey.done();
+        } catch (error) {
+          await Homey.alert(__('repair.partial') + ' ' + error.message, 'error');
+          this.saving = false;
+        }
+      }
+    }
+  });
+
+  Homey.emit('repairLoad').then(function (data) {
+    Homey.setTitle(__('repair.title') + ' ' + data.name);
+    repair.classes = data.classes;
+    if (!repair.classes[data.class]) Vue.set(repair.classes, data.class, { title: data.class });
+    repair.deviceClass = repair.initialClass = data.class;
+    repair.capabilities = data.allCapabilities;
+    data.capabilities.forEach(id => {
+      if (!repair.capabilities[id]) Vue.set(repair.capabilities, id, { title: id });
+    });
+    repair.selected = data.capabilities.slice();
+    repair.initialSelected = data.capabilities.slice();
+    repair.icons = data.icons;
+    repair.iconEditable = data.iconEditable;
+    repair.draftOptions = data.options;
+    repair.energy = data.energy;
+    repair.energySupport = data.energySupport;
+    repair.media = data.media;
+    repair.initialMedia = { image: data.media.image, video: data.media.video };
+    repair.loaded = true;
+  }).catch(error => Homey.alert(error.message, 'error'));
+</script>
