@@ -39,12 +39,13 @@ Flow cards can set numeric, yes/no, text and choice capabilities using inputs fo
 
 ## Changelog
 
-### 2.0.0
+### 2.0.1
 * Recommended capabilities and more icons for every device class.
 * Edit devices with Repair, including capability options and editable icons.
 * Optional Homey Energy settings for batteries, cars, chargers and meters.
 * Camera snapshots, supported live video and speaker album art.
 * Flow cards for numeric, yes/no, text and choice values.
+* Improved pairing and Repair navigation.
 
 ### 1.4.2
 * Moved source code and issues from Bitbucket to GitHub.

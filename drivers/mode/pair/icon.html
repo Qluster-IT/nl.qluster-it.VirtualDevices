@@ -135,12 +135,12 @@
         :aria-label="item.name" :title="item.name" v-on:click='addIcon(item)'>
         <span class="vd-icon" v-bind:style="{WebkitMaskImage: 'url(/app/com.arjankranenburg.virtual/drivers/mode/assets/' + item.location + ')'}"></span>
       </button>
-      </div>
-      <div class="vd-actions">
-        <button class="homey-button-transparent" type="button" onclick="Homey.showView('name')" data-i18n="capability_options.previous"></button>
-        <button id="save-icon" class="homey-button-primary" type="button" data-i18n="pair.button.icon.use" disabled>Save & use</button>
-      </div>
-      </div>
     </masonry>
   </ul>
+</div>
+</div>
+<div class="vd-actions">
+  <button class="homey-button-transparent" type="button" onclick="Homey.showView('name')" data-i18n="capability_options.previous"></button>
+  <button id="save-icon" class="homey-button-primary" type="button" data-i18n="pair.button.icon.use" disabled>Save & use</button>
+</div>
 </div>

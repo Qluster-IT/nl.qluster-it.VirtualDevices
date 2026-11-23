@@ -1,39 +1,40 @@
-<script src='../../../assets/vue.min.js'></script>
-<script src='../../../assets/lodash.min.js'></script>
+<link rel="stylesheet" href="../../virtual_switch/pair/view.css">
 <script>
   Homey.setTitle(__('pair.title.mode'));
-  new Vue({
-    el: '#name_instructions',
-    data: {
-      instructions: __('pair.select.name')
+
+  Homey.emit('getPairingDevice', null, function (err, device) {
+    if (err) {
+      Homey.alert(err.message, 'error');
+      return;
     }
+    const input = document.getElementById('device-name');
+    input.value = device.name;
+    input.disabled = false;
+    document.getElementById('name-next').disabled = false;
   });
 
-  // Homey.emit('getPairingDevice', null, function (err, device) {
-  //   if (err) {
-  //     console.log(err);
-  //     return;
-  //   }
-  //   console.log(device);
-  //
-    new Vue({
-      el: '#device_name',
-      data: {
-        name: __( 'pair.default.name.mode' )
-      },
-      watch: {
-        'name': _.debounce( function(val){
-          Homey.emit('setName', {'name': val}, function (err, result) {
-            if(err){console.log(err); return;}
-            console.log(result);
-          });
-        }, 500)
+  function continuePairing() {
+    const button = document.getElementById('name-next');
+    button.disabled = true;
+    Homey.emit('setName', { name: document.getElementById('device-name').value }, function (err) {
+      if (err) {
+        button.disabled = false;
+        Homey.alert(err.message, 'error');
+        return;
       }
-    })
-  // })
+      Homey.nextView();
+    });
+  }
 </script>
 
-<span id='name_instructions'>{{instructions}}</span>
-<div id='device_name' class="homey-form-group">
-  <input class="homey-form-input" v-model='name' :aria-label="__('pair.select.name')">
+<div class="vd-screen">
+  <div class="vd-content">
+    <div class="homey-form-group">
+      <label class="homey-form-label" for="device-name" data-i18n="pair.select.name"></label>
+      <input id="device-name" class="homey-form-input" disabled>
+    </div>
+  </div>
+  <div class="vd-actions">
+    <button id="name-next" type="button" class="homey-button-primary" onclick="continuePairing()" data-i18n="capability_options.next" disabled></button>
+  </div>
 </div>

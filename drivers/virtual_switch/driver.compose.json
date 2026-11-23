@@ -41,11 +41,7 @@
       }
     },
     {
-      "id": "capabilities",
-      "navigation": {
-        "next": "capability_options",
-        "prev": "class"
-      }
+      "id": "capabilities"
     },
     {
       "id": "capability_options"

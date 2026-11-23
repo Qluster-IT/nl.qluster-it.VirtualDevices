@@ -33,8 +33,8 @@ test('custom pairing and repair views and their local resources exist at Homey p
   }
 });
 
-test('pairing waits for the device name to save before continuing', () => {
-  const html = fs.readFileSync('drivers/virtual_switch/pair/name.html', 'utf8');
+for (const driver of ['virtual_switch', 'mode']) test(`${driver} pairing waits for the name to save before continuing`, () => {
+  const html = fs.readFileSync(`drivers/${driver}/pair/name.html`, 'utf8');
   const script = html.match(/<script>([\s\S]*?)<\/script>/)[1];
   const elements = {
     'device-name': { value: '', disabled: true },
@@ -180,7 +180,7 @@ test('every supported language has single-word English virtual device search tag
   }
 });
 
-async function loadCapabilityView(supported, selected) {
+async function loadCapabilityView(supported, selected, updateHandler) {
   const html = fs.readFileSync('drivers/virtual_switch/pair/capabilities.html', 'utf8');
   const script = html.match(/<script>\s*([\s\S]*?)<\/script>/)[1];
   const updates = [];
@@ -199,6 +199,7 @@ async function loadCapabilityView(supported, selected) {
       if (event === 'getPairingDevice') return callback(null, device);
       if (event === 'updateCapabilities') {
         updates.push(data.capabilities.slice());
+        if (updateHandler) return updateHandler(callback);
         return callback(null, { ...device, capabilities: data.capabilities });
       }
     },
@@ -206,7 +207,7 @@ async function loadCapabilityView(supported, selected) {
   const browser = { Vue, Homey, __: key => key, _: { debounce: callback => callback }, console: { log() {} }, devices: context.devices, default_options: context.default_options };
   vm.runInNewContext(script, browser);
   await new Promise(resolve => setImmediate(resolve));
-  return { instances, updates };
+  return { instances, updates, browser };
 }
 
 test('pairing only shows supported recommendations and preselects a supported fallback', async () => {
@@ -225,6 +226,32 @@ test('returning to capabilities preserves recommended and other selections', asy
   assert.deepEqual(Array.from(instances[1].selectedCapabilities), ['dim']);
   assert.deepEqual(Array.from(instances[2].selectedCapabilities), ['alarm_smoke']);
   assert.deepEqual(Array.from(updates.at(-1)), ['dim', 'alarm_smoke']);
+});
+
+test('capability navigation waits for pending changes and stops on a save error', async () => {
+  let finishUpdate;
+  const { browser } = await loadCapabilityView(
+    { onoff: { title: 'On/off' } }, ['onoff'],
+    callback => { finishUpdate = callback; },
+  );
+  const buttons = [{ disabled: false }, { disabled: false }];
+  const calls = [];
+  browser.document = { querySelectorAll: () => buttons };
+  browser.Homey.nextView = () => calls.push('next');
+  browser.Homey.alert = message => calls.push(message);
+  const navigation = browser.navigateCapabilities(true);
+  assert.equal(buttons[1].disabled, true);
+  assert.deepEqual(calls, []);
+  finishUpdate(new Error('Save failed'));
+  await navigation;
+  assert.deepEqual(calls, ['Save failed']);
+  assert.equal(buttons[1].disabled, false);
+  browser.updateCapabilities({ capabilities: ['onoff'] });
+  await new Promise(resolve => setImmediate(resolve));
+  const retry = browser.navigateCapabilities(true);
+  finishUpdate(null);
+  await retry;
+  assert.deepEqual(calls, ['Save failed', 'next']);
 });
 
 test('pairing options wait for edits before creating the device', async () => {

@@ -10,6 +10,7 @@
   });
   var capabilitiesVue;
   var capabilitiesVueAll;
+  var pendingCapabilityUpdates = Promise.resolve(true);
   Homey.emit('getAllCapabilities').then(function(capabilities) {
     capabilitiesVue = new Vue({
       el: '#capabilitiesVue',
@@ -75,13 +76,44 @@
 
 
   function updateCapabilities( capabilities ) {
-    Homey.emit('updateCapabilities', capabilities, function (err, currrentPairingDevice) {
-      if(err){Homey.alert(err.message, 'error'); return;}
+    pendingCapabilityUpdates = pendingCapabilityUpdates.then(function () {
+      return new Promise(function (resolve) {
+        Homey.emit('updateCapabilities', capabilities, function (err) {
+          if (err) Homey.alert(err.message, 'error');
+          resolve(!err);
+        });
+      });
+    }).catch(function (error) {
+      Homey.alert(error.message, 'error');
+      return false;
     });
+  }
+
+  async function navigateCapabilities(next) {
+    const buttons = document.querySelectorAll('.vd-actions button');
+    buttons.forEach(button => { button.disabled = true; });
+    try {
+      let current;
+      let saved;
+      do {
+        current = pendingCapabilityUpdates;
+        saved = await current;
+      } while (current !== pendingCapabilityUpdates);
+      if (saved) {
+        if (next) Homey.nextView();
+        else Homey.showView('class');
+      }
+    } catch (error) {
+      Homey.alert(error.message, 'error');
+    } finally {
+      buttons.forEach(button => { button.disabled = false; });
+    }
   }
 
 </script>
 
+<div class="vd-screen">
+<div class="vd-content">
 <span id='capab_instructions'>{{instructions}}</span>
 <p data-i18n="capability_options.next_view"></p>
 
@@ -104,6 +136,13 @@
       <span class="homey-form-checkbox-text">{{ value.title }} ({{ key }})</span>
     </label>
   </details>
+</div>
+
+</div>
+<div class="vd-actions">
+  <button class="homey-button-transparent" type="button" onclick="navigateCapabilities(false)" data-i18n="capability_options.previous"></button>
+  <button class="homey-button-primary" type="button" onclick="navigateCapabilities(true)" data-i18n="capability_options.next"></button>
+</div>
 </div>
 
 <link rel="stylesheet" href="./view.css">
