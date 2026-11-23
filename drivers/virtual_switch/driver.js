@@ -25,10 +25,29 @@ class VirtualDriver extends Homey.Driver {
       this.registerTypedCapabilityAction(type);
     }
     for (const kind of ['camera', 'album']) {
-      this.homey.flow.getActionCard(`set_${kind}_image_url`).registerRunListener(args =>
-        args.device.setMediaImage(kind, { url: media.imageUrl(args.url) }));
-      this.homey.flow.getActionCard(`set_${kind}_image_token`).registerRunListener(args =>
-        args.device.setMediaImageFromToken(kind, args.droptoken));
+      for (const source of ['url', 'token']) {
+        this.homey.flow.getActionCard(`set_${kind}_image_${source}`).registerRunListener(async args => {
+          const device = requireFlowDevice(this.homey, args);
+          if (kind === 'camera' ? !media.CAMERA_CLASSES.includes(device.getClass()) : device.getClass() !== 'speaker') {
+            throw new Error(this.homey.__('flow_errors.image_device'));
+          }
+          let url;
+          if (source === 'url') {
+            url = media.imageUrl(args.url, false, this.homey.__('flow_errors.image_url'));
+          } else if (!args.droptoken || typeof args.droptoken.getStream !== 'function') {
+            throw new Error(this.homey.__('flow_errors.image_token'));
+          }
+          try {
+            if (source === 'url') return await device.setMediaImage(kind, { url });
+            return await device.setMediaImageFromToken(kind, args.droptoken);
+          } catch (error) {
+            this.error('Could not set Flow image:', error);
+            if (error.code === 'IMAGE_TOO_LARGE') throw new Error(this.homey.__('flow_errors.image_size'));
+            if (error.code === 'IMAGE_EMPTY') throw new Error(this.homey.__('flow_errors.image_empty'));
+            throw new Error(this.homey.__('flow_errors.image_failed'));
+          }
+        });
+      }
     }
     this.homey.app.registerReleaseDriver('virtual_switch', this);
   }
@@ -399,17 +418,25 @@ class VirtualDriver extends Homey.Driver {
   registerFlowCardAction_sensor(card_name, oc) {
     let flowCardAction = this.homey.flow.getActionCard(card_name);
     flowCardAction
-      .registerRunListener((args, state) => {
+      .registerRunListener(async (args, state) => {
         try {
           this.log('args: ' + simpleStringify(args));
-          let device = validateItem('device', args.device);
-          let sensor = validateItem('sensor', oc ? (args.sensor ? args.sensor.id : undefined) : args.sensor);
-          let value = validateItem('value', args.value);
+          const device = requireFlowDevice(this.homey, args);
+          const sensor = oc ? (args.sensor && args.sensor.id) : args.sensor;
+          if (typeof sensor !== 'string' || !sensor.trim()) throw new Error(this.homey.__('flow_errors.capability'));
+          if (!device.getCapabilities().includes(sensor)) throw new Error(this.homey.__('flow_errors.capability_unavailable'));
+          const value = args.value;
+          if (value === undefined || value === null || (typeof value !== 'string' && typeof value !== 'number' && typeof value !== 'boolean')
+            || (typeof value === 'string' && value.trim() === '')) {
+            throw new Error(this.homey.__('flow_errors.value'));
+          }
 
           this.log(device.getName() + ' -> Sensor: ' + sensor);
 
           var valueToSet;
-          if (isNaN(value)) {
+          if (typeof value === 'boolean') {
+            valueToSet = value;
+          } else if (isNaN(value)) {
             if (value.toLowerCase() === 'true') {
               valueToSet = true;
             } else if (value.toLowerCase() === 'false') {
@@ -422,7 +449,7 @@ class VirtualDriver extends Homey.Driver {
           }
 
           this.log(device.getName() + ' -> Value:  ' + valueToSet);
-          return device.setCapabilityValue(sensor, valueToSet)
+          return await setFlowCapability(this, device, sensor, valueToSet);
         }
         catch (error) {
           this.log('Device triggered with missing information: ' + error.message)
@@ -432,7 +459,7 @@ class VirtualDriver extends Homey.Driver {
       });
     if (oc) flowCardAction.registerArgumentAutocompleteListener('sensor', async (query, args) => {
 
-      let caps = args.device.getCapabilities();
+      let caps = requireFlowDevice(this.homey, args).getCapabilities();
       return caps.map(x => {
         return {
           name: x,
@@ -446,32 +473,33 @@ class VirtualDriver extends Homey.Driver {
     const card = this.homey.flow.getActionCard(`set_capability_${type}`);
     const definitionFor = id => getCapabilities()[id.split('.')[0]];
     const selectedCapability = args => {
-      const device = validateItem('device', args.device);
-      const id = validateItem('capability', args.capability && args.capability.id);
+      const device = requireFlowDevice(this.homey, args);
+      const id = args.capability && args.capability.id;
+      if (typeof id !== 'string' || !id) throw new Error(this.homey.__('flow_errors.capability'));
       const definition = definitionFor(id);
       if (!device.getCapabilities().includes(id) || !definition || definition.type !== type) {
-        throw new Error(`Invalid ${type} capability: ${id}`);
+        throw new Error(this.homey.__('flow_errors.capability_unavailable'));
       }
       return { device, id, definition };
     };
 
     card.registerRunListener(async args => {
       const { device, id, definition } = selectedCapability(args);
-      const value = validateItem('value', args.value);
+      const value = args.value;
       if (type === 'enum') {
         if (!value || typeof value.id !== 'string' || !definition.values.some(option => option.id === value.id)) {
-          throw new Error(`Invalid choice for capability: ${id}`);
+          throw new Error(this.homey.__('flow_errors.value'));
         }
-        return device.setCapabilityValue(id, value.id);
+        return setFlowCapability(this, device, id, value.id);
       }
       if (typeof value !== type || (type === 'number' && !Number.isFinite(value))) {
-        throw new Error(`Invalid ${type} value for capability: ${id}`);
+        throw new Error(this.homey.__('flow_errors.value'));
       }
-      return device.setCapabilityValue(id, value);
+      return setFlowCapability(this, device, id, value);
     });
 
     card.registerArgumentAutocompleteListener('capability', async (query, args) => {
-      const device = validateItem('device', args.device);
+      const device = requireFlowDevice(this.homey, args);
       const search = query.toLowerCase();
       return device.getCapabilities()
         .filter(id => {
@@ -510,11 +538,18 @@ function getIconNameAndLocation(name) {
 };
 
 
-function validateItem(item, value) {
-  if (typeof (value) == 'undefined' || value == null) {
-    throw new ReferenceError(item + ' is null or undefined');
+function requireFlowDevice(homey, args) {
+  if (!args || !args.device) throw new Error(homey.__('flow_errors.device'));
+  return args.device;
+}
+
+async function setFlowCapability(driver, device, id, value) {
+  try {
+    return await device.setCapabilityValue(id, value);
+  } catch (error) {
+    driver.error('Could not set Flow capability:', error);
+    throw new Error(driver.homey.__('flow_errors.set_failed'));
   }
-  return value;
 }
 
 function simpleStringify(object) {

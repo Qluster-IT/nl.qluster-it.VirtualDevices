@@ -17,7 +17,7 @@ function setup(trigger) {
   const driver = new Driver();
   driver.log = () => {};
   driver.error = () => {};
-  driver.homey = { flow: { getActionCard: () => ({
+  driver.homey = { __: key => require('../.homeycompose/locales/en.json').flow_errors[key.split('.').pop()], flow: { getActionCard: () => ({
     registerRunListener(callback) { listener = callback; },
   }) } };
   driver.registerFlowCardAction('mode_action_on', true, [trigger]);
@@ -43,6 +43,11 @@ test('mode action waits for the state change before succeeding or triggering', a
   assert.equal(triggered, true);
 });
 
+test('mode action explains a missing device', async () => {
+  const listener = setup({ trigger() { return Promise.resolve(); } });
+  await assert.rejects(listener({}), { message: 'Select a device first.' });
+});
+
 test('mode action reports failed state updates without firing triggers', async () => {
   let triggered = false;
   const listener = setup({ trigger() { triggered = true; return Promise.resolve(); } });
@@ -51,6 +56,6 @@ test('mode action reports failed state updates without firing triggers', async (
     getCapabilityValue: () => false,
     async setCapabilityValue() { throw new Error('update failed'); },
   };
-  await assert.rejects(listener({ device }), /update failed/);
+  await assert.rejects(listener({ device }), { message: 'Could not set the capability. Check the value and try again.' });
   assert.equal(triggered, false);
 });

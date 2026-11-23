@@ -1,4 +1,18 @@
 {
+	"flow_errors": {
+		"device": "Vælg først en enhed.",
+		"capability": "Vælg først en egenskab.",
+		"capability_unavailable": "Denne egenskab er ikke længere tilgængelig på enheden. Vælg en anden.",
+		"value": "Indtast eller vælg en gyldig værdi for egenskaben.",
+		"set_failed": "Egenskaben kunne ikke indstilles. Kontrollér værdien, og prøv igen.",
+		"mode": "Indtast en tilstand, der findes på enheden.",
+		"image_device": "Dette billedkort er ikke tilgængeligt for enheden.",
+		"image_url": "Indtast en gyldig HTTP- eller HTTPS-billedadresse.",
+		"image_token": "Vælg et gyldigt billedtag.",
+		"image_size": "Billedet må højst være 5 MB.",
+		"image_empty": "Det valgte billede er tomt.",
+		"image_failed": "Billedet kunne ikke indstilles. Kontrollér billedkilden, og prøv igen."
+	},
 	"release": {
 		"notice": "Virtual Devices 2.0: Rediger eksisterende enheder via Reparer, vælg mellem flere ikoner, og brug nye energi- og kameraindstillinger."
 	},

@@ -235,5 +235,19 @@
   },
   "release": {
     "notice": "Virtual Devices 2.0: Edit existing devices with Repair, choose from more icons and use new Energy and camera options."
+  },
+  "flow_errors": {
+    "device": "Select a device first.",
+    "capability": "Select a capability first.",
+    "capability_unavailable": "This capability is no longer available on this device. Select another one.",
+    "value": "Enter or select a valid value for this capability.",
+    "set_failed": "Could not set the capability. Check the value and try again.",
+    "mode": "Enter a mode that exists on this device.",
+    "image_device": "This image card is not available for this device.",
+    "image_url": "Enter a valid HTTP or HTTPS image URL.",
+    "image_token": "Select a valid image tag.",
+    "image_size": "The image must be no larger than 5 MB.",
+    "image_empty": "The selected image is empty.",
+    "image_failed": "Could not set the image. Check the image source and try again."
   }
 }

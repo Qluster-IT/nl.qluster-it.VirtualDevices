@@ -235,5 +235,19 @@
   },
   "release": {
     "notice": "Virtual Devices 2.0: Pas bestaande apparaten aan via Repareren, kies uit meer pictogrammen en gebruik nieuwe opties voor energie en camera's."
+  },
+  "flow_errors": {
+    "device": "Selecteer eerst een apparaat.",
+    "capability": "Selecteer eerst een eigenschap.",
+    "capability_unavailable": "Deze eigenschap is niet meer beschikbaar op dit apparaat. Selecteer een andere.",
+    "value": "Voer een geldige waarde voor deze eigenschap in of selecteer er een.",
+    "set_failed": "De eigenschap kon niet worden ingesteld. Controleer de waarde en probeer het opnieuw.",
+    "mode": "Voer een modus in die op dit apparaat bestaat.",
+    "image_device": "Deze afbeeldingskaart is niet beschikbaar voor dit apparaat.",
+    "image_url": "Voer een geldige HTTP- of HTTPS-afbeeldings-URL in.",
+    "image_token": "Selecteer een geldige afbeeldingstag.",
+    "image_size": "De afbeelding mag niet groter zijn dan 5 MB.",
+    "image_empty": "De geselecteerde afbeelding is leeg.",
+    "image_failed": "De afbeelding kon niet worden ingesteld. Controleer de afbeeldingsbron en probeer het opnieuw."
   }
 }

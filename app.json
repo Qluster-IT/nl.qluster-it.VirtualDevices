@@ -1023,19 +1023,19 @@
           "ar": "تعيين قيمة نعم/لا"
         },
         "titleFormatted": {
-          "en": "Set [[capability]] to [[value]]",
-          "nl": "Stel [[capability]] in op [[value]]",
-          "da": "Indstil [[capability]] til [[value]]",
-          "de": "Setzen Sie [[capability]] auf [[value]]",
-          "es": "Establecer [[capability]] a [[value]]",
-          "fr": "Définir [[capability]] sur [[value]]",
-          "it": "Imposta [[capability]] su [[value]]",
-          "no": "Sett [[capability]] til [[value]]",
-          "sv": "Ställ in [[capability]] till [[value]]",
-          "pl": "Ustaw [[capability]] na [[value]]",
-          "ru": "Установить [[capability]] на [[value]]",
-          "ko": "[[capability]]을(를) [[value]]로 설정하세요.",
-          "ar": "اضبط [[capability]] على [[value]]"
+          "en": "Set a yes/no capability value: [[capability]] = [[value]]",
+          "nl": "Stel een ja/nee-waarde in: [[capability]] = [[value]]",
+          "da": "Indstil en ja/nej-egenskab: [[capability]] = [[value]]",
+          "de": "Ja/Nein-Wert einer Eigenschaft setzen: [[capability]] = [[value]]",
+          "es": "Establecer un valor sí/no: [[capability]] = [[value]]",
+          "fr": "Définir une valeur oui/non: [[capability]] = [[value]]",
+          "it": "Imposta un valore sì/no: [[capability]] = [[value]]",
+          "no": "Angi en ja/nei-verdi: [[capability]] = [[value]]",
+          "sv": "Ange ett ja/nej-värde: [[capability]] = [[value]]",
+          "pl": "Ustaw wartość tak/nie: [[capability]] = [[value]]",
+          "ru": "Установить значение да/нет: [[capability]] = [[value]]",
+          "ko": "예/아니요 속성 값 설정: [[capability]] = [[value]]",
+          "ar": "تعيين قيمة نعم/لا: [[capability]] = [[value]]"
         },
         "args": [
           {
@@ -1116,19 +1116,19 @@
           "ar": "تعيين خيار"
         },
         "titleFormatted": {
-          "en": "Set [[capability]] to [[value]]",
-          "nl": "Stel [[capability]] in op [[value]]",
-          "da": "Indstil [[capability]] til [[value]]",
-          "de": "Setzen Sie [[capability]] auf [[value]]",
-          "es": "Establecer [[capability]] a [[value]]",
-          "fr": "Définir [[capability]] sur [[value]]",
-          "it": "Imposta [[capability]] su [[value]]",
-          "no": "Sett [[capability]] til [[value]]",
-          "sv": "Ställ in [[capability]] till [[value]]",
-          "pl": "Ustaw [[capability]] na [[value]]",
-          "ru": "Установить [[capability]] на [[value]]",
-          "ko": "[[capability]]을(를) [[value]]로 설정하세요.",
-          "ar": "اضبط [[capability]] على [[value]]"
+          "en": "Set a capability choice: [[capability]] = [[value]]",
+          "nl": "Stel een keuze in: [[capability]] = [[value]]",
+          "da": "Indstil et egenskabsvalg: [[capability]] = [[value]]",
+          "de": "Auswahl einer Eigenschaft setzen: [[capability]] = [[value]]",
+          "es": "Establecer una opción: [[capability]] = [[value]]",
+          "fr": "Définir un choix: [[capability]] = [[value]]",
+          "it": "Imposta una scelta: [[capability]] = [[value]]",
+          "no": "Angi et valg: [[capability]] = [[value]]",
+          "sv": "Ange ett val: [[capability]] = [[value]]",
+          "pl": "Ustaw opcję: [[capability]] = [[value]]",
+          "ru": "Установить вариант: [[capability]] = [[value]]",
+          "ko": "속성 선택값 설정: [[capability]] = [[value]]",
+          "ar": "تعيين خيار: [[capability]] = [[value]]"
         },
         "args": [
           {
@@ -1224,19 +1224,19 @@
           "ar": "تعيين قيمة رقمية"
         },
         "titleFormatted": {
-          "en": "Set [[capability]] to [[value]]",
-          "nl": "Stel [[capability]] in op [[value]]",
-          "da": "Indstil [[capability]] til [[value]]",
-          "de": "Setzen Sie [[capability]] auf [[value]]",
-          "es": "Establecer [[capability]] a [[value]]",
-          "fr": "Définir [[capability]] sur [[value]]",
-          "it": "Imposta [[capability]] su [[value]]",
-          "no": "Sett [[capability]] til [[value]]",
-          "sv": "Ställ in [[capability]] till [[value]]",
-          "pl": "Ustaw [[capability]] na [[value]]",
-          "ru": "Установить [[capability]] на [[value]]",
-          "ko": "[[capability]]을(를) [[value]]로 설정하세요.",
-          "ar": "اضبط [[capability]] على [[value]]"
+          "en": "Set a numeric capability value: [[capability]] = [[value]]",
+          "nl": "Stel een getalswaarde in: [[capability]] = [[value]]",
+          "da": "Indstil en numerisk egenskab: [[capability]] = [[value]]",
+          "de": "Zahlenwert einer Eigenschaft setzen: [[capability]] = [[value]]",
+          "es": "Establecer un valor numérico: [[capability]] = [[value]]",
+          "fr": "Définir une valeur numérique: [[capability]] = [[value]]",
+          "it": "Imposta un valore numerico: [[capability]] = [[value]]",
+          "no": "Angi en tallverdi: [[capability]] = [[value]]",
+          "sv": "Ange ett numeriskt värde: [[capability]] = [[value]]",
+          "pl": "Ustaw wartość liczbową: [[capability]] = [[value]]",
+          "ru": "Установить числовое значение: [[capability]] = [[value]]",
+          "ko": "숫자 속성 값 설정: [[capability]] = [[value]]",
+          "ar": "تعيين قيمة رقمية: [[capability]] = [[value]]"
         },
         "args": [
           {
@@ -1317,19 +1317,19 @@
           "ar": "تعيين قيمة نصية"
         },
         "titleFormatted": {
-          "en": "Set [[capability]] to [[value]]",
-          "nl": "Stel [[capability]] in op [[value]]",
-          "da": "Indstil [[capability]] til [[value]]",
-          "de": "Setzen Sie [[capability]] auf [[value]]",
-          "es": "Establecer [[capability]] a [[value]]",
-          "fr": "Définir [[capability]] sur [[value]]",
-          "it": "Imposta [[capability]] su [[value]]",
-          "no": "Sett [[capability]] til [[value]]",
-          "sv": "Ställ in [[capability]] till [[value]]",
-          "pl": "Ustaw [[capability]] na [[value]]",
-          "ru": "Установить [[capability]] на [[value]]",
-          "ko": "[[capability]]을(를) [[value]]로 설정하세요.",
-          "ar": "اضبط [[capability]] على [[value]]"
+          "en": "Set a text capability value: [[capability]] = [[value]]",
+          "nl": "Stel een tekstwaarde in: [[capability]] = [[value]]",
+          "da": "Indstil en tekstegenskab: [[capability]] = [[value]]",
+          "de": "Textwert einer Eigenschaft setzen: [[capability]] = [[value]]",
+          "es": "Establecer un valor de texto: [[capability]] = [[value]]",
+          "fr": "Définir une valeur texte: [[capability]] = [[value]]",
+          "it": "Imposta un valore di testo: [[capability]] = [[value]]",
+          "no": "Angi en tekstverdi: [[capability]] = [[value]]",
+          "sv": "Ange ett textvärde: [[capability]] = [[value]]",
+          "pl": "Ustaw wartość tekstową: [[capability]] = [[value]]",
+          "ru": "Установить текстовое значение: [[capability]] = [[value]]",
+          "ko": "텍스트 속성 값 설정: [[capability]] = [[value]]",
+          "ar": "تعيين قيمة نصية: [[capability]] = [[value]]"
         },
         "args": [
           {

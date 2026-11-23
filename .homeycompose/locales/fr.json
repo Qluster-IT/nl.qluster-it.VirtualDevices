@@ -1,4 +1,18 @@
 {
+	"flow_errors": {
+		"device": "Sélectionnez d’abord un appareil.",
+		"capability": "Sélectionnez d’abord une propriété.",
+		"capability_unavailable": "Cette propriété n’est plus disponible sur cet appareil. Sélectionnez-en une autre.",
+		"value": "Saisissez ou sélectionnez une valeur valide pour cette propriété.",
+		"set_failed": "Impossible de définir la propriété. Vérifiez la valeur et réessayez.",
+		"mode": "Saisissez un mode existant sur cet appareil.",
+		"image_device": "Cette carte d’image n’est pas disponible pour cet appareil.",
+		"image_url": "Saisissez une URL d’image HTTP ou HTTPS valide.",
+		"image_token": "Sélectionnez une étiquette d’image valide.",
+		"image_size": "L’image ne doit pas dépasser 5 Mo.",
+		"image_empty": "L’image sélectionnée est vide.",
+		"image_failed": "Impossible de définir l’image. Vérifiez sa source et réessayez."
+	},
 	"release": {
 		"notice": "Virtual Devices 2.0 : Modifiez les appareils existants avec Réparer, choisissez parmi plus d'icônes et utilisez les nouvelles options d'énergie et de caméra."
 	},

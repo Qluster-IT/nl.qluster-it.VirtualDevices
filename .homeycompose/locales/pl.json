@@ -1,4 +1,18 @@
 {
+	"flow_errors": {
+		"device": "Najpierw wybierz urządzenie.",
+		"capability": "Najpierw wybierz właściwość.",
+		"capability_unavailable": "Ta właściwość nie jest już dostępna w urządzeniu. Wybierz inną.",
+		"value": "Wprowadź lub wybierz prawidłową wartość tej właściwości.",
+		"set_failed": "Nie można ustawić właściwości. Sprawdź wartość i spróbuj ponownie.",
+		"mode": "Wprowadź tryb istniejący w tym urządzeniu.",
+		"image_device": "Ta karta obrazu nie jest dostępna dla tego urządzenia.",
+		"image_url": "Wprowadź prawidłowy adres URL obrazu HTTP lub HTTPS.",
+		"image_token": "Wybierz prawidłowy znacznik obrazu.",
+		"image_size": "Obraz nie może być większy niż 5 MB.",
+		"image_empty": "Wybrany obraz jest pusty.",
+		"image_failed": "Nie można ustawić obrazu. Sprawdź jego źródło i spróbuj ponownie."
+	},
 	"release": {
 		"notice": "Virtual Devices 2.0: Edytuj istniejące urządzenia przez Napraw, wybieraj spośród większej liczby ikon i korzystaj z nowych opcji energii i kamery."
 	},

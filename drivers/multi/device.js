@@ -24,7 +24,7 @@ class ModeDevice extends Homey.Device {
     let thisMultiChanged = this.homey.flow.getDeviceTriggerCard('multi_changed');
     
     // When capability is changed
-    this.registerMultipleCapabilityListener(this.getCapabilities(), (valueObj, optsObj) => {
+    this.registerMultipleCapabilityListener(this.getCapabilities(), async (valueObj, optsObj) => {
       this.log(this.getName() + ' -> Capability changed: ' + JSON.stringify(valueObj));
       this.log('State before:       ', this.getState());
 
@@ -33,10 +33,10 @@ class ModeDevice extends Homey.Device {
         var newState = this.getData().state_names[changedCapability];
         if (this.getCapabilityValue(TOKEN_NAME) === newState) {
           this.log('State did not change')
-          return Promise.resolve(); // no change, no triggers
+          return; // no change, no triggers
         }
 
-        this.setMultiState(newState);
+        await this.setMultiState(newState);
       }
 
       process.nextTick(async () => {
@@ -44,8 +44,6 @@ class ModeDevice extends Homey.Device {
         thisMultiChanged.trigger( this, {}, null ) // , valueObj ) // Fire and forget
           .catch( this.error );
       });
-
-      return Promise.resolve();
     }, 500);
   }
 
@@ -78,32 +76,27 @@ class ModeDevice extends Homey.Device {
     return allowedStates.contains(state);
   }
 
-  setMultiState( new_state ) {
+  async setMultiState( new_state ) {
     if( ! this.isStateAllowed(new_state) ) { return }
     this.log('Set name: ', new_state);
     if (this.hasCapability(PREVIOUS_STATE_NAME)) {
       this.log('Previous state: ', this.getCapabilityValue(TOKEN_NAME));
-      this.setCapabilityValue(PREVIOUS_STATE_NAME, this.getCapabilityValue(TOKEN_NAME))
-        .catch( this.error );
+      await this.setCapabilityValue(PREVIOUS_STATE_NAME, this.getCapabilityValue(TOKEN_NAME));
     }
-    this.setCapabilityValue(TOKEN_NAME, new_state)
-      .catch( this.error );
-
-    this.setBooleanWithStateName( new_state );
+    await this.setBooleanWithStateName( new_state );
+    await this.setCapabilityValue(TOKEN_NAME, new_state);
   }
 
-  setBooleanWithStateName( state ) {
+  async setBooleanWithStateName( state ) {
     var stateNames = this.getData().state_names;
     var capabilities = Object.keys(stateNames);
     for (var i = 0, len = capabilities.length; i < len; i++) {
       var capab = capabilities[i];
       var stateName  = stateNames[capab]
       if( stateName === state ) {
-        this.setCapabilityValue(capab, true)
-          .catch( this.error );
+        await this.setCapabilityValue(capab, true);
       } else {
-        this.setCapabilityValue(capab, false)
-          .catch( this.error );
+        await this.setCapabilityValue(capab, false);
       }
     }
   }

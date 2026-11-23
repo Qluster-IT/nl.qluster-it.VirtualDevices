@@ -208,9 +208,10 @@ class MultiDriver extends Homey.Driver {
     flowCardCondition
       .registerRunListener(( args, state ) => {
         try {
-          let device = validateItem('device', args.device);
+          let device = validateItem(this.homey, args && args.device);
 
           let stateToCheck = getState( args );
+          if (stateToCheck == null || stateToCheck === '') throw new Error(this.homey.__('flow_errors.mode'));
           this.log(device.getName() + ' -> Condition checked: ' + simpleStringify(device.getState()) );
 
           if (stateToCheck === device.getState()[capability]) {
@@ -229,16 +230,17 @@ class MultiDriver extends Homey.Driver {
   registerFlowCardAction(card_name, capability, flow_trigger) {
     let flowCardAction = this.homey.flow.getActionCard(card_name);
     flowCardAction
-      .registerRunListener(( args, state ) => {
+      .registerRunListener(async ( args, state ) => {
         try {
-          let device = validateItem('device', args.device);
+          let device = validateItem(this.homey, args && args.device);
           let newState = getState( args );
+          if (newState == null || newState === '') throw new Error(this.homey.__('flow_errors.mode'));
           this.log(device.getName() + ' -> Multi-State set to ' + newState);
 
           if ( ! device.isStateAllowed(newState) ) {
             var allowedStates = Object.values(device.getData().state_names);
             this.error(newState + ' is not an allowed state. Allowed states are: ', JSON.stringify(allowedStates));
-            return Promise.resolve( false );
+            throw new Error(this.homey.__('flow_errors.mode'));
           }
 
           if (device.getMultiState() === newState) {
@@ -246,7 +248,12 @@ class MultiDriver extends Homey.Driver {
             return Promise.resolve(); // no change, no triggers
           }
 
-          device.setMultiState(newState);
+          try {
+            await device.setMultiState(newState);
+          } catch (error) {
+            this.error('Could not set Multi-mode state:', error);
+            throw new Error(this.homey.__('flow_errors.set_failed'));
+          }
 
           if (flow_trigger) {
             flow_trigger.trigger( device, {}, null) //, newState ) // Fire and forget
@@ -285,9 +292,9 @@ function getState( args ) {
   return argums[firstKey];
 }
 
-function validateItem(item, value) {
+function validateItem(homey, value) {
   if (typeof(value) == 'undefined' || value == null ) {
-    throw new ReferenceError( item + ' is null or undefined' );
+    throw new Error(homey.__('flow_errors.device'));
   }
   return value;
 }

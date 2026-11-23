@@ -11,6 +11,7 @@ Module._load = function (request, parent, isMain) {
 };
 const Driver = require('../drivers/virtual_switch/driver');
 Module._load = originalLoad;
+const errors = require('../.homeycompose/locales/en.json').flow_errors;
 
 test('typed actions follow existing actions in the composed manifest', () => {
   const actions = require('../app.json').flow.actions;
@@ -25,12 +26,19 @@ test('typed actions follow existing actions in the composed manifest', () => {
     ['set_capability_string', 'text'], ['set_capability_enum', 'autocomplete']]) {
     assert.equal(actions.find(action => action.id === id).args.find(arg => arg.name === 'value').type, input);
   }
+  const typedActions = added.map(id => actions.find(action => action.id === id));
+  for (const language of Object.keys(typedActions[0].title)) {
+    const labels = typedActions.map(action => action.titleFormatted[language]);
+    assert.equal(new Set(labels).size, typedActions.length, `${language} typed card labels must be distinct`);
+    assert.ok(labels.every(label => label.includes('[[capability]]') && label.includes('[[value]]')));
+  }
 });
 
 function setup(type) {
   const listeners = {};
   const calls = [];
   const device = {
+    getName: () => 'Virtual device',
     getCapabilities: () => ['measure_temperature', 'meter_power.imported', 'onoff', 'speaker_track', 'battery_charging_state'],
     async setCapabilityValue(id, value) { calls.push({ id, value }); },
   };
@@ -39,9 +47,14 @@ function setup(type) {
     registerArgumentAutocompleteListener(name, listener) { listeners[name] = listener; },
   };
   const driver = new Driver();
-  driver.homey = { flow: { getActionCard: () => card }, i18n: { getLanguage: () => 'en' } };
+  driver.error = () => {};
+  driver.log = () => {};
+  driver.homey = {
+    flow: { getActionCard: () => card }, i18n: { getLanguage: () => 'en' },
+    __: key => errors[key.split('.').pop()],
+  };
   driver.registerTypedCapabilityAction(type);
-  return { listeners, device, calls };
+  return { driver, listeners, device, calls };
 }
 
 test('typed pickers filter capabilities by type and search, including sub-capabilities', async () => {
@@ -64,10 +77,10 @@ test('typed actions preserve numbers, booleans and numeric-looking text', async 
 
 test('typed actions reject stale or mismatched capabilities and invalid values', async () => {
   const { listeners, device, calls } = setup('number');
-  await assert.rejects(listeners.run({ device, capability: { id: 'onoff' }, value: 1 }), /Invalid number capability/);
-  await assert.rejects(listeners.run({ device, capability: { id: 'measure_humidity' }, value: 1 }), /Invalid number capability/);
-  await assert.rejects(listeners.run({ device, capability: { id: 'measure_temperature' }, value: NaN }), /Invalid number value/);
-  await assert.rejects(listeners.run({ device, capability: { id: 'measure_temperature' }, value: '1' }), /Invalid number value/);
+  await assert.rejects(listeners.run({ device, capability: { id: 'onoff' }, value: 1 }), { message: errors.capability_unavailable });
+  await assert.rejects(listeners.run({ device, capability: { id: 'measure_humidity' }, value: 1 }), { message: errors.capability_unavailable });
+  await assert.rejects(listeners.run({ device, capability: { id: 'measure_temperature' }, value: NaN }), { message: errors.value });
+  await assert.rejects(listeners.run({ device, capability: { id: 'measure_temperature' }, value: '1' }), { message: errors.value });
   assert.deepEqual(calls, []);
 });
 
@@ -78,5 +91,32 @@ test('choice action offers localized values and rejects stale choices', async ()
   assert.ok(options.some(option => option.id === 'charging' && option.name === 'Charging'));
   await listeners.run({ device, capability, value: options.find(option => option.id === 'charging') });
   assert.deepEqual(calls, [{ id: capability.id, value: 'charging' }]);
-  await assert.rejects(listeners.run({ device, capability, value: { id: 'missing' } }), /Invalid choice/);
+  await assert.rejects(listeners.run({ device, capability, value: { id: 'missing' } }), { message: errors.value });
+});
+
+test('choice picker explains missing or unavailable capability while editing', async () => {
+  const { listeners, device } = setup('enum');
+  await assert.rejects(listeners.value('', { device }), { message: errors.capability });
+  await assert.rejects(listeners.value('', { device, capability: { id: 'onoff' } }), { message: errors.capability_unavailable });
+  await assert.rejects(listeners.capability('', {}), { message: errors.device });
+});
+
+test('legacy sensor cards give actionable errors and accept boolean tokens', async () => {
+  const { driver, listeners, device, calls } = setup('number');
+  driver.registerFlowCardAction_sensor('set_sensor_value_oc', true);
+  await assert.rejects(listeners.sensor('', {}), { message: errors.device });
+  await assert.rejects(listeners.run({ device, value: '1' }), { message: errors.capability });
+  await assert.rejects(listeners.run({ device, sensor: { id: 'removed' }, value: '1' }), { message: errors.capability_unavailable });
+  await assert.rejects(listeners.run({ device, sensor: { id: 'onoff' } }), { message: errors.value });
+  await listeners.run({ device, sensor: { id: 'onoff' }, value: false });
+  assert.deepEqual(calls, [{ id: 'onoff', value: false }]);
+});
+
+test('device update failures are logged and shown as an actionable error', async () => {
+  const { driver, listeners, device } = setup('number');
+  const logged = [];
+  driver.error = (...args) => logged.push(args);
+  device.setCapabilityValue = async () => { throw new Error('SDK failure'); };
+  await assert.rejects(listeners.run({ device, capability: { id: 'measure_temperature' }, value: 2 }), { message: errors.set_failed });
+  assert.match(logged[0][1].message, /SDK failure/);
 });

@@ -16,19 +16,19 @@
     "ar": "تعيين قيمة نعم/لا"
   },
   "titleFormatted": {
-    "en": "Set [[capability]] to [[value]]",
-    "nl": "Stel [[capability]] in op [[value]]",
-    "da": "Indstil [[capability]] til [[value]]",
-    "de": "Setzen Sie [[capability]] auf [[value]]",
-    "es": "Establecer [[capability]] a [[value]]",
-    "fr": "Définir [[capability]] sur [[value]]",
-    "it": "Imposta [[capability]] su [[value]]",
-    "no": "Sett [[capability]] til [[value]]",
-    "sv": "Ställ in [[capability]] till [[value]]",
-    "pl": "Ustaw [[capability]] na [[value]]",
-    "ru": "Установить [[capability]] на [[value]]",
-    "ko": "[[capability]]을(를) [[value]]로 설정하세요.",
-    "ar": "اضبط [[capability]] على [[value]]"
+    "en": "Set a yes/no capability value: [[capability]] = [[value]]",
+    "nl": "Stel een ja/nee-waarde in: [[capability]] = [[value]]",
+    "da": "Indstil en ja/nej-egenskab: [[capability]] = [[value]]",
+    "de": "Ja/Nein-Wert einer Eigenschaft setzen: [[capability]] = [[value]]",
+    "es": "Establecer un valor sí/no: [[capability]] = [[value]]",
+    "fr": "Définir une valeur oui/non: [[capability]] = [[value]]",
+    "it": "Imposta un valore sì/no: [[capability]] = [[value]]",
+    "no": "Angi en ja/nei-verdi: [[capability]] = [[value]]",
+    "sv": "Ange ett ja/nej-värde: [[capability]] = [[value]]",
+    "pl": "Ustaw wartość tak/nie: [[capability]] = [[value]]",
+    "ru": "Установить значение да/нет: [[capability]] = [[value]]",
+    "ko": "예/아니요 속성 값 설정: [[capability]] = [[value]]",
+    "ar": "تعيين قيمة نعم/لا: [[capability]] = [[value]]"
   },
   "args": [
     {

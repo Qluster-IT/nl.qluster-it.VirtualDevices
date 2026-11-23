@@ -16,19 +16,19 @@
     "ar": "تعيين خيار"
   },
   "titleFormatted": {
-    "en": "Set [[capability]] to [[value]]",
-    "nl": "Stel [[capability]] in op [[value]]",
-    "da": "Indstil [[capability]] til [[value]]",
-    "de": "Setzen Sie [[capability]] auf [[value]]",
-    "es": "Establecer [[capability]] a [[value]]",
-    "fr": "Définir [[capability]] sur [[value]]",
-    "it": "Imposta [[capability]] su [[value]]",
-    "no": "Sett [[capability]] til [[value]]",
-    "sv": "Ställ in [[capability]] till [[value]]",
-    "pl": "Ustaw [[capability]] na [[value]]",
-    "ru": "Установить [[capability]] на [[value]]",
-    "ko": "[[capability]]을(를) [[value]]로 설정하세요.",
-    "ar": "اضبط [[capability]] على [[value]]"
+    "en": "Set a capability choice: [[capability]] = [[value]]",
+    "nl": "Stel een keuze in: [[capability]] = [[value]]",
+    "da": "Indstil et egenskabsvalg: [[capability]] = [[value]]",
+    "de": "Auswahl einer Eigenschaft setzen: [[capability]] = [[value]]",
+    "es": "Establecer una opción: [[capability]] = [[value]]",
+    "fr": "Définir un choix: [[capability]] = [[value]]",
+    "it": "Imposta una scelta: [[capability]] = [[value]]",
+    "no": "Angi et valg: [[capability]] = [[value]]",
+    "sv": "Ange ett val: [[capability]] = [[value]]",
+    "pl": "Ustaw opcję: [[capability]] = [[value]]",
+    "ru": "Установить вариант: [[capability]] = [[value]]",
+    "ko": "속성 선택값 설정: [[capability]] = [[value]]",
+    "ar": "تعيين خيار: [[capability]] = [[value]]"
   },
   "args": [
     {

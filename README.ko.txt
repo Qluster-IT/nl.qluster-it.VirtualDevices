@@ -4,7 +4,11 @@ Homey에서 스위치, 센서, 온도조절기와 같은 간단한 가상 장치
 
 장치 클래스, 기능 및 아이콘을 선택하세요. 나중에 복구를 통해 클래스와 기능을 변경할 수 있습니다. 더 세밀하게 설정하려면 Device Capabilities 앱의 Advanced Virtual Device를 사용하세요.
 
+각 장치 클래스에 적합한 기능이 추천됩니다. 복구에서 기능 옵션과 수정 가능한 아이콘도 변경할 수 있습니다.
+
+선택적 Homey Energy 설정은 배터리, 전기차, 충전기 및 계량기를 지원합니다. Flow 카드로 숫자, 예/아니요, 텍스트 및 선택값을 설정할 수 있습니다.
+
 카메라와 초인종은 스냅샷을 지원하며, 지원되는 Homey에서는 실시간 영상도 지원합니다. Flow로 카메라 이미지와 스피커 앨범 아트를 설정할 수 있습니다.
 
-커뮤니티 포럼: https://community.homey.app/t/virtual-devices/1723
+커뮤니티 포럼 주제: https://community.homey.app/t/virtual-devices/1723
 위키와 사용 설명서는 Homey App Store의 이 앱 페이지에서 개발자 웹사이트 아래의 웹사이트 방문을 선택하세요.

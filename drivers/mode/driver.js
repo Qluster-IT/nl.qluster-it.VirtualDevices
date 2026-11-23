@@ -118,7 +118,7 @@ class ModeDriver extends Homey.Driver {
     flowCardCondition
       .registerRunListener((args, state) => {
         try {
-          let device = validateItem('device', args.device);
+          let device = validateItem(this.homey, args && args.device);
           this.log(device.getName() + ' -> Condition checked: ' + simpleStringify(device.getState()));
 
           if (device.getState().onoff) {
@@ -139,10 +139,15 @@ class ModeDriver extends Homey.Driver {
     flowCardAction
       .registerRunListener(async (args, state) => {
         try {
-          let device = validateItem('device', args.device);
+          let device = validateItem(this.homey, args && args.device);
           this.log(device.getName() + ' -> State set to ' + newState);
           if (device.getCapabilityValue('onoff') !== newState) {
-            await device.setCapabilityValue('onoff', newState);
+            try {
+              await device.setCapabilityValue('onoff', newState);
+            } catch (error) {
+              this.error('Could not set Mode state:', error);
+              throw new Error(this.homey.__('flow_errors.set_failed'));
+            }
 
             for (var i = 0; i < flow_triggers.length; i++) {
               // flow_triggers[i].trigger( device, {}, newState ) // Fire and forget
@@ -225,9 +230,9 @@ function removeIcon(iconpath) {
   })
 }
 
-function validateItem(item, value) {
+function validateItem(homey, value) {
   if (typeof (value) == 'undefined' || value == null) {
-    throw new ReferenceError(item + ' is null or undefined');
+    throw new Error(homey.__('flow_errors.device'));
   }
   return value;
 }

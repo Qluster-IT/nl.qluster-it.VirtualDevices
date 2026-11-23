@@ -4,7 +4,11 @@ Du kan også bruge tilstande, f.eks. en ferietilstand, som betingelser i Flows.
 
 Vælg enhedsklasse, egenskaber og ikon. Du kan senere ændre klasse og egenskaber via Reparer. Til mere avanceret tilpasning kan du bruge en Advanced Virtual Device fra appen Device Capabilities.
 
+Hver enhedsklasse foreslår passende egenskaber. Via Reparer kan du også ændre egenskabsindstillinger og redigerbare ikoner.
+
+Valgfrie Homey Energy-indstillinger understøtter batterier, elbiler, opladere og målere. Flowkort kan indstille tal, ja/nej, tekst og valg.
+
 Kameraer og dørklokker understøtter snapshots og, på understøttede Homeys, livevideo. Flows kan indstille kamerabilleder og højttaleres albumcovers.
 
-Community Forum: https://community.homey.app/t/virtual-devices/1723
+Emne på Community Forum: https://community.homey.app/t/virtual-devices/1723
 For wiki og brugervejledning skal du vælge Besøg websted under Udviklerens websted på appens side i Homey App Store.

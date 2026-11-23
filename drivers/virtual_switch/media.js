@@ -9,13 +9,13 @@ const pipeline = promisify(streamPipeline);
 const MAX_IMAGE_SIZE = 5 * 1024 * 1024;
 const CAMERA_CLASSES = ['camera', 'doorbell'];
 
-function imageUrl(value, allowEmpty = false) {
-  if (typeof value !== 'string') throw new Error('Invalid image URL');
+function imageUrl(value, allowEmpty = false, invalidMessage = 'Invalid image URL') {
+  if (typeof value !== 'string') throw new Error(invalidMessage);
   const text = value.trim();
   if (!text && allowEmpty) return '';
   let url;
-  try { url = new URL(text); } catch { throw new Error('Invalid image URL'); }
-  if (!['http:', 'https:'].includes(url.protocol)) throw new Error('Invalid image URL');
+  try { url = new URL(text); } catch { throw new Error(invalidMessage); }
+  if (!['http:', 'https:'].includes(url.protocol)) throw new Error(invalidMessage);
   return url.href;
 }
 
@@ -78,11 +78,17 @@ async function copyToken(image) {
     size += chunk.length;
     if (size > MAX_IMAGE_SIZE) {
       stream.destroy();
-      throw new Error('Image exceeds 5 MB');
+      const error = new Error('Image exceeds 5 MB');
+      error.code = 'IMAGE_TOO_LARGE';
+      throw error;
     }
     chunks.push(chunk);
   }
-  if (!size) throw new Error('Image is empty');
+  if (!size) {
+    const error = new Error('Image is empty');
+    error.code = 'IMAGE_EMPTY';
+    throw error;
+  }
   return { data: Buffer.concat(chunks).toString('base64'), contentType: (stream.meta && stream.meta.contentType) || stream.contentType || 'image/jpeg' };
 }
 

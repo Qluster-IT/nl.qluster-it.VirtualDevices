@@ -16,19 +16,19 @@
     "ar": "تعيين قيمة نصية"
   },
   "titleFormatted": {
-    "en": "Set [[capability]] to [[value]]",
-    "nl": "Stel [[capability]] in op [[value]]",
-    "da": "Indstil [[capability]] til [[value]]",
-    "de": "Setzen Sie [[capability]] auf [[value]]",
-    "es": "Establecer [[capability]] a [[value]]",
-    "fr": "Définir [[capability]] sur [[value]]",
-    "it": "Imposta [[capability]] su [[value]]",
-    "no": "Sett [[capability]] til [[value]]",
-    "sv": "Ställ in [[capability]] till [[value]]",
-    "pl": "Ustaw [[capability]] na [[value]]",
-    "ru": "Установить [[capability]] на [[value]]",
-    "ko": "[[capability]]을(를) [[value]]로 설정하세요.",
-    "ar": "اضبط [[capability]] على [[value]]"
+    "en": "Set a text capability value: [[capability]] = [[value]]",
+    "nl": "Stel een tekstwaarde in: [[capability]] = [[value]]",
+    "da": "Indstil en tekstegenskab: [[capability]] = [[value]]",
+    "de": "Textwert einer Eigenschaft setzen: [[capability]] = [[value]]",
+    "es": "Establecer un valor de texto: [[capability]] = [[value]]",
+    "fr": "Définir une valeur texte: [[capability]] = [[value]]",
+    "it": "Imposta un valore di testo: [[capability]] = [[value]]",
+    "no": "Angi en tekstverdi: [[capability]] = [[value]]",
+    "sv": "Ange ett textvärde: [[capability]] = [[value]]",
+    "pl": "Ustaw wartość tekstową: [[capability]] = [[value]]",
+    "ru": "Установить текстовое значение: [[capability]] = [[value]]",
+    "ko": "텍스트 속성 값 설정: [[capability]] = [[value]]",
+    "ar": "تعيين قيمة نصية: [[capability]] = [[value]]"
   },
   "args": [
     {

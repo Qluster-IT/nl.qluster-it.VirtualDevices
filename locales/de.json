@@ -235,5 +235,19 @@
   },
   "release": {
     "notice": "Virtual Devices 2.0: Bearbeite bestehende Geräte über Reparieren, wähle aus mehr Symbolen und nutze neue Energie- und Kameraoptionen."
+  },
+  "flow_errors": {
+    "device": "Wähle zuerst ein Gerät aus.",
+    "capability": "Wähle zuerst eine Eigenschaft aus.",
+    "capability_unavailable": "Diese Eigenschaft ist auf dem Gerät nicht mehr verfügbar. Wähle eine andere aus.",
+    "value": "Gib einen gültigen Wert für diese Eigenschaft ein oder wähle ihn aus.",
+    "set_failed": "Die Eigenschaft konnte nicht gesetzt werden. Prüfe den Wert und versuche es erneut.",
+    "mode": "Gib einen auf diesem Gerät vorhandenen Modus ein.",
+    "image_device": "Diese Bildkarte ist für dieses Gerät nicht verfügbar.",
+    "image_url": "Gib eine gültige HTTP- oder HTTPS-Bild-URL ein.",
+    "image_token": "Wähle ein gültiges Bild-Tag aus.",
+    "image_size": "Das Bild darf höchstens 5 MB groß sein.",
+    "image_empty": "Das ausgewählte Bild ist leer.",
+    "image_failed": "Das Bild konnte nicht gesetzt werden. Prüfe die Bildquelle und versuche es erneut."
   }
 }

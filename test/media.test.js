@@ -15,6 +15,7 @@ Module._load = function (request, parent, isMain) {
 const Device = require('../drivers/virtual_switch/device');
 const Driver = require('../drivers/virtual_switch/driver');
 Module._load = originalLoad;
+const errors = require('../.homeycompose/locales/en.json').flow_errors;
 
 function setup(deviceClass = 'camera', version = '12.7.0', store = {}) {
   const calls = [];
@@ -149,7 +150,9 @@ test('media flow cards pass URL and image tags to the selected device', async ()
   const driver = new Driver();
   const listeners = {};
   driver.log = () => {};
+  driver.error = () => {};
   driver.homey = {
+    __: key => errors[key.split('.').pop()],
     app: { registerReleaseDriver() {} },
     flow: {
       getActionCard(id) {
@@ -169,7 +172,16 @@ test('media flow cards pass URL and image tags to the selected device', async ()
   await speaker.device.onInit();
   await listeners.set_album_image_token({ device: speaker.device, droptoken: { getStream: async () => Readable.from([Buffer.from('art')]) } });
   assert.equal((await contents(speaker.device.mediaImages.album)).bytes, 'art');
-  await assert.rejects(listeners.set_camera_image_token({ device: camera.device, droptoken: null }), /image token/);
+  await assert.rejects(listeners.set_camera_image_token({ device: camera.device, droptoken: null }), { message: errors.image_token });
+  await assert.rejects(listeners.set_camera_image_url({ device: camera.device, url: 'file:///bad' }), { message: errors.image_url });
+  await assert.rejects(listeners.set_camera_image_url({ device: speaker.device, url: 'http://camera/image' }), { message: errors.image_device });
+  await assert.rejects(listeners.set_camera_image_url({ url: 'http://camera/image' }), { message: errors.device });
+  await assert.rejects(listeners.set_camera_image_token({
+    device: camera.device, droptoken: { getStream: async () => Readable.from([]) },
+  }), { message: errors.image_empty });
+  await assert.rejects(listeners.set_camera_image_token({
+    device: camera.device, droptoken: { getStream: async () => Readable.from([Buffer.alloc(5 * 1024 * 1024 + 1)]) },
+  }), { message: errors.image_size });
 });
 
 test('failed persistence restores the previous image and later changes still work', async () => {

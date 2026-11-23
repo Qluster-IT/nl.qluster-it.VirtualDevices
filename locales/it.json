@@ -235,5 +235,19 @@
   },
   "release": {
     "notice": "Virtual Devices 2.0: Modifica i dispositivi esistenti con Ripara, scegli tra più icone e usa le nuove opzioni per energia e telecamera."
+  },
+  "flow_errors": {
+    "device": "Seleziona prima un dispositivo.",
+    "capability": "Seleziona prima una proprietà.",
+    "capability_unavailable": "Questa proprietà non è più disponibile sul dispositivo. Selezionane un’altra.",
+    "value": "Inserisci o seleziona un valore valido per questa proprietà.",
+    "set_failed": "Impossibile impostare la proprietà. Controlla il valore e riprova.",
+    "mode": "Inserisci una modalità presente su questo dispositivo.",
+    "image_device": "Questa scheda immagine non è disponibile per il dispositivo.",
+    "image_url": "Inserisci un URL immagine HTTP o HTTPS valido.",
+    "image_token": "Seleziona un tag immagine valido.",
+    "image_size": "L’immagine non deve superare 5 MB.",
+    "image_empty": "L’immagine selezionata è vuota.",
+    "image_failed": "Impossibile impostare l’immagine. Controlla la sorgente e riprova."
   }
 }

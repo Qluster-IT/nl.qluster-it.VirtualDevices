@@ -1,4 +1,18 @@
 {
+	"flow_errors": {
+		"device": "Selecciona primero un dispositivo.",
+		"capability": "Selecciona primero una propiedad.",
+		"capability_unavailable": "Esta propiedad ya no está disponible en el dispositivo. Selecciona otra.",
+		"value": "Introduce o selecciona un valor válido para esta propiedad.",
+		"set_failed": "No se pudo establecer la propiedad. Comprueba el valor y vuelve a intentarlo.",
+		"mode": "Introduce un modo que exista en este dispositivo.",
+		"image_device": "Esta tarjeta de imagen no está disponible para este dispositivo.",
+		"image_url": "Introduce una URL de imagen HTTP o HTTPS válida.",
+		"image_token": "Selecciona una etiqueta de imagen válida.",
+		"image_size": "La imagen no puede superar los 5 MB.",
+		"image_empty": "La imagen seleccionada está vacía.",
+		"image_failed": "No se pudo establecer la imagen. Comprueba la fuente e inténtalo de nuevo."
+	},
 	"release": {
 		"notice": "Virtual Devices 2.0: Edita dispositivos existentes mediante Reparar, elige entre más iconos y usa las nuevas opciones de energía y cámara."
 	},

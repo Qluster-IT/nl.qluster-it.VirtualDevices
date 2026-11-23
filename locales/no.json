@@ -236,5 +236,19 @@
   },
   "release": {
     "notice": "Virtual Devices 2.0: Rediger eksisterende enheter via Reparer, velg blant flere ikoner og bruk nye energi- og kamerainnstillinger."
+  },
+  "flow_errors": {
+    "device": "Velg en enhet først.",
+    "capability": "Velg en egenskap først.",
+    "capability_unavailable": "Denne egenskapen er ikke lenger tilgjengelig på enheten. Velg en annen.",
+    "value": "Skriv inn eller velg en gyldig verdi for egenskapen.",
+    "set_failed": "Kunne ikke angi egenskapen. Kontroller verdien og prøv igjen.",
+    "mode": "Skriv inn en modus som finnes på denne enheten.",
+    "image_device": "Dette bildekortet er ikke tilgjengelig for enheten.",
+    "image_url": "Skriv inn en gyldig HTTP- eller HTTPS-bildeadresse.",
+    "image_token": "Velg en gyldig bildebrikke.",
+    "image_size": "Bildet kan ikke være større enn 5 MB.",
+    "image_empty": "Det valgte bildet er tomt.",
+    "image_failed": "Kunne ikke angi bildet. Kontroller bildekilden og prøv igjen."
   }
 }
