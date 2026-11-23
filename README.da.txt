@@ -10,5 +10,5 @@ Valgfrie Homey Energy-indstillinger understøtter batterier, elbiler, opladere o
 
 Kameraer og dørklokker understøtter snapshots og, på understøttede Homeys, livevideo. Flows kan indstille kamerabilleder og højttaleres albumcovers.
 
-Emne på Community Forum: https://community.homey.app/t/virtual-devices/1723
-For wiki og brugervejledning skal du vælge Besøg websted under Udviklerens websted på appens side i Homey App Store.
+Se emnet på Community Forum for eksempler og information.
+For Virtual Devices-wikien og brugervejledningen skal du vælge "Besøg websted" under "Udviklerens websted" på denne apps side i Homey App Store.

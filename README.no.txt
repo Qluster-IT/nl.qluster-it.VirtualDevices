@@ -10,5 +10,5 @@ Valgfrie Homey Energy-innstillinger støtter batterier, elbiler, ladere og måle
 
 Kameraer og ringeklokker støtter øyeblikksbilder og, på støttede Homeyer, direktesendt video. Flower kan angi kamerabilder og albumomslag for høyttalere.
 
-Emne på Community Forum: https://community.homey.app/t/virtual-devices/1723
-For wiki og brukerhåndbok velger du Besøk nettsted under Utviklerens nettsted på appens side i Homey App Store.
+Se emnet på Community Forum for eksempler og informasjon.
+For Virtual Devices-wikien og brukerhåndboken velger du «Besøk nettsted» under «Utviklerens nettsted» på denne appens side i Homey App Store.

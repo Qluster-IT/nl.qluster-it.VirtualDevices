@@ -10,5 +10,5 @@ Valfria Homey Energy-inställningar stöder batterier, elbilar, laddare och mät
 
 Kameror och dörrklockor stöder ögonblicksbilder och, på Homey-enheter som stöds, livevideo. Flows kan ange kamerabilder och albumomslag för högtalare.
 
-Ämne på Community Forum: https://community.homey.app/t/virtual-devices/1723
-För wiki och användarmanual, välj Besök webbplats under Utvecklarens webbplats på appens sida i Homey App Store.
+Läs ämnet på Community Forum för exempel och information.
+Välj "Besök webbplats" under "Utvecklarens webbplats" på appens Homey App Store-sida för att öppna wikin och användarmanualen för Virtual Devices.

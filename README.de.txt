@@ -10,5 +10,5 @@ Optionale Homey Energy-Einstellungen unterstützen Batterien, Elektroautos, Lade
 
 Kameras und Türklingeln unterstützen Schnappschüsse und auf unterstützten Homeys Livevideo. Flows können Kamerabilder und Lautsprecher-Albumcover festlegen.
 
-Community-Forum-Thema: https://community.homey.app/t/virtual-devices/1723
-Für Wiki und Benutzerhandbuch wähle auf der Homey App Store-Seite dieser App unter Entwickler-Website die Option Website besuchen.
+Sieh dir das Thema im Community Forum für Beispiele und Informationen an.
+Wähle für das Virtual Devices-Wiki und Benutzerhandbuch auf der Homey App Store-Seite dieser App „Website besuchen“ unter „Entwickler-Website“ aus.

@@ -10,5 +10,5 @@ Les réglages Homey Energy facultatifs prennent en charge les batteries, voiture
 
 Les caméras et sonnettes prennent en charge les captures et, sur les Homey compatibles, la vidéo en direct. Les Flows peuvent définir les images des caméras et les pochettes des enceintes.
 
-Sujet du forum communautaire : https://community.homey.app/t/virtual-devices/1723
-Pour accéder au wiki et au manuel, sélectionnez Visiter le site sous Site web du développeur sur la page Homey App Store de cette application.
+Consultez le sujet du forum communautaire pour trouver des exemples et des informations.
+Pour accéder au wiki et au manuel de Virtual Devices, sélectionnez « Visiter le site » sous « Site web du développeur » sur la page Homey App Store de cette application.

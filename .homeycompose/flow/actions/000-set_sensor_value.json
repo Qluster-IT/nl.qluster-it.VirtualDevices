@@ -15,6 +15,21 @@
     "ko": "가상 센서 값 설정",
     "ar": "تعيين قيمة المستشعر الافتراضي"
   },
+  "titleFormatted": {
+    "en": "Set [[sensor]] to [[value]]",
+    "nl": "Stel [[sensor]] in op [[value]]",
+    "da": "Indstil [[sensor]] til [[value]]",
+    "de": "Setzen Sie [[sensor]] auf [[value]]",
+    "es": "Establecer [[sensor]] a [[value]]",
+    "fr": "Définir [[sensor]] sur [[value]]",
+    "it": "Imposta [[sensor]] su [[value]]",
+    "no": "Sett [[sensor]] til [[value]]",
+    "sv": "Ställ in [[sensor]] till [[value]]",
+    "pl": "Ustaw [[sensor]] na [[value]]",
+    "ru": "Установить [[sensor]] на [[value]]",
+    "ko": "[[sensor]]을(를) [[value]]로 설정하세요.",
+    "ar": "اضبط [[sensor]] على [[value]]"
+  },
   "args": [
     {
       "name": "sensor",

@@ -10,5 +10,5 @@ Le impostazioni Homey Energy opzionali supportano batterie, auto elettriche, car
 
 Telecamere e campanelli supportano istantanee e, sui Homey compatibili, video in diretta. I Flow possono impostare immagini delle telecamere e copertine degli altoparlanti.
 
-Discussione del Forum della comunità: https://community.homey.app/t/virtual-devices/1723
-Per la wiki e il manuale, seleziona Visita il sito web sotto Sito web dello sviluppatore nella pagina Homey App Store di questa app.
+Consulta l'argomento sul Forum della comunità per esempi e informazioni.
+Per consultare la wiki e il manuale di Virtual Devices, seleziona "Visita il sito web" sotto "Sito web dello sviluppatore" nella pagina di questa app su Homey App Store.

@@ -16,6 +16,21 @@
     "ko": "멀티 모드 설정",
     "ar": "تعيين وضع متعدد"
   },
+  "titleFormatted": {
+    "en": "Set multi-mode to [[multi_state]]",
+    "nl": "Zet multi-modus op [[multi_state]]",
+    "da": "Indstil multi-tilstand til [[multi_state]]",
+    "de": "Setze Multimodus auf [[multi_state]]",
+    "es": "Establecer modo múltiple en [[multi_state]]",
+    "fr": "Définir le mode multi sur [[multi_state]]",
+    "it": "Imposta la modalità multipla su [[multi_state]]",
+    "no": "Sett multimodus til [[multi_state]]",
+    "sv": "Ställ in multiläge på [[multi_state]]",
+    "pl": "Ustaw tryb multi na [[multi_state]]",
+    "ru": "Установить многорежимное состояние [[multi_state]]",
+    "ko": "멀티 모드를 [[multi_state]](으)로 설정",
+    "ar": "اضبط الوضع المتعدد على [[multi_state]]"
+  },
   "args": [
     {
       "name": "multi_state",

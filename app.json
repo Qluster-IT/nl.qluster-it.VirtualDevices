@@ -235,6 +235,7 @@
         "tokens": [
           {
             "name": "value",
+            "type": "string",
             "title": {
               "en": "value",
               "nl": "waarde",
@@ -268,6 +269,7 @@
           },
           {
             "name": "variable",
+            "type": "string",
             "title": {
               "en": "variable",
               "nl": "variabele",
@@ -301,6 +303,7 @@
           },
           {
             "name": "device",
+            "type": "string",
             "title": {
               "en": "device",
               "nl": "apparaat",
@@ -506,6 +509,21 @@
           "ko": "멀티 모드 !{{is|is not}} 정확히",
           "ar": "متعدد الأوضاع !{{is|is not}} بالضبط"
         },
+        "titleFormatted": {
+          "en": "Multi-mode !{{is|is not}} exactly [[state]]",
+          "nl": "Multi-modus !{{is|is niet}} exact [[state]]",
+          "da": "Multi-mode !{{er|er ikke}} præcis [[state]]",
+          "de": "Multimodus !{{ist|ist nicht}} genau [[state]]",
+          "es": "Modo múltiple {{es|no es}} exactamente [[state]]",
+          "fr": "Multi-mode !{{est|n'est pas}} exactement [[state]]",
+          "it": "Multi-mode !{{è|non è}} esattamente [[state]]",
+          "no": "Multimodus !{{er|er ikke}} helt lik [[state]]",
+          "sv": "Multi-mode !{{är|är inte}} exakt [[state]]",
+          "pl": "Tryb wielofunkcyjny {{jest|nie jest}} dokładnie [[state]]",
+          "ru": "Мульти-режим !{{is|is not}} точно [[state]]",
+          "ko": "멀티 모드 !{{is|is not}} 정확히 [[state]]",
+          "ar": "متعدد الأوضاع !{{is|is not}} بالضبط [[state]]"
+        },
         "args": [
           {
             "name": "state",
@@ -551,6 +569,21 @@
           "ru": "Установить значение виртуального датчика",
           "ko": "가상 센서 값 설정",
           "ar": "تعيين قيمة المستشعر الافتراضي"
+        },
+        "titleFormatted": {
+          "en": "Set [[sensor]] to [[value]]",
+          "nl": "Stel [[sensor]] in op [[value]]",
+          "da": "Indstil [[sensor]] til [[value]]",
+          "de": "Setzen Sie [[sensor]] auf [[value]]",
+          "es": "Establecer [[sensor]] a [[value]]",
+          "fr": "Définir [[sensor]] sur [[value]]",
+          "it": "Imposta [[sensor]] su [[value]]",
+          "no": "Sett [[sensor]] til [[value]]",
+          "sv": "Ställ in [[sensor]] till [[value]]",
+          "pl": "Ustaw [[sensor]] na [[value]]",
+          "ru": "Установить [[sensor]] на [[value]]",
+          "ko": "[[sensor]]을(를) [[value]]로 설정하세요.",
+          "ar": "اضبط [[sensor]] على [[value]]"
         },
         "args": [
           {
@@ -795,6 +828,21 @@
           "ru": "Установить многорежимный режим",
           "ko": "멀티 모드 설정",
           "ar": "تعيين وضع متعدد"
+        },
+        "titleFormatted": {
+          "en": "Set multi-mode to [[multi_state]]",
+          "nl": "Zet multi-modus op [[multi_state]]",
+          "da": "Indstil multi-tilstand til [[multi_state]]",
+          "de": "Setze Multimodus auf [[multi_state]]",
+          "es": "Establecer modo múltiple en [[multi_state]]",
+          "fr": "Définir le mode multi sur [[multi_state]]",
+          "it": "Imposta la modalità multipla su [[multi_state]]",
+          "no": "Sett multimodus til [[multi_state]]",
+          "sv": "Ställ in multiläge på [[multi_state]]",
+          "pl": "Ustaw tryb multi na [[multi_state]]",
+          "ru": "Установить многорежимное состояние [[multi_state]]",
+          "ko": "멀티 모드를 [[multi_state]](으)로 설정",
+          "ar": "اضبط الوضع المتعدد على [[multi_state]]"
         },
         "args": [
           {

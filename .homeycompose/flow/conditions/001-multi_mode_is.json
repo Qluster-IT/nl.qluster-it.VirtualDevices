@@ -16,6 +16,21 @@
     "ko": "멀티 모드 !{{is|is not}} 정확히",
     "ar": "متعدد الأوضاع !{{is|is not}} بالضبط"
   },
+  "titleFormatted": {
+    "en": "Multi-mode !{{is|is not}} exactly [[state]]",
+    "nl": "Multi-modus !{{is|is niet}} exact [[state]]",
+    "da": "Multi-mode !{{er|er ikke}} præcis [[state]]",
+    "de": "Multimodus !{{ist|ist nicht}} genau [[state]]",
+    "es": "Modo múltiple {{es|no es}} exactamente [[state]]",
+    "fr": "Multi-mode !{{est|n'est pas}} exactement [[state]]",
+    "it": "Multi-mode !{{è|non è}} esattamente [[state]]",
+    "no": "Multimodus !{{er|er ikke}} helt lik [[state]]",
+    "sv": "Multi-mode !{{är|är inte}} exakt [[state]]",
+    "pl": "Tryb wielofunkcyjny {{jest|nie jest}} dokładnie [[state]]",
+    "ru": "Мульти-режим !{{is|is not}} точно [[state]]",
+    "ko": "멀티 모드 !{{is|is not}} 정확히 [[state]]",
+    "ar": "متعدد الأوضاع !{{is|is not}} بالضبط [[state]]"
+  },
   "args": [
     {
       "name": "state",

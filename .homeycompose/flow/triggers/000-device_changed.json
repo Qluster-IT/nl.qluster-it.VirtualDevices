@@ -18,6 +18,7 @@
   "tokens": [
     {
       "name": "value",
+      "type": "string",
       "title": {
         "en": "value",
         "nl": "waarde",
@@ -51,6 +52,7 @@
     },
     {
       "name": "variable",
+      "type": "string",
       "title": {
         "en": "variable",
         "nl": "variabele",
@@ -84,6 +86,7 @@
     },
     {
       "name": "device",
+      "type": "string",
       "title": {
         "en": "device",
         "nl": "apparaat",
