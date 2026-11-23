@@ -10,5 +10,5 @@ Opcjonalne ustawienia Homey Energy obsługują baterie, samochody elektryczne, �
 
 Kamery i dzwonki obsługują migawki oraz wideo na żywo na zgodnych Homey. Flow może ustawiać obrazy kamer i okładki albumów głośników.
 
-Zobacz temat na forum społeczności, aby znaleźć przykłady i informacje.
+Zobacz temat na forum społeczności, aby uzyskać pomoc i informacje.
 Aby otworzyć wiki i instrukcję Virtual Devices, wybierz „Odwiedź stronę” w sekcji „Strona dewelopera” na stronie tej aplikacji w Homey App Store.

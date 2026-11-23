@@ -10,5 +10,5 @@ Optional Homey Energy settings support batteries, electric cars, chargers and me
 
 Camera and doorbell devices support snapshots and, on supported Homeys, live video. Flows can set camera images and speaker album art.
 
-See the topic on the Community Forum for examples and information.
+See the topic on the Community Forum for help and information.
 For the Virtual Devices wiki and user manual, select "Visit website" under "Developer website" on this app's Homey App Store page.

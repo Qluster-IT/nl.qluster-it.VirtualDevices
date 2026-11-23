@@ -10,5 +10,5 @@ Los ajustes opcionales de Homey Energy admiten baterías, coches eléctricos, ca
 
 Las cámaras y los timbres admiten instantáneas y, en Homeys compatibles, vídeo en directo. Los Flows pueden establecer imágenes de cámara y portadas de álbum para altavoces.
 
-Consulta el tema del foro de la comunidad para ver ejemplos e información.
+Consulta el tema del foro de la comunidad para obtener ayuda e información.
 Para acceder a la wiki y al manual de Virtual Devices, selecciona "Visitar sitio web" en "Sitio web del desarrollador" en la página de esta aplicación en Homey App Store.

@@ -10,5 +10,5 @@ Optionele Homey Energy-instellingen ondersteunen batterijen, elektrische auto's,
 
 Camera’s en deurbellen ondersteunen snapshots en, op ondersteunde Homeys, livevideo. Flows kunnen camera-afbeeldingen en luidsprekeralbumhoezen instellen.
 
-Bekijk het onderwerp op het Community Forum voor voorbeelden en informatie.
+Bekijk het onderwerp op het Community Forum voor hulp en informatie.
 Kies voor de Virtual Devices-wiki en -handleiding "Website bezoeken" onder "Website van de ontwikkelaar" op de Homey App Store-pagina van deze app.
